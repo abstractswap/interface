@@ -29,7 +29,7 @@
     "@uniswap/router-sdk": "1.9.2",
     "@uniswap/sdk-core": "5.3.0",
     "@uniswap/uniswapx-sdk": "^2.1.0-beta.8",
-    "@uniswap/universal-router-sdk": "2.2.0",
+    "@uniswap/universal-router-sdk": "3.0.2",
     "@uniswap/v3-sdk": "3.13.0",
     "apollo3-cache-persist": "0.14.1",
     "axios": "1.6.5",

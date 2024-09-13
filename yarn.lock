@@ -15237,7 +15237,7 @@ __metadata:
     "@uniswap/analytics-events": 2.36.0
     "@uniswap/eslint-config": "workspace:^"
     "@uniswap/uniswapx-sdk": ^2.1.0-beta.8
-    "@uniswap/universal-router-sdk": 2.2.0
+    "@uniswap/universal-router-sdk": 3.0.2
     "@uniswap/v3-sdk": 3.13.0
     "@welldone-software/why-did-you-render": 8.0.1
     clean-webpack-plugin: ^4.0.0
@@ -15373,7 +15373,7 @@ __metadata:
     "@uniswap/smart-order-router": 3.17.3
     "@uniswap/token-lists": 1.0.0-beta.33
     "@uniswap/uniswapx-sdk": ^2.1.0-beta.8
-    "@uniswap/universal-router-sdk": 2.2.0
+    "@uniswap/universal-router-sdk": 3.0.2
     "@uniswap/v2-core": 1.0.1
     "@uniswap/v2-periphery": 1.1.0-beta.0
     "@uniswap/v2-sdk": 4.3.2
@@ -15807,19 +15807,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uniswap/universal-router-sdk@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@uniswap/universal-router-sdk@npm:2.2.0"
+"@uniswap/universal-router-sdk@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@uniswap/universal-router-sdk@npm:3.0.2"
   dependencies:
     "@uniswap/permit2-sdk": ^1.3.0
-    "@uniswap/router-sdk": ^1.9.2
-    "@uniswap/sdk-core": ^5.3.0
+    "@uniswap/router-sdk": ^1.10.0
+    "@uniswap/sdk-core": ^5.3.1
     "@uniswap/universal-router": 1.6.0
-    "@uniswap/v2-sdk": ^4.3.2
-    "@uniswap/v3-sdk": ^3.13.0
+    "@uniswap/v2-sdk": ^4.4.1
+    "@uniswap/v3-sdk": ^3.13.1
+    "@uniswap/v4-sdk": ^1.0.0
     bignumber.js: ^9.0.2
     ethers: ^5.7.0
-  checksum: 8b2863ff867913606ee660610a9e7489d58c07531de6b9062b623a5290a0364ffac15997e2fcd613e7b4b280297b1d667496a2ae41bc3c1f5bbc0ab83944d471
+  checksum: 4d200634e319068987479e27a6c753dde65d2176c3424f2a5b51f0707da1af623ab406179098c8c65c54f7d9ebd9e00c4f36c58732fabb087477650d7731f1ba
   languageName: node
   linkType: hard
 
@@ -15938,6 +15939,19 @@ __metadata:
     "@uniswap/v3-core": 1.0.0
     "@uniswap/v3-periphery": ^1.0.1
   checksum: 5a68e59f33d4761956ad735c8ce5ea6e566076bd260ea0a0bb4b3a0db237719e39f21a22eb0a5a231141efdf0154bfe03f690612d632898f33192b4442c888b3
+  languageName: node
+  linkType: hard
+
+"@uniswap/v4-sdk@npm:^1.0.0":
+  version: 1.2.0
+  resolution: "@uniswap/v4-sdk@npm:1.2.0"
+  dependencies:
+    "@ethersproject/solidity": ^5.0.9
+    "@uniswap/sdk-core": ^5.3.1
+    "@uniswap/v3-sdk": 3.12.0
+    tiny-invariant: ^1.1.0
+    tiny-warning: ^1.0.3
+  checksum: 186aae0764ee3a54d2857f367b2f914b376c998e62b7463c086ea55012720932a744975e1af0f6b7272fbf9bef9d3913725f9d7b7af585cb55ecf342d8743d7f
   languageName: node
   linkType: hard
 
@@ -20212,7 +20226,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ci-info@npm:^3.2.0, ci-info@npm:^3.3.0":
+"ci-info@npm:^3.2.0, ci-info@npm:^3.3.0, ci-info@npm:^3.7.0":
   version: 3.9.0
   resolution: "ci-info@npm:3.9.0"
   checksum: 6b19dc9b2966d1f8c2041a838217299718f15d6c4b63ae36e4674edd2bee48f780e94761286a56aa59eb305a85fbea4ddffb7630ec063e7ec7e7e5ad42549a87
@@ -26574,7 +26588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-yarn-workspace-root@npm:~2.0.0":
+"find-yarn-workspace-root@npm:^2.0.0, find-yarn-workspace-root@npm:~2.0.0":
   version: 2.0.0
   resolution: "find-yarn-workspace-root@npm:2.0.0"
   dependencies:
@@ -32092,6 +32106,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-stable-stringify@npm:^1.0.2":
+  version: 1.1.1
+  resolution: "json-stable-stringify@npm:1.1.1"
+  dependencies:
+    call-bind: ^1.0.5
+    isarray: ^2.0.5
+    jsonify: ^0.0.1
+    object-keys: ^1.1.1
+  checksum: e1ba06600fd278767eeff53f28e408e29c867e79abf564e7aadc3ce8f31f667258f8db278ef28831e45884dd687388fa1910f46e599fc19fb94c9afbbe3a4de8
+  languageName: node
+  linkType: hard
+
 "json-stringify-safe@npm:^5.0.1, json-stringify-safe@npm:~5.0.1":
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
@@ -32162,7 +32188,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonify@npm:~0.0.0":
+"jsonify@npm:^0.0.1, jsonify@npm:~0.0.0":
   version: 0.0.1
   resolution: "jsonify@npm:0.0.1"
   checksum: 027287e1c0294fce15f18c0ff990cfc2318e7f01fb76515f784d5cd0784abfec6fc5c2355c3a2f2cb0ad7f4aa2f5b74ebbfe4e80476c35b2d13cabdb572e1134
@@ -32330,6 +32356,15 @@ __metadata:
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
   checksum: 3ab01e7b1d440b22fe4c31f23d8d38b4d9b91d9f291df683476576493d5dfd2e03848a8b05813dd0c3f0e835bc63f433007ddeceb71f05cb25c45ae1b19c6d3b
+  languageName: node
+  linkType: hard
+
+"klaw-sync@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "klaw-sync@npm:6.0.0"
+  dependencies:
+    graceful-fs: ^4.1.11
+  checksum: 0da397f8961313c3ef8f79fb63af9002cde5a8fb2aeb1a37351feff0dd6006129c790400c3f5c3b4e757bedcabb13d21ec0a5eaef5a593d59515d4f2c291e475
   languageName: node
   linkType: hard
 
@@ -35536,7 +35571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open@npm:^7.0.3, open@npm:^7.3.1":
+"open@npm:^7.0.3, open@npm:^7.3.1, open@npm:^7.4.2":
   version: 7.4.2
   resolution: "open@npm:7.4.2"
   dependencies:
@@ -36171,6 +36206,31 @@ __metadata:
     ansi-escapes: ^3.1.0
     cross-spawn: ^6.0.5
   checksum: 4763ec1b48cb311d60df37186e31f1b85ec3249a21cc17bbf8407d66c5b55cffe34b4eb529ebd044ed4ced7f3ea3fad744fe15e30a5de31645433e94cd444266
+  languageName: node
+  linkType: hard
+
+"patch-package@npm:8.0.0":
+  version: 8.0.0
+  resolution: "patch-package@npm:8.0.0"
+  dependencies:
+    "@yarnpkg/lockfile": ^1.1.0
+    chalk: ^4.1.2
+    ci-info: ^3.7.0
+    cross-spawn: ^7.0.3
+    find-yarn-workspace-root: ^2.0.0
+    fs-extra: ^9.0.0
+    json-stable-stringify: ^1.0.2
+    klaw-sync: ^6.0.0
+    minimist: ^1.2.6
+    open: ^7.4.2
+    rimraf: ^2.6.3
+    semver: ^7.5.3
+    slash: ^2.0.0
+    tmp: ^0.0.33
+    yaml: ^2.2.2
+  bin:
+    patch-package: index.js
+  checksum: d23cddc4d1622e2d8c7ca31b145c6eddb24bd271f69905e766de5e1f199f0b9a5479a6a6939ea857288399d4ed249285639d539a2c00fbddb7daa39934b007a2
   languageName: node
   linkType: hard
 
@@ -41592,6 +41652,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"slash@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "slash@npm:2.0.0"
+  checksum: 512d4350735375bd11647233cb0e2f93beca6f53441015eea241fe784d8068281c3987fbaa93e7ef1c38df68d9c60013045c92837423c69115297d6169aa85e6
+  languageName: node
+  linkType: hard
+
 "slash@npm:^3.0.0":
   version: 3.0.0
   resolution: "slash@npm:3.0.0"
@@ -45168,6 +45235,7 @@ __metadata:
     i18next-parser: 8.6.0
     js-yaml: 4.1.0
     moti: 0.29.0
+    patch-package: 8.0.0
     prettier: 3.3.2
     prettier-plugin-organize-imports: 3.2.4
     syncpack: ^8.5.14
@@ -46151,7 +46219,7 @@ __metadata:
     "@uniswap/router-sdk": 1.9.2
     "@uniswap/sdk-core": 5.3.0
     "@uniswap/uniswapx-sdk": ^2.1.0-beta.8
-    "@uniswap/universal-router-sdk": 2.2.0
+    "@uniswap/universal-router-sdk": 3.0.2
     "@uniswap/v3-sdk": 3.13.0
     apollo3-cache-persist: 0.14.1
     axios: 1.6.5

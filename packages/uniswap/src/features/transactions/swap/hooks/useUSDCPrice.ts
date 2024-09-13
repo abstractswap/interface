@@ -4,6 +4,7 @@ import { PollingInterval } from 'uniswap/src/constants/misc'
 import {
   USDB_BLAST,
   USDC,
+  USDC_ABSTRACT_TESTNET,
   USDC_ARBITRUM,
   USDC_AVALANCHE,
   USDC_BASE,
@@ -35,6 +36,7 @@ export const STABLECOIN_AMOUNT_OUT: { [chainId: number]: CurrencyAmount<Token> }
   [UniverseChainId.Celo]: CurrencyAmount.fromRawAmount(USDC_CELO, 10_000e18),
   [UniverseChainId.Zora]: CurrencyAmount.fromRawAmount(USDC_ZORA, 10_000e6),
   [UniverseChainId.Zksync]: CurrencyAmount.fromRawAmount(USDC_ZKSYNC, 10_000e6),
+  [UniverseChainId.AbstractTestnet]: CurrencyAmount.fromRawAmount(USDC_ABSTRACT_TESTNET, 10_000e6),
 }
 
 /**

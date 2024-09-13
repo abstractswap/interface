@@ -15,7 +15,7 @@
     "@types/uuid": "9.0.1",
     "@uniswap/analytics-events": "2.36.0",
     "@uniswap/uniswapx-sdk": "^2.1.0-beta.8",
-    "@uniswap/universal-router-sdk": "2.2.0",
+    "@uniswap/universal-router-sdk": "3.0.2",
     "@uniswap/v3-sdk": "3.13.0",
     "dotenv-webpack": "8.0.1",
     "ethers": "5.7.2",

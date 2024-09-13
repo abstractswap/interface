@@ -2,6 +2,7 @@ import { SupportedInterfaceChainId, getChain, useIsSupportedChainId } from 'cons
 import { CSSProperties } from 'react'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 import {
+  ABSTRACT_LOGO,
   ARBITRUM_LOGO,
   AVALANCHE_LOGO,
   BASE_LOGO,
@@ -116,6 +117,18 @@ export function getChainUI(chainId: InterfaceChainId, darkMode: boolean): ChainU
             symbol: ZKSYNC_LOGO,
             bgColor: 'rgba(54, 103, 246, 0.12)',
             textColor: '#3667F6',
+          }
+    case UniverseChainId.AbstractTestnet:
+      return darkMode
+        ? {
+            symbol: ABSTRACT_LOGO,
+            bgColor: 'rgba(187, 247, 208, 0.12)',
+            textColor: '#BBF7D0',
+          }
+        : {
+            symbol: ABSTRACT_LOGO,
+            bgColor: 'rgba(0, 222, 115, 0.12)',
+            textColor: '#00DE73',
           }
     default:
       return undefined

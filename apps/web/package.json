@@ -196,7 +196,7 @@
     "@uniswap/smart-order-router": "3.17.3",
     "@uniswap/token-lists": "1.0.0-beta.33",
     "@uniswap/uniswapx-sdk": "^2.1.0-beta.8",
-    "@uniswap/universal-router-sdk": "2.2.0",
+    "@uniswap/universal-router-sdk": "3.0.2",
     "@uniswap/v2-core": "1.0.1",
     "@uniswap/v2-periphery": "1.1.0-beta.0",
     "@uniswap/v2-sdk": "4.3.2",

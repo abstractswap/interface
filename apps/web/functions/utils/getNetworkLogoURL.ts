@@ -22,6 +22,9 @@ export default function getNetworkLogoUrl(network: string, origin: string) {
       return origin + '/images/logos/Zora_Logo.png'
     case Chain.Zksync:
       return origin + '/images/logos/zkSync_Logo.png'
+    // Since gql is not supported - specifying name as a string
+    case 'ABSTRACT_TESTNET':
+      return origin + '/images/logos/Abstract_Logo.png'
     default:
       return ''
   }

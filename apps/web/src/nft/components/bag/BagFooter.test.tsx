@@ -2,7 +2,7 @@ import 'test-utils/tokens/mocks'
 
 import { BigNumber } from '@ethersproject/bignumber'
 import { CurrencyAmount, Percent } from '@uniswap/sdk-core'
-import { UNIVERSAL_ROUTER_ADDRESS } from '@uniswap/universal-router-sdk'
+import { UNIVERSAL_ROUTER_ADDRESS, UniversalRouterVersion } from '@uniswap/universal-router-sdk'
 import { nativeOnChain } from 'constants/tokens'
 import { getURAddress, useNftUniversalRouterAddress } from 'graphql/data/nft/NftUniversalRouterAddress'
 import { useAccount } from 'hooks/useAccount'
@@ -410,8 +410,12 @@ describe('BagFooter.tsx', () => {
 
   it('should use the correct UR address', () => {
     expect(getURAddress(undefined)).toBe(undefined)
-    expect(getURAddress(UniverseChainId.Mainnet)).toBe(UNIVERSAL_ROUTER_ADDRESS(UniverseChainId.Mainnet))
+    expect(getURAddress(UniverseChainId.Mainnet)).toBe(
+      UNIVERSAL_ROUTER_ADDRESS(UniversalRouterVersion.V1_2, UniverseChainId.Mainnet),
+    )
     expect(getURAddress(UniverseChainId.Mainnet, 'test_nft_ur_address')).toBe('test_nft_ur_address')
-    expect(getURAddress(UniverseChainId.Optimism)).toBe(UNIVERSAL_ROUTER_ADDRESS(UniverseChainId.Optimism))
+    expect(getURAddress(UniverseChainId.Optimism)).toBe(
+      UNIVERSAL_ROUTER_ADDRESS(UniversalRouterVersion.V1_2, UniverseChainId.Optimism),
+    )
   })
 })

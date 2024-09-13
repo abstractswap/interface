@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import { CurrencyAmount, ChainId as UniswapSDKChainId } from '@uniswap/sdk-core'
 import {
+  ABSTRACT_LOGO,
   ARBITRUM_LOGO,
   AVALANCHE_LOGO,
   BASE_LOGO,
@@ -15,6 +16,7 @@ import {
   ZORA_LOGO,
 } from 'ui/src/assets'
 import { config } from 'uniswap/src/config'
+import { abstractTestnet } from 'uniswap/src/constants/chainDefinitions/abstract'
 import {
   CUSD_CELO,
   CUSD_CELO_ALFAJORES,
@@ -25,6 +27,7 @@ import {
   MATIC_POLYGON,
   USDB_BLAST,
   USDC,
+  USDC_ABSTRACT_TESTNET,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
   USDC_AVALANCHE,
@@ -1039,6 +1042,61 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
       symbol: 'WETH',
       decimals: 18,
       address: '0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91',
+    },
+  } as const satisfies UniverseChainInfo,
+  [UniverseChainId.AbstractTestnet]: {
+    ...abstractTestnet,
+    id: UniverseChainId.AbstractTestnet,
+    sdkId: UniswapSDKChainId.ABSTRACT_TESTNET,
+    assetRepoNetworkName: undefined,
+    backendChain: {
+      chain: BackendChainId.UnknownChain as InterfaceGqlChain,
+      backendSupported: false,
+      isSecondaryChain: true,
+      nativeTokenBackendAddress: undefined,
+    },
+    blockPerMainnetEpochForChainId: 12,
+    blockWaitMsBeforeWarning: 600000,
+    bridge: 'https://portal.testnet.abs.xyz/bridge/',
+    chainPriority: 0,
+    docs: 'https://docs.abs.xyz/',
+    elementName: ElementName.ChainAbstractTestnet,
+    explorer: {
+      name: 'Abstract Block Explorer',
+      url: 'https://explorer.testnet.abs.xyz',
+      apiURL: 'https://block-explorer-api.testnet.abs.xyz/api',
+    },
+    helpCenterUrl: undefined,
+    //FIXME: update with correct URL
+    infoLink: 'https://info.host.xyz',
+    infuraPrefix: undefined,
+    interfaceName: 'abstract_testnet',
+    label: 'Abstract Testnet',
+    logo: ABSTRACT_LOGO,
+    nativeCurrency: {
+      name: 'ETH',
+      symbol: 'ETH',
+      decimals: 18,
+      address: DEFAULT_NATIVE_ADDRESS,
+    },
+    networkLayer: NetworkLayer.L2,
+    pendingTransactionsRetryOptions: undefined,
+    rpcUrls: {
+      [RPCType.Public]: { http: ['https://api.testnet.abs.xyz/'] },
+      default: { http: ['https://api.testnet.abs.xyz/'] },
+      appOnly: { http: ['https://api.testnet.abs.xyz/'] },
+    },
+    urlParam: 'abstract_testnet',
+    statusPage: undefined,
+    spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_ABSTRACT_TESTNET, 10_000e6),
+    stablecoins: [USDC_ABSTRACT_TESTNET],
+    supportsClientSideRouting: true,
+    supportsGasEstimates: false,
+    wrappedNativeCurrency: {
+      name: 'Wrapped Ether',
+      symbol: 'WETH',
+      decimals: 18,
+      address: '0x9EDCde0257F2386Ce177C3a7FCdd97787F0D841d',
     },
   } as const satisfies UniverseChainInfo,
 }

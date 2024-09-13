@@ -24,6 +24,7 @@ export enum UniverseChainId {
   Blast = UniswapSDKChainId.BLAST,
   Zora = UniswapSDKChainId.ZORA,
   Zksync = UniswapSDKChainId.ZKSYNC,
+  AbstractTestnet = UniswapSDKChainId.ABSTRACT_TESTNET,
 }
 
 export type WalletChainId =
@@ -40,6 +41,7 @@ export type WalletChainId =
   | UniverseChainId.Bnb
   | UniverseChainId.Zora
   | UniverseChainId.Zksync
+  | UniverseChainId.AbstractTestnet
 
 // DON'T CHANGE - order here determines ordering of networks in app
 // TODO: [MOB-250] Add back in testnets once our endpoints support them
@@ -77,6 +79,7 @@ export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = [
   UniverseChainId.Blast,
   UniverseChainId.Zora,
   UniverseChainId.Zksync,
+  UniverseChainId.AbstractTestnet,
 ]
 
 export enum RPCType {

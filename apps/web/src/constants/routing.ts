@@ -46,7 +46,7 @@ import {
   nativeOnChain,
 } from 'constants/tokens'
 import { getNativeLogoURI, getTokenLogoURI } from 'lib/hooks/useCurrencyLogoURIs'
-import { USDC_ZKSYNC, USDC_ZORA } from 'uniswap/src/constants/tokens'
+import { USDC_ABSTRACT_TESTNET, USDC_ZKSYNC, USDC_ZORA } from 'uniswap/src/constants/tokens'
 import { SafetyLevel } from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
 import { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
 import { UniverseChainId } from 'uniswap/src/types/chains'
@@ -194,6 +194,12 @@ export const COMMON_BASES: ChainCurrencyList = {
     nativeOnChain(UniverseChainId.Zksync),
     WRAPPED_NATIVE_CURRENCY[UniverseChainId.Zksync] as Token,
     USDC_ZKSYNC,
+  ].map(buildCurrencyInfo),
+
+  [UniverseChainId.AbstractTestnet]: [
+    nativeOnChain(UniverseChainId.AbstractTestnet),
+    WRAPPED_NATIVE_CURRENCY[UniverseChainId.AbstractTestnet] as Token,
+    USDC_ABSTRACT_TESTNET,
   ].map(buildCurrencyInfo),
 }
 
