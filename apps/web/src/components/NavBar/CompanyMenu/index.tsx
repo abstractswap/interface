@@ -63,7 +63,7 @@ export function CompanyMenu() {
             <NavIcon width="48" height="48" />
             {isLargeScreen && (
               <Text variant="subheading1" color="$accent1" userSelect="none">
-                Uniswap
+                Swap
               </Text>
             )}
           </UniIcon>

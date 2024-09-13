@@ -4,8 +4,9 @@ import { ReactElement } from 'react'
 import { t } from 'uniswap/src/i18n'
 
 const MONTH_TO_HOLIDAY_UNI: { [date: string]: (props: SVGProps) => ReactElement } = {
-  '12': (props) => <WinterUni title={t('common.happyHolidays')} {...props} />,
-  '1': (props) => <WinterUni {...props} />,
+  //TODO: determine if holiday icon is used
+  '-1': (props) => <WinterUni title={t('common.happyHolidays')} {...props} />,
+  '-2': (props) => <WinterUni {...props} />,
 }
 
 export default function HolidayUniIcon(props: SVGProps): ReactElement | null {
