@@ -9,6 +9,7 @@ import { Tabs } from 'components/NavBar/Tabs/Tabs'
 import { useIsAccountCTAExperimentControl } from 'components/NavBar/accountCTAsExperimentUtils'
 import Row from 'components/Row'
 import Web3Status from 'components/Web3Status'
+import forkConfig from 'forkConfig'
 import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
 import { useIsExplorePage } from 'hooks/useIsExplorePage'
@@ -122,21 +123,27 @@ export default function Navbar() {
         </Left>
 
         <SearchContainer>
-          {!collapseSearchBar && <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />}
+          {forkConfig.exploreEnabled && !collapseSearchBar && (
+            <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />
+          )}
         </SearchContainer>
 
         <Right>
           {collapseSearchBar && <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />}
           {isNftPage && sellPageState !== ProfilePageStateType.LISTING && <Bag />}
-          {isSignInExperimentControl && !isSignInExperimentControlLoading && isLandingPage && !isSmallScreen && (
-            <NewUserCTAButton />
-          )}
+          {isSignInExperimentControl &&
+            !isSignInExperimentControlLoading &&
+            isLandingPage &&
+            !isSmallScreen &&
+            forkConfig.signUpOptionEnabled && <NewUserCTAButton />}
           {!account.isConnected && !account.isConnecting && <PreferenceMenu />}
           {!hideChainSelector && <ChainSelector isNavSelector />}
           <Web3Status />
-          {!isSignInExperimentControl && !isSignInExperimentControlLoading && !account.address && !isMediumScreen && (
-            <NewUserCTAButton />
-          )}
+          {!isSignInExperimentControl &&
+            !isSignInExperimentControlLoading &&
+            !account.address &&
+            !isMediumScreen &&
+            forkConfig.signUpOptionEnabled && <NewUserCTAButton />}
         </Right>
       </NavContents>
     </Nav>

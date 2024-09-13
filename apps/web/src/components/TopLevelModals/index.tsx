@@ -12,6 +12,7 @@ import { ExtensionLaunchModal } from 'components/TopLevelModals/ExtensionLaunchM
 import { UkDisclaimerModal } from 'components/TopLevelModals/UkDisclaimerModal'
 import AddressClaimModal from 'components/claim/AddressClaimModal'
 import DevFlagsBox from 'dev/DevFlagsBox'
+import forkConfig from 'forkConfig'
 import { useAccount } from 'hooks/useAccount'
 import useAccountRiskCheck from 'hooks/useAccountRiskCheck'
 import Bag from 'nft/components/bag/Bag'
@@ -29,7 +30,7 @@ export default function TopLevelModals() {
   const accountBlocked = Boolean(blockedAccountModalOpen && account.isConnected)
   const shouldShowDevFlags = isDevEnv() || isBetaEnv()
 
-  return (
+  return forkConfig.uniSpecificFeaturesEnabled ? (
     <>
       <AddressClaimModal isOpen={addressClaimOpen} onDismiss={addressClaimToggle} />
       <ConnectedAccountBlocked account={account.address} isOpen={accountBlocked} />
@@ -50,5 +51,7 @@ export default function TopLevelModals() {
       {shouldShowDevFlags && <DevFlagsBox />}
       <ExtensionLaunchModal />
     </>
+  ) : (
+    <></>
   )
 }

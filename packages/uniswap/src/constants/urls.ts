@@ -101,6 +101,7 @@ export const uniswapUrls = {
   webInterfaceNftCollectionUrl: `${UNISWAP_WEB_URL}/nfts/collection`,
   webInterfaceBuyUrl: `${UNISWAP_WEB_URL}/buy`,
 }
+const enableGateway = false
 
 function getCloudflarePrefix(flow?: TrafficFlows): string {
   if (flow && isDevEnv() && FLOWS_USING_BETA.includes(flow)) {
@@ -135,5 +136,5 @@ function getServicePrefix(flow?: TrafficFlows): string {
 }
 
 function getCloudflareApiBaseUrl(flow?: TrafficFlows): string {
-  return `https://${getServicePrefix(flow)}${getCloudflarePrefix(flow)}.gateway.uniswap.org`
+  return enableGateway ? `https://${getServicePrefix(flow)}${getCloudflarePrefix(flow)}.gateway.uniswap.org` : ``
 }

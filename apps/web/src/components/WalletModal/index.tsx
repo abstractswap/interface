@@ -9,6 +9,7 @@ import { Option } from 'components/WalletModal/Option'
 import PrivacyPolicyNotice from 'components/WalletModal/PrivacyPolicyNotice'
 import { UniswapWalletOptions } from 'components/WalletModal/UniswapWalletOptions'
 import { useOrderedConnections } from 'components/WalletModal/useOrderedConnections'
+import forkConfig from 'forkConfig'
 import { useIsUniExtensionAvailable } from 'hooks/useUniswapWalletOptions'
 import styled, { css } from 'lib/styled-components'
 import { useReducer } from 'react'
@@ -89,22 +90,26 @@ export default function WalletModal() {
           {isSignIn ? t('nav.signIn.button') : isLogIn ? t('nav.logIn.button') : t('common.connectAWallet.button')}
         </Text>
       </AutoRow>
-      <UniswapWalletOptions />
-      <OtherWalletsDividerRow
-        align="center"
-        padding="8px 0px"
-        clickable={isUniExtensionAvailable}
-        onClick={() => isUniExtensionAvailable && toggleShowOtherWallets()}
-      >
-        <Line />
-        <Row align="center" marginX={18}>
-          <Text variant="body3" color="$neutral2" whiteSpace="nowrap">
-            <Trans i18nKey="wallet.other" />
-          </Text>
-          {isUniExtensionAvailable ? showOtherWallets ? <StyledExpandIcon /> : <StyledCollapsedIcon /> : null}
-        </Row>
-        <Line />
-      </OtherWalletsDividerRow>
+      {forkConfig.uniSpecificFeaturesEnabled && (
+        <>
+          <UniswapWalletOptions />
+          <OtherWalletsDividerRow
+            align="center"
+            padding="8px 0px"
+            clickable={isUniExtensionAvailable}
+            onClick={() => isUniExtensionAvailable && toggleShowOtherWallets()}
+          >
+            <Line />
+            <Row align="center" marginX={18}>
+              <Text variant="body3" color="$neutral2" whiteSpace="nowrap">
+                <Trans i18nKey="wallet.other" />
+              </Text>
+              {isUniExtensionAvailable ? showOtherWallets ? <StyledExpandIcon /> : <StyledCollapsedIcon /> : null}
+            </Row>
+            <Line />
+          </OtherWalletsDividerRow>
+        </>
+      )}
       <Column gap="md" flex="1">
         <Row flex="1" align="flex-start">
           <OptionGrid data-testid="option-grid" closed={isUniExtensionAvailable && !showOtherWallets}>
