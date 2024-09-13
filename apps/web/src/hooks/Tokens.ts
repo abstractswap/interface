@@ -2,6 +2,7 @@ import { Currency, Token } from '@uniswap/sdk-core'
 import { SupportedInterfaceChainId, useSupportedChainId } from 'constants/chains'
 import { COMMON_BASES } from 'constants/routing'
 import { NATIVE_CHAIN_ID } from 'constants/tokens'
+import { useTokenListCurrency } from 'hooks/TokensLegacy'
 import { useAccount } from 'hooks/useAccount'
 import { TokenAddressMap } from 'lib/hooks/useTokenList/utils'
 import { useMemo } from 'react'
@@ -9,7 +10,6 @@ import { useCombinedInactiveLists } from 'state/lists/hooks'
 import { TokenFromList } from 'state/lists/tokenFromList'
 import { useUserAddedTokens } from 'state/user/userAddedTokens'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
-
 import { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
 import { useCurrencyInfo as useUniswapCurrencyInfo } from 'uniswap/src/features/tokens/useCurrencyInfo'
 import { InterfaceChainId, UniverseChainId } from 'uniswap/src/types/chains'
@@ -58,9 +58,11 @@ export function useFallbackListTokens(chainId: Maybe<InterfaceChainId>): { [addr
   }, [tokensFromMap, userAddedTokens])
 }
 
-export function useCurrency(address?: string, chainId?: InterfaceChainId, skip?: boolean): Maybe<Currency> {
+export function useCurrency(address?: string, chainId?: InterfaceChainId, skip = true): Maybe<Currency> {
   const currencyInfo = useCurrencyInfo(address, chainId, skip)
-  return currencyInfo?.currency
+  const tokenListCurrency = useTokenListCurrency(address, chainId)
+
+  return skip ? tokenListCurrency : currencyInfo?.currency
 }
 
 /**
@@ -159,4 +161,27 @@ export function useToken(tokenAddress?: string, chainId?: SupportedInterfaceChai
     }
     return undefined
   }, [currency])
+}
+
+/** Returns all tokens from the default list + user added tokens */
+export function useDefaultActiveTokens(chainId: Maybe<UniverseChainId>): { [address: string]: Token } {
+  //FIXME: add token list
+  const defaultListTokens = {}
+  const tokensFromMap = useTokensFromMap(defaultListTokens, chainId)
+  const userAddedTokens = useUserAddedTokens()
+  return useMemo(() => {
+    return (
+      userAddedTokens
+        // reduce into all ALL_TOKENS filtered by the current chain
+        .reduce<{ [address: string]: Token }>(
+          (tokenMap, token) => {
+            tokenMap[token.address] = token
+            return tokenMap
+          },
+          // must make a copy because reduce modifies the map, and we do not
+          // want to make a copy in every iteration
+          { ...tokensFromMap },
+        )
+    )
+  }, [tokensFromMap, userAddedTokens])
 }

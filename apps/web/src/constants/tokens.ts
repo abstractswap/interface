@@ -606,3 +606,4 @@ export function nativeOnChain(chainId: number): NativeCurrency | Token {
 }
 
 export const UNKNOWN_TOKEN_SYMBOL = 'UNKNOWN'
+export const UNKNOWN_TOKEN_NAME = 'Unknown Token'
