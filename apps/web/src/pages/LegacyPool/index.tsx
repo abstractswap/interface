@@ -7,7 +7,6 @@ import PositionList from 'components/PositionList'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
 import { useIsSupportedChainId } from 'constants/chains'
 import { useAccount } from 'hooks/useAccount'
-import { useFilterPossiblyMaliciousPositions } from 'hooks/useFilterPossiblyMaliciousPositions'
 import { useNetworkSupportsV2 } from 'hooks/useNetworkSupportsV2'
 import { useV3Positions } from 'hooks/useV3Positions'
 import deprecatedStyled, { css, useTheme } from 'lib/styled-components'
@@ -172,7 +171,8 @@ export default function Pool() {
     [closedPositions, openPositions, userHideClosedPositions],
   )
 
-  const filteredPositions = useFilterPossiblyMaliciousPositions(userSelectedPositionSet)
+  // GQL api has to be supported to use this feature
+  // const filteredPositions = useFilterPossiblyMaliciousPositions(userSelectedPositionSet)
 
   if (!isSupportedChain) {
     return <WrongNetworkCard />
@@ -237,9 +237,9 @@ export default function Pool() {
             <MainContentWrapper>
               {positionsLoading ? (
                 <PositionsLoadingPlaceholder />
-              ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
+              ) : userSelectedPositionSet && closedPositions && userSelectedPositionSet.length > 0 ? (
                 <PositionList
-                  positions={filteredPositions}
+                  positions={userSelectedPositionSet}
                   setUserHideClosedPositions={setUserHideClosedPositions}
                   userHideClosedPositions={userHideClosedPositions}
                 />
