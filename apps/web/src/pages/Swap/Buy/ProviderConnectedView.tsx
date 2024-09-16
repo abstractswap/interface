@@ -50,13 +50,15 @@ export function ProviderConnectedView({ closeModal, selectedServiceProvider }: P
               serviceProvider: selectedServiceProvider.name,
             }}
             components={{
+              /* FIXME: update with real URL */
               tosLink: (
-                <StyledLink color={theme.neutral3} href="https://uniswap.org/terms-of-service/">
+                <StyledLink color={theme.neutral3} href="https://futurehost.xyz/terms-of-service/">
                   {t('common.termsOfService')}
                 </StyledLink>
               ),
+              /* FIXME: update with real URL */
               privacyLink: (
-                <StyledLink color={theme.neutral3} href="https://uniswap.org/privacy-policy">
+                <StyledLink color={theme.neutral3} href="https://futurehost.xyz/privacy-policy">
                   {t('common.privacyPolicy')}
                 </StyledLink>
               ),

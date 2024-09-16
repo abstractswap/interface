@@ -3,7 +3,7 @@ import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { t } from 'uniswap/src/i18n'
 
-export const showTestnetsAtom = atomWithStorage<boolean>('showTestnets', false)
+export const showTestnetsAtom = atomWithStorage<boolean>('showTestnets', true)
 
 export function TestnetsToggle() {
   const [showTestnets, updateShowTestnets] = useAtom(showTestnetsAtom)

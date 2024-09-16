@@ -84,7 +84,7 @@ function useShouldHideChainSelector() {
   )
 
   const baseHiddenPages = isNftPage
-  const multichainHiddenPages = isLandingPage || isSendPage || isSwapPage || isLimitPage || baseHiddenPages
+  const multichainHiddenPages = !isLandingPage || isSendPage || isSwapPage || isLimitPage || baseHiddenPages
   const multichainExploreHiddenPages = multichainHiddenPages || isExplorePage
 
   const hideChainSelector =

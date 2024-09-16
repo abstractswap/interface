@@ -1288,7 +1288,7 @@
   "pool.learn": "Learn",
   "pool.learnAbout": "Read more about providing liquidity",
   "pool.learnLiquidity": "Learn about providing liquidity",
-  "pool.learnv3LP": "Check out our v3 LP walkthrough and migration guides.",
+  "pool.learnv3LP": "Check out Uniswap v3 LP walkthrough and migration guides. (External Link)",
   "pool.limitFluctuation.warning": "Please be aware that the execution for limits may vary based on real-time market fluctuations and Ethereum network congestion. Limits may not execute exactly when tokens reach the specified price.",
   "pool.liquidity.connectToAdd": "Connect to a wallet to view your liquidity.",
   "pool.liquidity.earn.fee": "Liquidity providers earn a 0.3% fee on all trades proportional to their share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",

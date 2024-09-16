@@ -762,7 +762,8 @@ function SwapNotice() {
             i18nKey="swap.form.pocketUniverseExtension.warning"
             components={{
               termsLink: (
-                <ExternalLink href="https://uniswap.org/terms-of-service">
+                // FIXME: update with real URL
+                <ExternalLink href="https://futurehost.xyz/terms-of-service">
                   <Trans i18nKey="common.termsOfService" />
                 </ExternalLink>
               ),
