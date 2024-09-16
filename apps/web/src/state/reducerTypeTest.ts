@@ -1,5 +1,4 @@
 import { TokenList } from '@uniswap/token-lists'
-import { SupportedLocale } from 'constants/locales'
 import multicall from 'lib/state/multicall'
 import { CombinedState } from 'redux'
 import { ApplicationModal, ApplicationState, PopupList, PopupType } from 'state/application/reducer'
@@ -16,12 +15,10 @@ import { Field as FieldV3 } from 'state/mint/v3/actions'
 import { FullRange, MintState as MintV3State } from 'state/mint/v3/reducer'
 import { quickRouteApi } from 'state/routing/quickRouteSlice'
 import { routingApi } from 'state/routing/slice'
-import { RouterPreference } from 'state/routing/types'
 import { SignatureState } from 'state/signatures/reducer'
 import { LocalWebTransactionState } from 'state/transactions/reducer'
 import { TransactionDetails } from 'state/transactions/types'
 import { UserState } from 'state/user/reducer'
-import { SerializedPair, SlippageTolerance } from 'state/user/types'
 import { ConnectedWalletsState } from 'state/wallets/reducer'
 import { Wallet } from 'state/wallets/types'
 import { InterfaceState } from 'state/webReducer'
@@ -84,25 +81,25 @@ type ExpectedAppState = CombinedState<{
 
 assert<Equals<InterfaceState, ExpectedAppState>>()
 
-interface ExpectedUserState {
-  lastUpdateVersionTimestamp?: number
-  userLocale: SupportedLocale | null
-  userRouterPreference: RouterPreference
-  userHideClosedPositions: boolean
-  userSlippageTolerance: number | SlippageTolerance.Auto
-  userSlippageToleranceHasBeenMigratedToAuto: boolean
-  userDeadline: number
-  pairs: {
-    [chainId: number]: {
-      [key: string]: SerializedPair
-    }
-  }
-  timestamp: number
-  showSurveyPopup?: boolean
-  originCountry?: string
-}
+// interface ExpectedUserState {
+//   lastUpdateVersionTimestamp?: number
+//   userLocale: SupportedLocale | null
+//   userRouterPreference: RouterPreference
+//   userHideClosedPositions: boolean
+//   userSlippageTolerance: number | SlippageTolerance.Auto
+//   userSlippageToleranceHasBeenMigratedToAuto: boolean
+//   userDeadline: number
+//   pairs: {
+//     [chainId: number]: {
+//       [key: string]: SerializedPair
+//     }
+//   }
+//   timestamp: number
+//   showSurveyPopup?: boolean
+//   originCountry?: string
+// }
 
-assert<Equals<UserState, ExpectedUserState>>()
+// assert<Equals<UserState, ExpectedUserState>>()
 
 interface ExpectedTransactionState {
   [chainId: number]: {

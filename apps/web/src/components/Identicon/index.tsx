@@ -1,6 +1,7 @@
 import { LoaderV3 } from 'components/Icons/LoadingSpinner'
 import ENSAvatarIcon from 'components/Identicon/ENSAvatarIcon'
 import { UniTagProfilePicture } from 'components/UniTag/UniTagProfilePicture'
+import forkConfig from 'forkConfig'
 import useENSAvatar from 'hooks/useENSAvatar'
 import styled from 'lib/styled-components'
 import { fadeInAnimation } from 'theme/components/FadePresence'
@@ -48,28 +49,36 @@ export default function Identicon({ account, size }: { account?: string; size: n
     return null
   }
 
-  switch (identiconType) {
-    case IdenticonType.LOADING:
-      return <LoaderV3 size={size + 'px'} data-testid="IdenticonLoader" />
-    case IdenticonType.UNITAG_PROFILE_PICTURE:
-      return (
-        <FadeInContainer>
-          <UniTagProfilePicture account={account} size={size} />
-        </FadeInContainer>
-      )
-    case IdenticonType.ENS_AVATAR:
-      return (
-        <FadeInContainer>
-          <ENSAvatarIcon account={account} size={size} />
-        </FadeInContainer>
-      )
-    case IdenticonType.UNICON:
-      return (
-        <FadeInContainer>
-          <Unicon address={account} size={size} />
-        </FadeInContainer>
-      )
-    default:
-      return null
+  if (forkConfig.uniSpecificFeaturesEnabled) {
+    switch (identiconType) {
+      case IdenticonType.LOADING:
+        return <LoaderV3 size={size + 'px'} data-testid="IdenticonLoader" />
+      case IdenticonType.UNITAG_PROFILE_PICTURE:
+        return (
+          <FadeInContainer>
+            <UniTagProfilePicture account={account} size={size} />
+          </FadeInContainer>
+        )
+      case IdenticonType.ENS_AVATAR:
+        return (
+          <FadeInContainer>
+            <ENSAvatarIcon account={account} size={size} />
+          </FadeInContainer>
+        )
+      case IdenticonType.UNICON:
+        return (
+          <FadeInContainer>
+            <Unicon address={account} size={size} />
+          </FadeInContainer>
+        )
+      default:
+        return null
+    }
+  } else {
+    return (
+      <FadeInContainer>
+        <Unicon address={account} size={size} />
+      </FadeInContainer>
+    )
   }
 }

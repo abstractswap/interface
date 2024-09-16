@@ -4,6 +4,7 @@ import { Send } from 'components/Icons/Send'
 import { SwapV2 } from 'components/Icons/SwapV2'
 import { MenuItem } from 'components/NavBar/CompanyMenu/Content'
 import { useTabsVisible } from 'components/NavBar/ScreenSizes'
+import forkConfig from 'forkConfig'
 import { useTheme } from 'lib/styled-components'
 import { useLocation } from 'react-router-dom'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
@@ -44,13 +45,17 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
           href: '/swap',
           internal: true,
         },
-        {
-          label: t('swap.limit'),
-          icon: <Limit fill={theme.neutral2} />,
-          quickKey: 'L',
-          href: '/limit',
-          internal: true,
-        },
+        ...(forkConfig.uniSpecificFeaturesEnabled
+          ? [
+              {
+                label: t('swap.limit'),
+                icon: <Limit fill={theme.neutral2} />,
+                quickKey: 'L',
+                href: '/limit',
+                internal: true,
+              },
+            ]
+          : []),
         {
           label: t('common.send.button'),
           icon: <Send fill={theme.neutral2} />,
@@ -58,7 +63,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
           href: '/send',
           internal: true,
         },
-        ...(forAggregatorEnabled
+        ...(forAggregatorEnabled && forkConfig.uniSpecificFeaturesEnabled
           ? [
               {
                 label: t('common.buy.label'),
@@ -71,22 +76,28 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
           : []),
       ],
     },
-    {
-      title: t('common.explore'),
-      href: '/explore',
-      isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
-      items: [
-        { label: t('common.tokens'), quickKey: 'T', href: '/explore/tokens', internal: true },
-        { label: t('common.pools'), quickKey: 'P', href: '/explore/pools', internal: true },
-        {
-          label: t('common.transactions'),
-          quickKey: 'X',
-          href: `/explore/transactions${isMultichainExploreEnabled ? '/ethereum' : ''}`,
-          internal: true,
-        },
-        { label: t('common.nfts'), quickKey: 'N', href: '/nfts', internal: true },
-      ],
-    },
+    ...(forkConfig.uniSpecificFeaturesEnabled
+      ? [
+          {
+            title: t('common.explore'),
+            href: '/explore',
+            isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
+            items: [
+              { label: t('common.tokens'), quickKey: 'T', href: '/explore/tokens', internal: true },
+              { label: t('common.pools'), quickKey: 'P', href: '/explore/pools', internal: true },
+              {
+                label: t('common.transactions'),
+                quickKey: 'X',
+                href: `/explore/transactions${isMultichainExploreEnabled ? '/ethereum' : ''}`,
+                internal: true,
+              },
+              ...(props?.includeNftsLink
+                ? [{ label: t('common.nfts'), quickKey: 'N', href: '/nfts', internal: true }]
+                : []),
+            ],
+          },
+        ]
+      : []),
     {
       title: t('common.pool'),
       href: '/pool',

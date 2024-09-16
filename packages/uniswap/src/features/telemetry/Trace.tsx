@@ -11,6 +11,8 @@ import { MobileAppScreen } from 'uniswap/src/types/screens/mobile'
 // eslint-disable-next-line no-restricted-imports
 import { TraceProps, Trace as UntypedTrace } from 'utilities/src/telemetry/trace/Trace'
 
+const FORK_ANALYTICS_ENABLED = false
+
 // Universe typed version of ITraceContext
 interface UniverseTraceContext {
   page?: InterfacePageNameType
@@ -43,7 +45,7 @@ function _Trace<EventName extends keyof UniverseEventProperties | undefined>({
     ? (properties as Record<string, unknown>)
     : undefined
 
-  return (
+  return FORK_ANALYTICS_ENABLED ? (
     <UntypedTrace
       eventOnTrigger={eventOnTrigger}
       logFocus={logFocus}
@@ -55,6 +57,8 @@ function _Trace<EventName extends keyof UniverseEventProperties | undefined>({
     >
       {children}
     </UntypedTrace>
+  ) : (
+    <>{children}</>
   )
 }
 

@@ -243,7 +243,7 @@ describe('parseLocalActivity', () => {
       status: TransactionStatus.Confirmed,
     } as TransactionDetails
     const chainId = UniverseChainId.Mainnet
-    const result = await transactionToActivity(details, chainId, formatNumber)
+    const result = await transactionToActivity(details, chainId, formatNumber, [])
     expect(result).toEqual({
       chainId: 1,
       currencies: [MockUSDC_MAINNET, MockDAI],
@@ -271,7 +271,7 @@ describe('parseLocalActivity', () => {
       status: TransactionStatus.Confirmed,
     } as TransactionDetails
     const chainId = UniverseChainId.Mainnet
-    const result = await transactionToActivity(details, chainId, formatNumber)
+    const result = await transactionToActivity(details, chainId, formatNumber, [])
     expect(result).toMatchObject({
       chainId: 1,
       currencies: [MockUSDC_MAINNET, MockDAI],
@@ -298,7 +298,7 @@ describe('parseLocalActivity', () => {
       status: TransactionStatus.Confirmed,
     } as TransactionDetails
     const chainId = UniverseChainId.Mainnet
-    const result = await transactionToActivity(details, chainId, formatNumber)
+    const result = await transactionToActivity(details, chainId, formatNumber, [])
     expect(result).toMatchObject({
       chainId: 1,
       currencies: [undefined, undefined],

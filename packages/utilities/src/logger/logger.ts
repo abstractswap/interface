@@ -40,6 +40,8 @@ export const logger = {
   error: (error: unknown, captureContext: LoggerErrorContext): void => logException(error, captureContext),
 }
 
+const FORK_ANALYTICS_ENABLED = false
+
 function logMessage(
   level: LogLevel,
   fileName: string,
@@ -54,7 +56,7 @@ function logMessage(
   }
 
   // Skip sentry logs for dev builds
-  if (__DEV__) {
+  if (__DEV__ || !FORK_ANALYTICS_ENABLED) {
     return
   }
 
@@ -100,7 +102,7 @@ function logException(error: unknown, captureContext: LoggerErrorContext): void 
   }
 
   // Skip sentry logs for dev builds
-  if (__DEV__) {
+  if (__DEV__ || !FORK_ANALYTICS_ENABLED) {
     return
   }
 

@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 import { DEFAULT_TXN_DISMISS_MS } from 'constants/misc'
-import { InterfaceChainId } from 'uniswap/src/types/chains'
+import { InterfaceChainId, UniverseChainId } from 'uniswap/src/types/chains'
 import { SwapTab } from 'uniswap/src/types/screens/interface'
 
 export enum PopupType {
@@ -65,7 +65,7 @@ export interface ApplicationState {
 
 const initialState: ApplicationState = {
   fiatOnramp: { available: false, availabilityChecked: false },
-  chainId: null,
+  chainId: UniverseChainId.AbstractTestnet,
   openModal: null,
   popupList: [],
   suppressedPopups: [],

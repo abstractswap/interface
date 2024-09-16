@@ -12,6 +12,7 @@ import {
 } from 'components/AccountDrawer/MiniPortfolio/constants'
 import { SupportedInterfaceChainId } from 'constants/chains'
 import { nativeOnChain } from 'constants/tokens'
+import { ChainTokenMap, useAllTokensMultichain } from 'hooks/TokensLegacy'
 import { isOnChainOrder, useAllSignatures } from 'state/signatures/hooks'
 import { SignatureDetails, SignatureType } from 'state/signatures/types'
 import { isConfirmedTx, useMultichainTransactions } from 'state/transactions/hooks'
@@ -80,10 +81,11 @@ async function parseSwap(
   swap: ExactInputSwapTransactionInfo | ExactOutputSwapTransactionInfo,
   chainId: SupportedInterfaceChainId,
   formatNumber: FormatNumberFunctionType,
+  tokens?: ChainTokenMap,
 ): Promise<Partial<Activity>> {
   const [tokenIn, tokenOut] = await Promise.all([
-    getCurrency(swap.inputCurrencyId, chainId),
-    getCurrency(swap.outputCurrencyId, chainId),
+    getCurrency(swap.inputCurrencyId, chainId, tokens),
+    getCurrency(swap.outputCurrencyId, chainId, tokens),
   ])
   const [inputRaw, outputRaw] =
     swap.tradeType === TradeType.EXACT_INPUT
@@ -125,8 +127,9 @@ async function parseApproval(
   approval: ApproveTransactionInfo,
   chainId: SupportedInterfaceChainId,
   status: TransactionStatus,
+  tokens?: ChainTokenMap,
 ): Promise<Partial<Activity>> {
-  const currency = await getCurrency(approval.tokenAddress, chainId)
+  const currency = await getCurrency(approval.tokenAddress, chainId, tokens)
   const descriptor = currency?.symbol ?? currency?.name ?? t('common.unknown')
   return {
     title: getActivityTitle(
@@ -147,11 +150,20 @@ async function parseLP(
   lp: GenericLPInfo,
   chainId: SupportedInterfaceChainId,
   formatNumber: FormatNumberFunctionType,
+  tokens?: ChainTokenMap,
 ): Promise<Partial<Activity>> {
+  // const baseCurrency = getCurrency(lp.baseCurrencyId, chainId, tokens)
+  // const quoteCurrency = getCurrency(lp.quoteCurrencyId, chainId, tokens)
+  // const [baseRaw, quoteRaw] = [lp.expectedAmountBaseRaw, lp.expectedAmountQuoteRaw]
+  // const descriptor = buildCurrencyDescriptor(baseCurrency, baseRaw, quoteCurrency, quoteRaw, formatNumber, t`and`)
+
+  // return { descriptor, currencies: [baseCurrency, quoteCurrency] }
+
   const [baseCurrency, quoteCurrency] = await Promise.all([
-    getCurrency(lp.baseCurrencyId, chainId),
-    getCurrency(lp.quoteCurrencyId, chainId),
+    getCurrency(lp.baseCurrencyId, chainId, tokens),
+    getCurrency(lp.quoteCurrencyId, chainId, tokens),
   ])
+
   const [baseRaw, quoteRaw] = [lp.expectedAmountBaseRaw, lp.expectedAmountQuoteRaw]
   const descriptor = buildCurrencyDescriptor(baseCurrency, baseRaw, quoteCurrency, quoteRaw, formatNumber)
 
@@ -162,6 +174,7 @@ async function parseCollectFees(
   collect: CollectFeesTransactionInfo,
   chainId: SupportedInterfaceChainId,
   formatNumber: FormatNumberFunctionType,
+  tokens?: ChainTokenMap,
 ): Promise<Partial<Activity>> {
   // Adapts CollectFeesTransactionInfo to generic LP type
   const {
@@ -174,16 +187,18 @@ async function parseCollectFees(
     { baseCurrencyId, quoteCurrencyId, expectedAmountBaseRaw, expectedAmountQuoteRaw },
     chainId,
     formatNumber,
+    tokens,
   )
 }
 
 async function parseMigrateCreateV3(
   lp: MigrateV2LiquidityToV3TransactionInfo | CreateV3PoolTransactionInfo,
   chainId: SupportedInterfaceChainId,
+  tokens?: ChainTokenMap,
 ): Promise<Partial<Activity>> {
   const [baseCurrency, quoteCurrency] = await Promise.all([
-    getCurrency(lp.baseCurrencyId, chainId),
-    getCurrency(lp.quoteCurrencyId, chainId),
+    getCurrency(lp.baseCurrencyId, chainId, tokens),
+    getCurrency(lp.quoteCurrencyId, chainId, tokens),
   ])
   const baseSymbol = baseCurrency?.symbol ?? t('common.unknown')
   const quoteSymbol = quoteCurrency?.symbol ?? t('common.unknown')
@@ -199,9 +214,10 @@ async function parseSend(
   send: SendTransactionInfo,
   chainId: SupportedInterfaceChainId,
   formatNumber: FormatNumberFunctionType,
+  tokens?: ChainTokenMap,
 ): Promise<Partial<Activity>> {
   const { currencyId, amount, recipient } = send
-  const currency = await getCurrency(currencyId, chainId)
+  const currency = await getCurrency(currencyId, chainId, tokens)
   const formattedAmount = currency
     ? formatNumber({
         input: parseFloat(CurrencyAmount.fromRawAmount(currency, amount).toSignificant()),
@@ -224,6 +240,7 @@ export async function transactionToActivity(
   details: TransactionDetails | undefined,
   chainId: SupportedInterfaceChainId,
   formatNumber: FormatNumberFunctionType,
+  tokens: ChainTokenMap,
 ): Promise<Activity | undefined> {
   if (!details) {
     return undefined
@@ -243,9 +260,9 @@ export async function transactionToActivity(
     let additionalFields: Partial<Activity> = {}
     const info = details.info
     if (info.type === TransactionType.SWAP) {
-      additionalFields = await parseSwap(info, chainId, formatNumber)
+      additionalFields = await parseSwap(info, chainId, formatNumber, tokens)
     } else if (info.type === TransactionType.APPROVAL) {
-      additionalFields = await parseApproval(info, chainId, details.status)
+      additionalFields = await parseApproval(info, chainId, details.status, tokens)
     } else if (info.type === TransactionType.WRAP) {
       additionalFields = parseWrap(info, chainId, details.status, formatNumber)
     } else if (
@@ -253,13 +270,13 @@ export async function transactionToActivity(
       info.type === TransactionType.REMOVE_LIQUIDITY_V3 ||
       info.type === TransactionType.ADD_LIQUIDITY_V2_POOL
     ) {
-      additionalFields = await parseLP(info, chainId, formatNumber)
+      additionalFields = await parseLP(info, chainId, formatNumber, tokens)
     } else if (info.type === TransactionType.COLLECT_FEES) {
-      additionalFields = await parseCollectFees(info, chainId, formatNumber)
+      additionalFields = await parseCollectFees(info, chainId, formatNumber, tokens)
     } else if (info.type === TransactionType.MIGRATE_LIQUIDITY_V3 || info.type === TransactionType.CREATE_V3_POOL) {
-      additionalFields = await parseMigrateCreateV3(info, chainId)
+      additionalFields = await parseMigrateCreateV3(info, chainId, tokens)
     } else if (info.type === TransactionType.SEND) {
-      additionalFields = await parseSend(info, chainId, formatNumber)
+      additionalFields = await parseSend(info, chainId, formatNumber, tokens)
     }
 
     const activity = { ...defaultFields, ...additionalFields }
@@ -280,10 +297,11 @@ export function getTransactionToActivityQueryOptions(
   transaction: TransactionDetails | undefined,
   chainId: SupportedInterfaceChainId,
   formatNumber: FormatNumberFunctionType,
+  tokens: ChainTokenMap,
 ) {
   return queryOptions({
     queryKey: ['transactionToActivity', transaction, chainId],
-    queryFn: async () => transactionToActivity(transaction, chainId, formatNumber),
+    queryFn: async () => transactionToActivity(transaction, chainId, formatNumber, tokens),
   })
 }
 
@@ -349,6 +367,7 @@ export async function signatureToActivity(
 export function useLocalActivities(account: string): ActivityMap {
   const allTransactions = useMultichainTransactions()
   const allSignatures = useAllSignatures()
+  const tokens = useAllTokensMultichain()
   const { formatNumber } = useFormatter()
 
   const { data } = useQuery({
@@ -356,7 +375,7 @@ export function useLocalActivities(account: string): ActivityMap {
     queryFn: async () => {
       const transactions = Object.values(allTransactions)
         .filter(([transaction]) => transaction.from === account)
-        .map(([transaction, chainId]) => transactionToActivity(transaction, chainId, formatNumber))
+        .map(([transaction, chainId]) => transactionToActivity(transaction, chainId, formatNumber, tokens))
       const signatures = Object.values(allSignatures)
         .filter((signature) => signature.offerer === account)
         .map((signature) => signatureToActivity(signature, formatNumber))

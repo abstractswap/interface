@@ -17,6 +17,7 @@ import { Settings } from 'components/Icons/Settings'
 import Row, { AutoRow } from 'components/Row'
 import { DeltaArrow } from 'components/Tokens/TokenDetails/Delta'
 import { LoadingBubble } from 'components/Tokens/loading'
+import forkConfig from 'forkConfig'
 import { useTokenBalancesQuery } from 'graphql/data/apollo/TokenBalancesProvider'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import { useDisconnect } from 'hooks/useDisconnect'
@@ -32,8 +33,8 @@ import { ApplicationModal } from 'state/application/reducer'
 import { useUserHasAvailableClaim, useUserUnclaimedAmount } from 'state/claim/hooks'
 import { ThemedText } from 'theme/components'
 import { ArrowDownCircleFilled } from 'ui/src/components/icons/ArrowDownCircleFilled'
-import { FeatureFlags } from 'uniswap/src/features/gating/flags'
-import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
+// import { FeatureFlags } from 'uniswap/src/features/gating/flags'
+// import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
 import Trace from 'uniswap/src/features/telemetry/Trace'
 import { sendAnalyticsEvent } from 'uniswap/src/features/telemetry/send'
 import { useUnitagByAddress } from 'uniswap/src/features/unitags/hooks'
@@ -112,7 +113,8 @@ export default function AuthenticatedHeader({ account, openSettings }: { account
   const { formatNumber, formatDelta } = useFormatter()
   const isUniExtensionAvailable = useIsUniExtensionAvailable()
 
-  const forAggregatorEnabled = useFeatureFlag(FeatureFlags.ForAggregator)
+  //TODO: disable globally
+  const forAggregatorEnabled = forkConfig.uniSpecificFeaturesEnabled /*useFeatureFlag(FeatureFlags.ForAggregator)*/
   const shouldDisableNFTRoutes = useDisableNFTRoutes()
 
   const unclaimedAmount: CurrencyAmount<Token> | undefined = useUserUnclaimedAmount(account)
@@ -226,11 +228,13 @@ export default function AuthenticatedHeader({ account, openSettings }: { account
               )}
             </AutoRow>
           </FadeInColumn>
-        ) : (
+        ) : forkConfig.uniSpecificFeaturesEnabled ? (
           <Column gap="xs">
             <LoadingBubble height="44px" width="170px" />
             <LoadingBubble height="16px" width="100px" margin="4px 0 20px 0" />
           </Column>
+        ) : (
+          <></>
         )}
         {isUniExtensionAvailable ? (
           <ExtensionDeeplinks account={account} />

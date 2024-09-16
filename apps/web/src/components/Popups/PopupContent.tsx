@@ -11,6 +11,7 @@ import Column, { AutoColumn } from 'components/Column'
 import AlertTriangleFilled from 'components/Icons/AlertTriangleFilled'
 import { AutoRow } from 'components/Row'
 import { SupportedInterfaceChainId, useIsSupportedChainId } from 'constants/chains'
+import { useAllTokensMultichain } from 'hooks/TokensLegacy'
 import styled from 'lib/styled-components'
 import { X } from 'react-feather'
 import { useOrder } from 'state/signatures/hooks'
@@ -139,8 +140,9 @@ export function TransactionPopupContent({
   onClose: () => void
 }) {
   const transaction = useTransaction(hash)
+  const tokens = useAllTokensMultichain()
   const { formatNumber } = useFormatter()
-  const { data: activity } = useQuery(getTransactionToActivityQueryOptions(transaction, chainId, formatNumber))
+  const { data: activity } = useQuery(getTransactionToActivityQueryOptions(transaction, chainId, formatNumber, tokens))
 
   if (!transaction || !activity) {
     return null

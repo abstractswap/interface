@@ -3,6 +3,7 @@ import { DownloadApp } from 'components/NavBar/CompanyMenu/DownloadAppCTA'
 import { NavDropdown } from 'components/NavBar/NavDropdown'
 import { useTabsVisible } from 'components/NavBar/ScreenSizes'
 import { useTabsContent } from 'components/NavBar/Tabs/TabsContent'
+import forkConfig from 'forkConfig'
 import styled, { css } from 'lib/styled-components'
 import { Socials } from 'pages/Landing/sections/Footer'
 import { useMemo } from 'react'
@@ -97,7 +98,7 @@ export function MenuDropdown({ close }: { close?: () => void }) {
             />
           ))}
           <Separator />
-          <DownloadApp onClick={close} />
+          {forkConfig.uniSpecificFeaturesEnabled && <DownloadApp onClick={close} />}
           <Socials iconSize="25px" />
         </Flex>
       </Container>

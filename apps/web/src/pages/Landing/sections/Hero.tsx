@@ -1,4 +1,5 @@
 import { ColumnCenter } from 'components/Column'
+import forkConfig from 'forkConfig'
 import { useCurrency } from 'hooks/Tokens'
 import { useScroll } from 'hooks/useScroll'
 import { TokenCloud } from 'pages/Landing/components/TokenCloud'
@@ -40,7 +41,7 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
       pt={NAV_HEIGHT}
       pointerEvents="none"
     >
-      <TokenCloud transition={transition} />
+      {forkConfig.approvedTokens && <TokenCloud transition={transition} />}
 
       <Flex
         alignSelf="center"

@@ -34,17 +34,17 @@ export function Socials({ iconSize }: { iconSize?: string }) {
   return (
     <Flex row gap="$spacing24" maxHeight={iconSize} alignItems="flex-start">
       <SocialIcon $hoverColor="#00C32B">
-        <Anchor href="https://github.com/Uniswap" target="_blank">
+        <Anchor href="https://github.com/abstractswap" target="_blank">
           <Github size={iconSize} fill="inherit" />
         </Anchor>
       </SocialIcon>
       <SocialIcon $hoverColor="#20BAFF">
-        <Anchor href="https://x.com/Uniswap" target="_blank">
+        <Anchor href="https://x.com/abstractswap" target="_blank">
           <Twitter size={iconSize} fill="inherit" />
         </Anchor>
       </SocialIcon>
       <SocialIcon $hoverColor="#5F51FF">
-        <Anchor href="https://discord.com/invite/uniswap" target="_blank">
+        <Anchor href="https://discord.com/invite/abstractswap" target="_blank">
           <Discord size={iconSize} fill="inherit" />
         </Anchor>
       </SocialIcon>
@@ -74,7 +74,8 @@ function FooterSection({ title, items }: { title: string; items: MenuItem[] }) {
 export function Footer() {
   const { t } = useTranslation()
   const togglePrivacyPolicy = useTogglePrivacyPolicy()
-  const tabsContent = useTabsContent({ includeNftsLink: true })
+  //UPDATE: currently not usign NFTs link
+  const tabsContent = useTabsContent({ includeNftsLink: false })
   const appSectionItems: MenuItem[] = useMemo(() => {
     return tabsContent.map((tab) => ({
       label: tab.title,
@@ -83,11 +84,11 @@ export function Footer() {
     }))
   }, [tabsContent])
   const sections = useMenuContent()
-  const brandAssets = {
-    label: t('common.brandAssets'),
-    href: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
-    internal: false,
-  }
+  // const brandAssets = {
+  //   label: t('common.brandAssets'),
+  //   href: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
+  //   internal: false,
+  // }
 
   return (
     <Flex maxWidth="100vw" width="100%" gap="$spacing24" pt="$none" px="$spacing48" pb={40} $lg={{ px: '$spacing40' }}>
@@ -100,12 +101,13 @@ export function Footer() {
         <Flex row $md={{ flexDirection: 'column' }} height="100%" gap="$spacing16">
           <Flex row gap="$spacing16" justifyContent="space-between" $md={{ width: 'auto' }}>
             <FooterSection title={t('common.app')} items={appSectionItems} />
-            <FooterSection title={sections[0].title} items={[...sections[0].items, brandAssets]} />
+            {/* <FooterSection title={sections[0].title} items={[...sections[0].items, brandAssets]} /> */}
+            <FooterSection title={sections[0].title} items={sections[0].items} />
           </Flex>
-          <Flex row gap="$spacing16" $md={{ width: 'auto' }}>
+          {/* <Flex row gap="$spacing16" $md={{ width: 'auto' }}>
             <FooterSection title={sections[1].title} items={sections[1].items} />
             <FooterSection title={sections[2].title} items={sections[2].items} />
-          </Flex>
+          </Flex> */}
         </Flex>
         <Flex $md={{ display: 'flex' }} display="none">
           <Socials iconSize={SOCIAL_ICONS_SIZE} />
@@ -119,11 +121,12 @@ export function Footer() {
         width="100%"
         justifyContent="space-between"
       >
-        <Text variant="body3">© 2024 - Uniswap Labs</Text>
+        <Text variant="body3">© 2024</Text>
+        <Text variant="body3">Swap Interface is a fork of open source Uniswap Protocol on Abstract Network</Text>
         <Flex row alignItems="center" gap="$spacing16">
-          <Anchor textDecorationLine="none" href="https://uniswap.org/trademark" target="_blank">
+          {/* <Anchor textDecorationLine="none" href="https://uniswap.org/trademark" target="_blank">
             <PolicyLink>{t('common.trademarkPolicy')}</PolicyLink>
-          </Anchor>
+          </Anchor> */}
           <PolicyLink onPress={togglePrivacyPolicy}>{t('common.privacyPolicy')}</PolicyLink>
         </Flex>
       </Flex>

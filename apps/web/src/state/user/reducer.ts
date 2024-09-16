@@ -3,6 +3,7 @@ import { SupportedLocale } from 'constants/locales'
 import { DEFAULT_DEADLINE_FROM_NOW } from 'constants/misc'
 import { RouterPreference } from 'state/routing/types'
 import { SerializedPair, SlippageTolerance } from 'state/user/types'
+import { SerializedToken } from 'uniswap/src/features/tokens/slice/types'
 
 const currentTimestamp = () => new Date().getTime()
 
@@ -34,6 +35,13 @@ export interface UserState {
     }
   }
 
+  //Legacy user saved tokens
+  tokens: {
+    [chainId: number]: {
+      [address: string]: SerializedToken
+    }
+  }
+
   timestamp: number
 
   // undefined means has not gone through A/B split yet
@@ -53,6 +61,7 @@ export const initialState: UserState = {
   userSlippageTolerance: SlippageTolerance.Auto,
   userSlippageToleranceHasBeenMigratedToAuto: true,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
+  tokens: {},
   pairs: {},
   timestamp: currentTimestamp(),
   showSurveyPopup: undefined,
@@ -97,6 +106,15 @@ const userSlice = createSlice({
     setOriginCountry(state, { payload: country }) {
       state.originCountry = country
     },
+    //Legacy
+    addSerializedToken(state, { payload: { serializedToken } }) {
+      if (!state.tokens) {
+        state.tokens = {}
+      }
+      state.tokens[serializedToken.chainId] = state.tokens[serializedToken.chainId] || {}
+      state.tokens[serializedToken.chainId][serializedToken.address] = serializedToken
+      state.timestamp = currentTimestamp()
+    },
   },
 })
 
@@ -108,5 +126,6 @@ export const {
   updateUserDeadline,
   updateUserLocale,
   updateUserSlippageTolerance,
+  addSerializedToken,
 } = userSlice.actions
 export default userSlice.reducer

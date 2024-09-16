@@ -1,4 +1,5 @@
 import { CONNECTION } from 'components/Web3Provider/constants'
+import forkConfig from 'forkConfig'
 import { useAccount } from 'hooks/useAccount'
 
 //
@@ -14,5 +15,5 @@ export function useIsUniExtensionAvailable() {
   const currentConnector = useAccount().connector
   const currentConnectIsNotUniExtension = currentConnector && currentConnector.id !== CONNECTION.UNISWAP_EXTENSION_RDNS
 
-  return !currentConnectIsNotUniExtension
+  return !currentConnectIsNotUniExtension && forkConfig.uniSpecificFeaturesEnabled
 }

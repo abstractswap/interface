@@ -8,7 +8,9 @@ import { useBytes32TokenContract, useTokenContract } from 'hooks/useContract'
 import { useSingleCallResult } from 'lib/hooks/multicall'
 import useNativeCurrency from 'lib/hooks/useNativeCurrency'
 import { useMemo } from 'react'
+import { useAppSelector } from 'state/hooks'
 import { UniverseChainId } from 'uniswap/src/types/chains'
+import { deserializeToken } from 'uniswap/src/utils/currency'
 import { isAddress } from 'utilities/src/addresses'
 import { DEFAULT_ERC20_DECIMALS } from 'utilities/src/tokens/constants'
 
@@ -118,4 +120,39 @@ function useTokenFromMapOrNetwork(tokens: TokenMap, tokenAddress?: string | null
   const token: Token | undefined = address ? tokens[address] : undefined
   const tokenFromNetwork = useTokenFromActiveNetwork(token ? undefined : address ? address : undefined)
   return tokenFromNetwork ?? token
+}
+
+export type ChainTokenMap = { [chainId in number]?: { [address in string]?: Token } }
+
+/** Returns tokens from all token lists on all chains, combined with user added tokens */
+export function useAllTokensMultichain(): ChainTokenMap {
+  //TODO: add token list support
+  // const allTokensFromLists : any[] = []
+  const userAddedTokensMap = useAppSelector(({ user: { tokens } }) => tokens)
+
+  return useMemo(() => {
+    const chainTokenMap: ChainTokenMap = {}
+
+    if (userAddedTokensMap) {
+      Object.keys(userAddedTokensMap).forEach((key) => {
+        const chainId = Number(key)
+        const tokenMap = {} as { [address in string]?: Token }
+        Object.values(userAddedTokensMap[chainId]).forEach((serializedToken) => {
+          tokenMap[serializedToken.address] = deserializeToken(serializedToken)
+        })
+        chainTokenMap[chainId] = tokenMap
+      })
+    }
+
+    // Object.keys(allTokensFromLists).forEach((key) => {
+    //   const chainId = Number(key)
+    //   const tokenMap = chainTokenMap[chainId] ?? {}
+    //   Object.values(allTokensFromLists[chainId]).forEach(({ token }) => {
+    //     tokenMap[token.address] = token
+    //   })
+    //   chainTokenMap[chainId] = tokenMap
+    // })
+
+    return chainTokenMap
+  }, [userAddedTokensMap])
 }

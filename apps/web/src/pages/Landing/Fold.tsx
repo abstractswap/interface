@@ -1,3 +1,4 @@
+import forkConfig from 'forkConfig'
 import { DirectToDefi } from 'pages/Landing/sections/DirectToDefi'
 import { Footer } from 'pages/Landing/sections/Footer'
 import { NewsletterEtc } from 'pages/Landing/sections/NewsletterEtc'
@@ -17,9 +18,14 @@ const Fold = forwardRef<HTMLDivElement>(function Fold(props, scrollAnchor) {
       maxWidth="100vw"
       ref={scrollAnchor}
     >
-      <DirectToDefi />
-      <Stats />
-      <NewsletterEtc />
+      {forkConfig.landingPageExternalData && (
+        <>
+          {' '}
+          <DirectToDefi />
+          <Stats />
+          <NewsletterEtc />
+        </>
+      )}
       <Footer />
     </Flex>
   )

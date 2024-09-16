@@ -8,6 +8,7 @@ import Tokens from 'components/AccountDrawer/MiniPortfolio/Tokens'
 import Column from 'components/Column'
 import { LoaderV2 } from 'components/Icons/LoadingSpinner'
 import { AutoRow } from 'components/Row'
+import forkConfig from 'forkConfig'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 import { atom, useAtom } from 'jotai'
@@ -71,24 +72,28 @@ interface Page {
 }
 
 const Pages: Array<Page> = [
-  {
-    title: <Trans i18nKey="common.tokens" />,
-    key: 'tokens',
-    component: Tokens,
-    loggingElementName: InterfaceElementName.MINI_PORTFOLIO_TOKENS_TAB,
-  },
-  {
-    title: <Trans i18nKey="common.nfts" />,
-    key: 'nfts',
-    component: NFTs,
-    loggingElementName: InterfaceElementName.MINI_PORTFOLIO_NFT_TAB,
-  },
-  {
-    title: <Trans i18nKey="common.pools" />,
-    key: 'pools',
-    component: Pools,
-    loggingElementName: InterfaceElementName.MINI_PORTFOLIO_POOLS_TAB,
-  },
+  ...(forkConfig.uniSpecificFeaturesEnabled
+    ? [
+        {
+          title: <Trans i18nKey="common.tokens" />,
+          key: 'tokens',
+          component: Tokens,
+          loggingElementName: InterfaceElementName.MINI_PORTFOLIO_TOKENS_TAB,
+        },
+        {
+          title: <Trans i18nKey="common.nfts" />,
+          key: 'nfts',
+          component: NFTs,
+          loggingElementName: InterfaceElementName.MINI_PORTFOLIO_NFT_TAB,
+        },
+        {
+          title: <Trans i18nKey="common.pools" />,
+          key: 'pools',
+          component: Pools,
+          loggingElementName: InterfaceElementName.MINI_PORTFOLIO_POOLS_TAB,
+        },
+      ]
+    : []),
   {
     title: <Trans i18nKey="common.activity" />,
     key: 'activity',
