@@ -16,8 +16,8 @@ import { useIsExplorePage } from 'hooks/useIsExplorePage'
 import { useIsLandingPage } from 'hooks/useIsLandingPage'
 import { useIsLimitPage } from 'hooks/useIsLimitPage'
 import { useIsNftPage } from 'hooks/useIsNftPage'
-import { useIsSendPage } from 'hooks/useIsSendPage'
-import { useIsSwapPage } from 'hooks/useIsSwapPage'
+// import { useIsSendPage } from 'hooks/useIsSendPage'
+// import { useIsSwapPage } from 'hooks/useIsSwapPage'
 import styled, { css } from 'lib/styled-components'
 import { useProfilePageState } from 'nft/hooks'
 import { ProfilePageStateType } from 'nft/types'
@@ -71,9 +71,9 @@ const SearchContainer = styled.div`
 
 function useShouldHideChainSelector() {
   const isNftPage = useIsNftPage()
-  const isLandingPage = useIsLandingPage()
-  const isSendPage = useIsSendPage()
-  const isSwapPage = useIsSwapPage()
+  // const isLandingPage = useIsLandingPage()
+  // const isSendPage = useIsSendPage()
+  // const isSwapPage = useIsSwapPage()
   const isLimitPage = useIsLimitPage()
   const isExplorePage = useIsExplorePage()
   const { value: multichainFlagEnabled, isLoading: isMultichainFlagLoading } = useFeatureFlagWithLoading(
@@ -84,7 +84,7 @@ function useShouldHideChainSelector() {
   )
 
   const baseHiddenPages = isNftPage
-  const multichainHiddenPages = !isLandingPage || isSendPage || isSwapPage || isLimitPage || baseHiddenPages
+  const multichainHiddenPages = isLimitPage
   const multichainExploreHiddenPages = multichainHiddenPages || isExplorePage
 
   const hideChainSelector =
