@@ -98,7 +98,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     blockPerMainnetEpochForChainId: 1,
     blockWaitMsBeforeWarning: isInterface ? DEFAULT_MS_BEFORE_WARNING : ONE_MINUTE_MS,
     bridge: undefined,
-    chainPriority: 0,
+    chainPriority: 1,
     docs: 'https://docs.uniswap.org/',
     elementName: ElementName.ChainEthereum,
     explorer: {
@@ -165,7 +165,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     blockPerMainnetEpochForChainId: 1,
     blockWaitMsBeforeWarning: undefined,
     bridge: undefined,
-    chainPriority: 0,
+    chainPriority: 1,
     docs: 'https://docs.uniswap.org/',
     elementName: ElementName.ChainSepolia,
     explorer: {
@@ -231,7 +231,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     blockPerMainnetEpochForChainId: 1,
     blockWaitMsBeforeWarning: isInterface ? DEFAULT_MS_BEFORE_WARNING : 180000, // 3 minutes
     bridge: undefined,
-    chainPriority: 0,
+    chainPriority: 1,
     docs: 'https://docs.uniswap.org/',
     elementName: ElementName.ChainEthereumGoerli,
     explorer: {

@@ -13,7 +13,8 @@ enum TrafficFlows {
 
 const FLOWS_USING_BETA = [TrafficFlows.FOR]
 
-export const UNISWAP_WEB_HOSTNAME = 'app.uniswap.org'
+//FIXME: update with real host
+export const UNISWAP_WEB_HOSTNAME = 'futurehost.xyz'
 
 export const UNISWAP_WEB_URL = `https://${UNISWAP_WEB_HOSTNAME}`
 export const UNISWAP_APP_URL = 'https://uniswap.org/app'

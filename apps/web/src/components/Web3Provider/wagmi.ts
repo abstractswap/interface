@@ -18,7 +18,7 @@ declare module 'wagmi' {
 
 export const wagmiConfig = createConfig({
   chains: [
-    UNIVERSE_CHAIN_INFO[UniverseChainId.Mainnet],
+    UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet],
     ...WEB_SUPPORTED_CHAIN_IDS.map((chainId) => UNIVERSE_CHAIN_INFO[chainId]),
   ],
   connectors: [
@@ -26,7 +26,7 @@ export const wagmiConfig = createConfig({
     walletConnect(WC_PARAMS),
     uniswapWalletConnect(),
     coinbaseWallet({
-      appName: 'Uniswap',
+      appName: 'Swap',
       // CB SDK doesn't pass the parent origin context to their passkey site
       // Flagged to CB team and can remove UNISWAP_WEB_URL once fixed
       appLogoUrl: `${UNISWAP_WEB_URL}${UNISWAP_LOGO}`,
