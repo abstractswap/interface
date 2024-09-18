@@ -112,7 +112,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
         },
       ],
     },
-    ...(!areTabsVisible || props?.includeNftsLink
+    ...(!areTabsVisible && props?.includeNftsLink
       ? [
           {
             title: t('common.nfts'),
