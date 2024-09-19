@@ -184,10 +184,9 @@ export const USDC_ZKSYNC = new Token(
   'USDC',
 )
 
-//FIXME: update with real USDC address
 export const USDC_ABSTRACT_TESTNET = new Token(
   UniverseChainId.AbstractTestnet,
-  '0x0000000000000000000000000000000000000000',
+  '0xe4C7fBB0a626ed208021ccabA6Be1566905E2dFc',
   6,
   'USDC',
   'USDC',

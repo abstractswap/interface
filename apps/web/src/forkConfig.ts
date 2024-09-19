@@ -7,6 +7,8 @@ const forkConfig = {
   blockedPaths: ['/buy'],
   approvedTokens: false,
   landingPageExternalData: false,
+  multipleRouteOptionsEnabled: false,
+  apiRoutingEnabled: false,
 }
 
 export default forkConfig

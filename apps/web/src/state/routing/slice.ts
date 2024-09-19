@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Protocol } from '@uniswap/router-sdk'
 import { isUniswapXSupportedChain } from 'constants/chains'
+import forkConfig from 'forkConfig'
 import ms from 'ms'
 import {
   ClassicAPIConfig,
@@ -30,10 +31,14 @@ if (UNISWAP_GATEWAY_DNS_URL === undefined) {
 }
 
 const CLIENT_PARAMS = {
-  protocols: [Protocol.V2, Protocol.V3, Protocol.MIXED],
+  // protocols: [Protocol.V2, Protocol.V3, Protocol.MIXED],
+  // TODO: add more protocols once supported
+  protocols: [Protocol.V3],
 }
 
-const protocols: Protocol[] = [Protocol.V2, Protocol.V3, Protocol.MIXED]
+// const protocols: Protocol[] = [Protocol.V2, Protocol.V3, Protocol.MIXED]
+// TODO: add more protocols once supported
+const protocols: Protocol[] = [Protocol.V3]
 
 // routing API quote query params: https://github.com/Uniswap/routing-api/blob/main/lib/handlers/quote/schema/quote-schema.ts
 const DEFAULT_QUERY_PARAMS = {
@@ -129,52 +134,55 @@ export const routingApi = createApi({
             slippageTolerance: arbitrumXV2SlippageTolerance,
           }
 
-          try {
-            return trace.child({ name: 'Quote on server', op: 'quote.server' }, async () => {
-              const response = await fetch({
-                method: 'POST',
-                url: `${UNISWAP_GATEWAY_DNS_URL}/quote`,
-                body: JSON.stringify(requestBody),
-                headers: {
-                  'x-request-source': 'uniswap-web',
-                },
-              })
+          //FIXME: enable when API is ready
+          if (forkConfig.apiRoutingEnabled) {
+            try {
+              return trace.child({ name: 'Quote on server', op: 'quote.server' }, async () => {
+                const response = await fetch({
+                  method: 'POST',
+                  url: `${UNISWAP_GATEWAY_DNS_URL}/quote`,
+                  body: JSON.stringify(requestBody),
+                  headers: {
+                    'x-request-source': 'uniswap-web',
+                  },
+                })
 
-              if (response.error) {
-                try {
-                  // cast as any here because we do a runtime check on it being an object before indexing into .errorCode
-                  const errorData = response.error.data as { errorCode?: string; detail?: string }
-                  // NO_ROUTE should be treated as a valid response to prevent retries.
-                  if (
-                    typeof errorData === 'object' &&
-                    (errorData?.errorCode === 'NO_ROUTE' || errorData?.detail === 'No quotes available')
-                  ) {
-                    sendAnalyticsEvent(InterfaceEventNameLocal.NoQuoteReceivedFromRoutingAPI, {
-                      requestBody,
-                      response,
-                      routerPreference: args.routerPreference,
-                    })
-                    return {
-                      data: { state: QuoteState.NOT_FOUND, latencyMs: trace.now() },
+                if (response.error) {
+                  try {
+                    // cast as any here because we do a runtime check on it being an object before indexing into .errorCode
+                    const errorData = response.error.data as { errorCode?: string; detail?: string }
+                    // NO_ROUTE should be treated as a valid response to prevent retries.
+                    if (
+                      typeof errorData === 'object' &&
+                      (errorData?.errorCode === 'NO_ROUTE' || errorData?.detail === 'No quotes available')
+                    ) {
+                      sendAnalyticsEvent(InterfaceEventNameLocal.NoQuoteReceivedFromRoutingAPI, {
+                        requestBody,
+                        response,
+                        routerPreference: args.routerPreference,
+                      })
+                      return {
+                        data: { state: QuoteState.NOT_FOUND, latencyMs: trace.now() },
+                      }
                     }
+                  } catch {
+                    throw response.error
                   }
-                } catch {
-                  throw response.error
                 }
-              }
 
-              const uraQuoteResponse = response.data as URAQuoteResponse
-              const tradeResult = await transformQuoteToTrade(args, uraQuoteResponse, QuoteMethod.ROUTING_API)
-              return { data: { ...tradeResult, latencyMs: trace.now() } }
-            })
-          } catch (error: any) {
-            logger.warn(
-              'routing/slice',
-              'queryFn',
-              `GetQuote failed on Unified Routing API, falling back to client: ${
-                error?.message ?? error?.detail ?? error
-              }`,
-            )
+                const uraQuoteResponse = response.data as URAQuoteResponse
+                const tradeResult = await transformQuoteToTrade(args, uraQuoteResponse, QuoteMethod.ROUTING_API)
+                return { data: { ...tradeResult, latencyMs: trace.now() } }
+              })
+            } catch (error: any) {
+              logger.warn(
+                'routing/slice',
+                'queryFn',
+                `GetQuote failed on Unified Routing API, falling back to client: ${
+                  error?.message ?? error?.detail ?? error
+                }`,
+              )
+            }
           }
 
           try {
