@@ -7,6 +7,7 @@ import {
   useSupportedChainId,
 } from 'constants/chains'
 import { nativeOnChain } from 'constants/tokens'
+import forkConfig from 'forkConfig'
 import { PollingInterval } from 'graphql/data/util'
 import useIsWindowVisible from 'hooks/useIsWindowVisible'
 import useStablecoinPrice from 'hooks/useStablecoinPrice'
@@ -83,7 +84,8 @@ export function useUSDPrice(
 
   // Use ETH-based pricing if available.
   const { data: tokenEthPrice, isLoading: isTokenEthPriceLoading } = useETHPrice(currency)
-  const isTokenEthPriced = Boolean(tokenEthPrice || isTokenEthPriceLoading)
+  // Since GQL is not supported - skipping ETH-priced option
+  const isTokenEthPriced = Boolean(forkConfig.uniSpecificFeaturesEnabled && (tokenEthPrice || isTokenEthPriceLoading))
   const { data, networkStatus } = useTokenSpotPriceQuery({
     variables: { chain: chain ?? Chain.Ethereum, address: getNativeTokenDBAddress(chain ?? Chain.Ethereum) },
     skip: !isTokenEthPriced || !isWindowVisible,

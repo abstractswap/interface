@@ -143,7 +143,7 @@ export const routingApi = createApi({
                   url: `${UNISWAP_GATEWAY_DNS_URL}/quote`,
                   body: JSON.stringify(requestBody),
                   headers: {
-                    'x-request-source': 'uniswap-web',
+                    // 'x-request-source': 'uniswap-web',
                   },
                 })
 

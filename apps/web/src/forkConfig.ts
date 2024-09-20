@@ -8,7 +8,7 @@ const forkConfig = {
   approvedTokens: false,
   landingPageExternalData: false,
   multipleRouteOptionsEnabled: false,
-  apiRoutingEnabled: false,
+  apiRoutingEnabled: true,
 }
 
 export default forkConfig

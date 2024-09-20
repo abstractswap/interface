@@ -6,9 +6,7 @@
     "'self'",
     "data:",
     "'wasm-unsafe-eval'",
-    "https://translate.googleapis.com/",
-    "https://www.google-analytics.com",
-    "https://www.googletagmanager.com"
+    "https://translate.googleapis.com/"
   ],
   "styleSrc": [
     "'self'",
@@ -48,6 +46,8 @@
     "https://vercel.com",
     "https://vercel.live/",
     "https://api.testnet.abs.xyz",
+    "https://apiv1.staging.abstract.w3us.site",
+    "https://apiv2.staging.abstract.w3us.site",
     "wss://relay.walletconnect.com",
     "wss://relay.walletconnect.org"
   ],
