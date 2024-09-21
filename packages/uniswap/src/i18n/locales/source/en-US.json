@@ -851,7 +851,7 @@
   "forceUpgrade.title": "Update the app to continue",
   "globalPreferences.title": "Global preferences",
   "hero.scroll": "Scroll to learn more",
-  "hero.subtitle": "Swap is a fork on Abstract Networks based on Uniswap Protocol",
+  "hero.subtitle": "This version of the open-source Uniswap V3 Interface has been modified for compatibility with Abstract Network.",
   "hero.swap.title": "Swap anytime, <br/> anywhere.",
   "home.activity.empty.button": "Receive tokens or NFTs",
   "home.activity.empty.description.default": "When you approve, trade, or transfer tokens or NFTs, your transactions will appear here.",

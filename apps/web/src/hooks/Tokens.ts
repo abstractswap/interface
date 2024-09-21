@@ -2,6 +2,7 @@ import { Currency, Token } from '@uniswap/sdk-core'
 import { SupportedInterfaceChainId, useSupportedChainId } from 'constants/chains'
 import { COMMON_BASES } from 'constants/routing'
 import { NATIVE_CHAIN_ID } from 'constants/tokens'
+import forkConfig from 'forkConfig'
 import { useTokenListCurrency } from 'hooks/TokensLegacy'
 import { useAccount } from 'hooks/useAccount'
 import { TokenAddressMap } from 'lib/hooks/useTokenList/utils'
@@ -10,6 +11,7 @@ import { useCombinedInactiveLists } from 'state/lists/hooks'
 import { TokenFromList } from 'state/lists/tokenFromList'
 import { useUserAddedTokens } from 'state/user/userAddedTokens'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
+import { SafetyLevel } from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
 import { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
 import { useCurrencyInfo as useUniswapCurrencyInfo } from 'uniswap/src/features/tokens/useCurrencyInfo'
 import { InterfaceChainId, UniverseChainId } from 'uniswap/src/types/chains'
@@ -58,11 +60,9 @@ export function useFallbackListTokens(chainId: Maybe<InterfaceChainId>): { [addr
   }, [tokensFromMap, userAddedTokens])
 }
 
-export function useCurrency(address?: string, chainId?: InterfaceChainId, skip = true): Maybe<Currency> {
+export function useCurrency(address?: string, chainId?: InterfaceChainId, skip?: boolean): Maybe<Currency> {
   const currencyInfo = useCurrencyInfo(address, chainId, skip)
-  const tokenListCurrency = useTokenListCurrency(address, chainId)
-
-  return skip ? tokenListCurrency : currencyInfo?.currency
+  return currencyInfo?.currency
 }
 
 /**
@@ -80,7 +80,7 @@ export function useCurrencyInfo(
     (typeof addressOrCurrency === 'string' ? chainId : addressOrCurrency?.chainId) ?? connectedChainId
   const nativeAddressWithFallback =
     UNIVERSE_CHAIN_INFO[chainIdWithFallback as UniverseChainId]?.nativeCurrency.address ??
-    UNIVERSE_CHAIN_INFO[UniverseChainId.Mainnet]?.nativeCurrency.address
+    UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet]?.nativeCurrency.address
 
   const isNative = useMemo(() => checkIsNative(addressOrCurrency), [addressOrCurrency])
   const address = useMemo(
@@ -88,12 +88,14 @@ export function useCurrencyInfo(
     [isNative, nativeAddressWithFallback, addressOrCurrency],
   )
 
+  const tokenListCurrency = useTokenListCurrency(address, chainId)
+
   const supportedChainId = useSupportedChainId(chainIdWithFallback)
 
   const addressWithFallback = isNative || !address ? nativeAddressWithFallback : address
 
   const currencyId = buildCurrencyId(supportedChainId ?? UniverseChainId.Mainnet, addressWithFallback)
-  const currencyInfo = useUniswapCurrencyInfo(currencyId, { skip })
+  const currencyInfo = useUniswapCurrencyInfo(currencyId, { skip: !forkConfig.uniSpecificFeaturesEnabled && skip })
 
   return useMemo(() => {
     const commonBase = getCommonBase(chainIdWithFallback, isNative, address)
@@ -102,12 +104,22 @@ export function useCurrencyInfo(
       return commonBase
     }
 
+    //TODO: assign safety level and logo if found in token list
+    if (tokenListCurrency) {
+      return {
+        currency: tokenListCurrency,
+        currencyId,
+        safetyLevel: SafetyLevel.Verified,
+        logoUrl: undefined,
+      }
+    }
+
     if (!currencyInfo || !addressOrCurrency || skip) {
       return undefined
     }
 
     return currencyInfo
-  }, [addressOrCurrency, currencyInfo, chainIdWithFallback, isNative, address, skip])
+  }, [addressOrCurrency, currencyInfo, chainIdWithFallback, isNative, address, skip, tokenListCurrency, currencyId])
 }
 
 const checkIsNative = (addressOrCurrency?: string | Currency): boolean => {
