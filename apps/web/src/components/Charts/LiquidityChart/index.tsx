@@ -8,7 +8,7 @@ import {
   LiquidityBarSeriesOptions,
 } from 'components/Charts/LiquidityChart/renderer'
 import { BigNumber } from 'ethers/lib/ethers'
-import { TickProcessed, usePoolActiveLiquidity } from 'hooks/usePoolTickData'
+import { TickProcessed, usePoolActiveLiquidity } from 'hooks/usePoolTickDataLegacy'
 import JSBI from 'jsbi'
 import { ISeriesApi, UTCTimestamp } from 'lightweight-charts'
 import { useEffect, useState } from 'react'

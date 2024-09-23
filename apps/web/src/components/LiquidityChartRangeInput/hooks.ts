@@ -1,7 +1,7 @@
 import { Currency } from '@uniswap/sdk-core'
 import { FeeAmount } from '@uniswap/v3-sdk'
 import { ChartEntry } from 'components/LiquidityChartRangeInput/types'
-import { TickProcessed, usePoolActiveLiquidity } from 'hooks/usePoolTickData'
+import { TickProcessed, usePoolActiveLiquidity } from 'hooks/usePoolTickDataLegacy'
 import { useCallback, useMemo } from 'react'
 
 export function useDensityChartData({

@@ -48,6 +48,7 @@
     "https://api.testnet.abs.xyz",
     "https://apiv1.staging.abstract.w3us.site",
     "https://apiv2.staging.abstract.w3us.site",
+    "https://graph-node.internal.reservoir.tools",
     "wss://relay.walletconnect.com",
     "wss://relay.walletconnect.org"
   ],

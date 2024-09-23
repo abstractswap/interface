@@ -9,7 +9,7 @@ import { FeeTierPercentageBadge } from 'components/FeeSelector/FeeTierPercentage
 import { FEE_AMOUNT_DETAIL } from 'components/FeeSelector/shared'
 import { RowBetween } from 'components/Row'
 import { useAccount } from 'hooks/useAccount'
-import { useFeeTierDistribution } from 'hooks/useFeeTierDistribution'
+import { useFeeTierDistribution } from 'hooks/useFeeTierDistributionLegacy'
 import { PoolState, usePools } from 'hooks/usePools'
 import usePrevious from 'hooks/usePrevious'
 import styled, { keyframes } from 'lib/styled-components'

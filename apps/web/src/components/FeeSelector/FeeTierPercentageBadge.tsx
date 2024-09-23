@@ -1,6 +1,6 @@
 import { FeeAmount } from '@uniswap/v3-sdk'
 import Badge from 'components/Badge'
-import { useFeeTierDistribution } from 'hooks/useFeeTierDistribution'
+import { useFeeTierDistribution } from 'hooks/useFeeTierDistributionLegacy'
 import { PoolState } from 'hooks/usePools'
 import { ThemedText } from 'theme/components'
 import { Trans } from 'uniswap/src/i18n'
