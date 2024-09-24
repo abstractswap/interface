@@ -183,14 +183,14 @@ export function getTokenDetailsURL({
   const inputAddressSuffix = inputAddress ? `?inputCurrency=${inputAddress}` : ''
   return forkConfig.uniSpecificFeaturesEnabled
     ? `/explore/tokens/${chainName}/${tokenAddress}${inputAddressSuffix}`
-    : `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens/${tokenAddress}`
+    : `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens/${tokenAddress.toLowerCase()}`
 }
 
 export function getPoolDetailsURL(address: string, chain: Chain) {
   const chainName = chain.toLowerCase()
   return forkConfig.uniSpecificFeaturesEnabled
     ? `/explore/pools/${chainName}/${address}`
-    : `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools/${address}`
+    : `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools/${address.toLowerCase()}`
 }
 
 export function unwrapToken<
