@@ -1,8 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import type { TransactionResponse } from '@ethersproject/providers'
 import { InterfacePageName, LiquidityEventName, LiquiditySource } from '@uniswap/analytics-events'
-import { Currency, CurrencyAmount, Fraction, Percent, Price, Token } from '@uniswap/sdk-core'
-import { NonfungiblePositionManager, Pool, Position } from '@uniswap/v3-sdk'
+import { Currency, CurrencyAmount, Fraction, Percent, Price, Token, V3_CORE_FACTORY_ADDRESSES } from '@uniswap/sdk-core'
+import { NonfungiblePositionManager, Pool, Position, computePoolAddress } from '@uniswap/v3-sdk'
 import Badge from 'components/Badge'
 import RangeBadge from 'components/Badge/RangeBadge'
 import { ButtonConfirmed, ButtonGray, ButtonPrimary } from 'components/Button'
@@ -443,8 +443,17 @@ function PositionPageContent() {
   const nativeWrappedSymbol = nativeCurrency.wrapped.symbol
 
   // get pool address from details returned
-  const poolAddress = token0 && token1 && feeAmount ? Pool.getAddress(token0, token1, feeAmount) : undefined
-
+  // const poolAddress = token0 && token1 && feeAmount ? Pool.getAddress(token0, token1, feeAmount) : undefined
+  const poolAddress =
+    token0 && token1 && feeAmount
+      ? computePoolAddress({
+          factoryAddress: V3_CORE_FACTORY_ADDRESSES[account?.chainId ?? 11124],
+          tokenA: token0,
+          tokenB: token1,
+          fee: feeAmount,
+          chainId: account.chainId as any,
+        })
+      : undefined
   // construct Position from details returned
   const [poolState, pool] = usePool(token0 ?? undefined, token1 ?? undefined, feeAmount)
   const position = useMemo(() => {

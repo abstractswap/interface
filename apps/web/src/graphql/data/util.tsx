@@ -15,6 +15,7 @@ import {
   isSupportedChainId,
 } from 'constants/chains'
 import { NATIVE_CHAIN_ID, WRAPPED_NATIVE_CURRENCY, nativeOnChain } from 'constants/tokens'
+import forkConfig from 'forkConfig'
 import { DefaultTheme } from 'lib/styled-components'
 import ms from 'ms'
 import { ExploreTab } from 'pages/Explore'
@@ -180,12 +181,16 @@ export function getTokenDetailsURL({
   const chainName = chain.toLowerCase()
   const tokenAddress = address ?? NATIVE_CHAIN_ID
   const inputAddressSuffix = inputAddress ? `?inputCurrency=${inputAddress}` : ''
-  return `/explore/tokens/${chainName}/${tokenAddress}${inputAddressSuffix}`
+  return forkConfig.uniSpecificFeaturesEnabled
+    ? `/explore/tokens/${chainName}/${tokenAddress}${inputAddressSuffix}`
+    : `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens/${tokenAddress}`
 }
 
 export function getPoolDetailsURL(address: string, chain: Chain) {
   const chainName = chain.toLowerCase()
-  return `/explore/pools/${chainName}/${address}`
+  return forkConfig.uniSpecificFeaturesEnabled
+    ? `/explore/pools/${chainName}/${address}`
+    : `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools/${address}`
 }
 
 export function unwrapToken<

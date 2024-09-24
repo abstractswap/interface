@@ -7,9 +7,11 @@ import { useTabsVisible } from 'components/NavBar/ScreenSizes'
 import forkConfig from 'forkConfig'
 import { useTheme } from 'lib/styled-components'
 import { useLocation } from 'react-router-dom'
+import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
 import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
 import { useTranslation } from 'uniswap/src/i18n'
+import { UniverseChainId } from 'uniswap/src/types/chains'
 
 export type TabsSection = {
   title: string
@@ -76,28 +78,39 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
           : []),
       ],
     },
-    ...(forkConfig.uniSpecificFeaturesEnabled
-      ? [
-          {
-            title: t('common.explore'),
-            href: '/explore',
-            isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
-            items: [
-              { label: t('common.tokens'), quickKey: 'T', href: '/explore/tokens', internal: true },
-              { label: t('common.pools'), quickKey: 'P', href: '/explore/pools', internal: true },
-              {
-                label: t('common.transactions'),
-                quickKey: 'X',
-                href: `/explore/transactions${isMultichainExploreEnabled ? '/ethereum' : ''}`,
-                internal: true,
-              },
-              ...(props?.includeNftsLink
-                ? [{ label: t('common.nfts'), quickKey: 'N', href: '/nfts', internal: true }]
-                : []),
-            ],
-          },
-        ]
-      : []),
+    {
+      title: t('common.explore'),
+      href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}`,
+      isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
+      items: forkConfig.uniSpecificFeaturesEnabled
+        ? [
+            { label: t('common.tokens'), quickKey: 'T', href: '/explore/tokens', internal: true },
+            { label: t('common.pools'), quickKey: 'P', href: '/explore/pools', internal: true },
+            {
+              label: t('common.transactions'),
+              quickKey: 'X',
+              href: `/explore/transactions${isMultichainExploreEnabled ? '/ethereum' : ''}`,
+              internal: true,
+            },
+            ...(props?.includeNftsLink
+              ? [{ label: t('common.nfts'), quickKey: 'N', href: '/nfts', internal: true }]
+              : []),
+          ]
+        : [
+            {
+              label: t('common.tokens'),
+              quickKey: 'T',
+              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens`,
+              internal: false,
+            },
+            {
+              label: t('common.pools'),
+              quickKey: 'T',
+              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools`,
+              internal: false,
+            },
+          ],
+    },
     {
       title: t('common.pool'),
       href: '/pool',
