@@ -1,11 +1,13 @@
 import { isBetaEnv, isProdEnv } from 'utilities/src/environment'
 
 function isAppUniswapOrg({ hostname }: { hostname: string }): boolean {
-  return hostname === 'app.uniswap.org'
+  //FIXME: update with real host
+  return hostname === 'app.futurehost.xyz'
 }
 
 function isAppUniswapStagingOrg({ hostname }: { hostname: string }): boolean {
-  return hostname === 'app.corn-staging.com'
+  //FIXME: update with real host
+  return hostname === 'app.futurehost.xyz'
 }
 
 export function isBrowserRouterEnabled(): boolean {

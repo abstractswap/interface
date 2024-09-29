@@ -21,7 +21,8 @@ function getConnectorWithId(
 ): Connector | undefined {
   const connector = connectors.find((c) => c.id === id)
   if (!connector && options?.shouldThrow) {
-    throw new Error(`Expected connector ${id} missing from wagmi context.`)
+    // FIXME: update with the final list
+    // throw new Error(`Expected connector ${id} missing from wagmi context.`)
   }
   return connector
 }
@@ -98,7 +99,8 @@ export function useOrderedConnections(excludeUniswapConnections?: boolean): Inje
       SHOULD_THROW,
     )
     if (!coinbaseSdkConnector || !walletConnectConnector || !uniswapWalletConnectConnector) {
-      throw new Error('Expected connector(s) missing from wagmi context.')
+      // FIXME: update with the final list
+      // throw new Error('Expected connector(s) missing from wagmi context.')
     }
 
     // Special-case: Only display the injected connector for in-wallet browsers.

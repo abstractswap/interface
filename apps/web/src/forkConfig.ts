@@ -9,6 +9,7 @@ const forkConfig = {
   landingPageExternalData: false,
   multipleRouteOptionsEnabled: false,
   apiRoutingEnabled: true,
+  inDevelopment: true,
 }
 
 export default forkConfig

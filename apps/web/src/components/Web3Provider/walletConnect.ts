@@ -39,10 +39,10 @@ export interface WalletConnectConnector extends Connector {
 export const WC_PARAMS = {
   projectId: WALLET_CONNECT_PROJECT_ID,
   metadata: {
-    name: 'Uniswap',
-    description: 'Uniswap Interface',
-    url: 'https://app.uniswap.org',
-    icons: ['https://app.uniswap.org/favicon.png'],
+    name: 'Swap',
+    description: 'Swap Interface (Still in development)',
+    url: 'https://app.futurehost.xyz',
+    icons: ['https://app.futurehost.xyz/favicon.png'],
   },
   qrModalOptions: {
     themeVariables: {

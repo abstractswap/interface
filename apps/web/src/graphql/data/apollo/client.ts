@@ -18,7 +18,7 @@ export const apolloClient = new ApolloClient({
   link: httpLink,
   headers: {
     'Content-Type': 'application/json',
-    Origin: 'https://app.uniswap.org',
+    Origin: forkConfig.uniSpecificFeaturesEnabled ? 'https://app.uniswap.org' : '',
   },
   cache: new InMemoryCache({
     typePolicies: {
