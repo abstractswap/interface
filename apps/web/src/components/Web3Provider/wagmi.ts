@@ -1,6 +1,7 @@
 import { QueryClient } from '@tanstack/react-query'
 import { injectedWithFallback } from 'components/Web3Provider/injectedWithFallback'
-import { WC_PARAMS /*, uniswapWalletConnect*/ } from 'components/Web3Provider/walletConnect'
+import { WC_PARAMS, uniswapWalletConnect } from 'components/Web3Provider/walletConnect'
+import forkConfig from 'forkConfig'
 // import { ABSTRACT_LOGO } from 'ui/src/assets'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 // import { UNISWAP_WEB_URL } from 'uniswap/src/constants/urls'
@@ -24,7 +25,6 @@ export const wagmiConfig = createConfig({
   connectors: [
     injectedWithFallback(),
     walletConnect(WC_PARAMS),
-    // uniswapWalletConnect(),
     coinbaseWallet({
       appName: 'Swap',
       // CB SDK doesn't pass the parent origin context to their passkey site
@@ -33,6 +33,7 @@ export const wagmiConfig = createConfig({
       reloadOnDisconnect: false,
       enableMobileWalletLink: false,
     }),
+    ...(forkConfig.uniSpecificFeaturesEnabled ? [uniswapWalletConnect()] : []),
     safe(),
   ],
   client({ chain }) {
