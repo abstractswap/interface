@@ -31,14 +31,10 @@ if (UNISWAP_GATEWAY_DNS_URL === undefined) {
 }
 
 const CLIENT_PARAMS = {
-  // protocols: [Protocol.V2, Protocol.V3, Protocol.MIXED],
-  // TODO: add more protocols once supported
-  protocols: [Protocol.V3],
+  protocols: [Protocol.V2, Protocol.V3, Protocol.MIXED],
 }
 
-// const protocols: Protocol[] = [Protocol.V2, Protocol.V3, Protocol.MIXED]
-// TODO: add more protocols once supported
-const protocols: Protocol[] = [Protocol.V3]
+const protocols: Protocol[] = [Protocol.V2, Protocol.V3, Protocol.MIXED]
 
 // routing API quote query params: https://github.com/Uniswap/routing-api/blob/main/lib/handlers/quote/schema/quote-schema.ts
 const DEFAULT_QUERY_PARAMS = {

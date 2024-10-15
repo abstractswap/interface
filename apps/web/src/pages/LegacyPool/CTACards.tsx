@@ -2,7 +2,7 @@ import { AutoColumn } from 'components/Column'
 import { useSupportedChainId } from 'constants/chains'
 import { useAccount } from 'hooks/useAccount'
 import styled, { css } from 'lib/styled-components'
-import { ExternalLink, StyledInternalLink, ThemedText } from 'theme/components'
+import { ExternalLink, ThemedText } from 'theme/components'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 import { Trans } from 'uniswap/src/i18n'
 import { UniverseChainId } from 'uniswap/src/types/chains'
@@ -44,9 +44,9 @@ const CTAStyle = css`
 const CTAExternalLink = styled(ExternalLink)`
   ${CTAStyle}
 `
-const CTALink = styled(StyledInternalLink)`
-  ${CTAStyle}
-`
+// const CTALink = styled(StyledInternalLink)`
+//   ${CTAStyle}
+// `
 
 const HeaderText = styled(ThemedText.DeprecatedLabel)`
   align-items: center;
@@ -85,7 +85,7 @@ export default function CTACards() {
           </ThemedText.DeprecatedBody>
         </ResponsiveColumn>
       </CTAExternalLink>
-      <CTALink data-testid="cta-poolslink" to={`/explore/pools/${chain.urlParam}`}>
+      <CTAExternalLink data-testid="cta-poolslink" href={`${chain.infoLink}/explore/pools`}>
         <ResponsiveColumn>
           <HeaderText style={{ alignSelf: 'flex-start' }}>
             <Trans i18nKey="pool.top" /> ↗
@@ -94,7 +94,7 @@ export default function CTACards() {
             <Trans i18nKey="pool.exporeAnalytics" />
           </ThemedText.DeprecatedBody>
         </ResponsiveColumn>
-      </CTALink>
+      </CTAExternalLink>
     </CTASection>
   )
 }

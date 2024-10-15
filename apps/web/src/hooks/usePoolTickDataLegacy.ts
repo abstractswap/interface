@@ -93,7 +93,7 @@ export function usePoolActiveLiquidity(
   data?: TickProcessed[]
 } {
   const account = useAccount()
-  const defaultChainId = account.chainId ?? UniverseChainId.Mainnet
+  const defaultChainId = account.chainId ?? UniverseChainId.AbstractTestnet
   const pool = usePoolMultichain(currencyA?.wrapped, currencyB?.wrapped, feeAmount, chainId ?? defaultChainId)
   const liquidity = pool[1]?.liquidity
   const sqrtPriceX96 = pool[1]?.sqrtRatioX96

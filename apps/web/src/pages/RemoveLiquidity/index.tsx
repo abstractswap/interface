@@ -25,6 +25,7 @@ import { V2Unsupported } from 'components/V2Unsupported'
 import { Dots } from 'components/swap/styled'
 import { useIsSupportedChainId } from 'constants/chains'
 import { WRAPPED_NATIVE_CURRENCY } from 'constants/tokens'
+import forkConfig from 'forkConfig'
 import { useCurrency } from 'hooks/Tokens'
 import { useAccount } from 'hooks/useAccount'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
@@ -323,18 +324,21 @@ function RemoveLiquidity() {
 
           setTxHash(response.hash)
 
-          sendAnalyticsEvent(LiquidityEventName.REMOVE_LIQUIDITY_SUBMITTED, {
-            label: [currencyA.symbol, currencyB.symbol].join('/'),
-            source: LiquiditySource.V2,
-            ...trace,
-            type: LiquiditySource.V2,
-            transaction_hash: response.hash,
-            pool_address: computePairAddress({
-              factoryAddress: V2_FACTORY_ADDRESSES[currencyA.chainId],
-              tokenA: currencyA.wrapped,
-              tokenB: currencyB.wrapped,
-            }),
-          })
+          if (forkConfig.analyticsEnabled) {
+            sendAnalyticsEvent(LiquidityEventName.REMOVE_LIQUIDITY_SUBMITTED, {
+              label: [currencyA.symbol, currencyB.symbol].join('/'),
+              source: LiquiditySource.V2,
+              ...trace,
+              type: LiquiditySource.V2,
+              transaction_hash: response.hash,
+              pool_address: computePairAddress({
+                factoryAddress: V2_FACTORY_ADDRESSES[currencyA.chainId],
+                tokenA: currencyA.wrapped,
+                tokenB: currencyB.wrapped,
+                chainId: currencyA.chainId,
+              }),
+            })
+          }
         })
         .catch((error: Error) => {
           setAttemptingTxn(false)

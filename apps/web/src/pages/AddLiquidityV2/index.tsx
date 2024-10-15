@@ -23,6 +23,7 @@ import { V2Unsupported } from 'components/V2Unsupported'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { ZERO_PERCENT } from 'constants/misc'
 import { WRAPPED_NATIVE_CURRENCY } from 'constants/tokens'
+import forkConfig from 'forkConfig'
 import { useCurrency } from 'hooks/Tokens'
 import { useAccount } from 'hooks/useAccount'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
@@ -224,18 +225,21 @@ export default function AddLiquidity() {
 
           setTxHash(response.hash)
 
-          sendAnalyticsEvent(LiquidityEventName.ADD_LIQUIDITY_SUBMITTED, {
-            label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
-            ...trace,
-            ...transactionInfo,
-            type: LiquiditySource.V2,
-            transaction_hash: response.hash,
-            pool_address: computePairAddress({
-              factoryAddress: V2_FACTORY_ADDRESSES[currencyA.chainId],
-              tokenA: currencyA.wrapped,
-              tokenB: currencyB.wrapped,
-            }),
-          })
+          if (forkConfig.analyticsEnabled) {
+            sendAnalyticsEvent(LiquidityEventName.ADD_LIQUIDITY_SUBMITTED, {
+              label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
+              ...trace,
+              ...transactionInfo,
+              type: LiquiditySource.V2,
+              transaction_hash: response.hash,
+              pool_address: computePairAddress({
+                factoryAddress: V2_FACTORY_ADDRESSES[currencyA.chainId],
+                tokenA: currencyA.wrapped,
+                tokenB: currencyB.wrapped,
+                chainId: currencyA.chainId,
+              }),
+            })
+          }
         }),
       )
       .catch((error) => {

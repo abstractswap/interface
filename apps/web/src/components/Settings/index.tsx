@@ -9,6 +9,7 @@ import MultipleRoutingOptions from 'components/Settings/MultipleRoutingOptions'
 import RouterPreferenceSettings from 'components/Settings/RouterPreferenceSettings'
 import TransactionDeadlineSettings from 'components/Settings/TransactionDeadlineSettings'
 import { isUniswapXSupportedChain, useIsSupportedChainId } from 'constants/chains'
+import forkConfig from 'forkConfig'
 import { useIsMobile } from 'hooks/screenSize'
 import useDisableScrolling from 'hooks/useDisableScrolling'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
@@ -155,7 +156,7 @@ export default function SettingsTab({
             {showDeadlineSettings && <TransactionDeadlineSettings />}
           </ExpandColumn>
         </AnimatedDropdown>
-        {multipleRoutingOptionsEnabled && (
+        {(multipleRoutingOptionsEnabled || forkConfig.multipleRouteOptionsEnabled) && (
           <>
             {!isUniswapXTrade(trade) && <StyledDivider />}
             <MultipleRoutingOptions chainId={chainId} />
