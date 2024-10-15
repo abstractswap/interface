@@ -7,6 +7,7 @@ import { TestnetsToggle } from 'components/AccountDrawer/TestnetsToggle'
 import Column from 'components/Column'
 import Row from 'components/Row'
 import { LOCALE_LABEL } from 'constants/locales'
+import forkConfig from 'forkConfig'
 import { useActiveLocalCurrency } from 'hooks/useActiveLocalCurrency'
 import { useActiveLocale } from 'hooks/useActiveLocale'
 import styled from 'lib/styled-components'
@@ -78,27 +79,33 @@ export default function SettingsMenu({
       <Container>
         <div>
           <ToggleWrapper>
+            {forkConfig.uniSpecificFeaturesEnabled && (
+              <>
+                <SmallBalanceToggle />
+                <SpamToggle />
+                <AnalyticsToggle />
+              </>
+            )}
             <ThemeToggle />
-            <SmallBalanceToggle />
-            <SpamToggle />
-            <AnalyticsToggle />
             <TestnetsToggle />
           </ToggleWrapper>
 
-          <Column>
-            <SettingsButton
-              title={<Trans i18nKey="common.language" />}
-              currentState={LOCALE_LABEL[activeLocale]}
-              onClick={openLanguageSettings}
-              testId="language-settings-button"
-            />
-            <SettingsButton
-              title={<Trans i18nKey="common.currency" />}
-              currentState={activeLocalCurrency}
-              onClick={openLocalCurrencySettings}
-              testId="local-currency-settings-button"
-            />
-          </Column>
+          {forkConfig.uniSpecificFeaturesEnabled && (
+            <Column>
+              <SettingsButton
+                title={<Trans i18nKey="common.language" />}
+                currentState={LOCALE_LABEL[activeLocale]}
+                onClick={openLanguageSettings}
+                testId="language-settings-button"
+              />
+              <SettingsButton
+                title={<Trans i18nKey="common.currency" />}
+                currentState={activeLocalCurrency}
+                onClick={openLocalCurrencySettings}
+                testId="local-currency-settings-button"
+              />
+            </Column>
+          )}
         </div>
         <GitVersionRow />
       </Container>
