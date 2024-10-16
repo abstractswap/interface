@@ -20,7 +20,7 @@ export interface TelemetryState {
 }
 
 export const initialTelemetryState: TelemetryState = {
-  allowAnalytics: true,
+  allowAnalytics: false,
   lastHeartbeat: 0,
   lastBalancesReport: 0,
   lastBalancesReportValue: 0,

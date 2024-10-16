@@ -5,7 +5,8 @@ import { ApplicationTransport } from 'utilities/src/telemetry/analytics/Applicat
 export type UserPropertyValue = number | string | boolean | Array<string | number>
 
 export async function getAnalyticsAtomDirect(_forceRead?: boolean): Promise<boolean> {
-  throw new PlatformSplitStubError('getAnalyticsAtomDirect')
+  // throw new PlatformSplitStubError('getAnalyticsAtomDirect')
+  return false
 }
 
 export interface Analytics {

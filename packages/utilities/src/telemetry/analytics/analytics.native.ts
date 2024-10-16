@@ -12,6 +12,7 @@ import {
 import { generateAnalyticsLoggers } from 'utilities/src/telemetry/analytics/logging'
 
 const loggers = generateAnalyticsLoggers('telemetry/analytics.native')
+const FORK_ALLOW_ANALYTICS = false
 
 let allowAnalytics: Maybe<boolean>
 let userId: Maybe<string>
@@ -28,7 +29,7 @@ export const analytics: Analytics = {
     userIdGetter?: () => Promise<string>,
   ): Promise<void> {
     try {
-      allowAnalytics = allowed
+      allowAnalytics = allowed && FORK_ALLOW_ANALYTICS
       init(
         DUMMY_KEY, // Amplitude custom reverse proxy takes care of API key
         undefined, // User ID should be undefined to let Amplitude default to Device ID
@@ -56,7 +57,7 @@ export const analytics: Analytics = {
     }
   },
   async setAllowAnalytics(allowed: boolean): Promise<void> {
-    allowAnalytics = allowed
+    allowAnalytics = allowed && FORK_ALLOW_ANALYTICS
     if (allowed) {
       if (userId) {
         setDeviceId(userId)
@@ -68,7 +69,7 @@ export const analytics: Analytics = {
     }
   },
   sendEvent(eventName: string, eventProperties?: Record<string, unknown>): void {
-    if (!allowAnalytics && !ANONYMOUS_EVENT_NAMES.includes(eventName)) {
+    if (!FORK_ALLOW_ANALYTICS || (!allowAnalytics && !ANONYMOUS_EVENT_NAMES.includes(eventName))) {
       return
     }
     loggers.sendEvent(eventName, eventProperties)

@@ -7,7 +7,7 @@ import { analytics, getAnalyticsAtomDirect } from 'utilities/src/telemetry/analy
 export function AnalyticsToggle() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [x, setCounter] = useState(0)
-  const [allowAnalytics, setAllowAnalytics] = useState(true)
+  const [allowAnalytics, setAllowAnalytics] = useState(false)
 
   getAnalyticsAtomDirect(true).then((v: boolean) => setAllowAnalytics(v))
 
