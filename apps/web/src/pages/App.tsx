@@ -1,3 +1,4 @@
+import '@reservoir0x/relay-kit-ui/styles.css'
 import ErrorBoundary from 'components/ErrorBoundary'
 import { useFeatureFlagURLOverrides } from 'featureFlags'
 import useSyncChainQuery from 'hooks/useSyncChainQuery'

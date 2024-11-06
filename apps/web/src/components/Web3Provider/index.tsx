@@ -1,3 +1,6 @@
+import { useRelayChains } from '@reservoir0x/relay-kit-hooks'
+import { RelayKitProvider } from '@reservoir0x/relay-kit-ui'
+import { MAINNET_RELAY_API } from '@reservoir0x/relay-sdk'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { CustomUserProperties, InterfaceEventName, WalletConnectionResult } from '@uniswap/analytics-events'
 import { recentConnectorIdAtom } from 'components/Web3Provider/constants'
@@ -24,13 +27,22 @@ import { getWalletMeta } from 'utils/walletMeta'
 import { WagmiProvider } from 'wagmi'
 
 export default function Web3Provider({ children }: { children: ReactNode }) {
+  const { chains } = useRelayChains(MAINNET_RELAY_API, { includeChains: '543210' })
+
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <ConnectionProvider>
-          <Updater />
-          {children}
-        </ConnectionProvider>
+        <RelayKitProvider
+          options={{
+            appName: 'Reservoir Swap',
+            chains,
+          }}
+        >
+          <ConnectionProvider>
+            <Updater />
+            {children}
+          </ConnectionProvider>
+        </RelayKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   )
