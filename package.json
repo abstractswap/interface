@@ -33,7 +33,7 @@
       "INTERNAL_MISMATCH"
     ]
   },
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@4.5.1",
   "private": true,
   "resolutions": {
     "@apollo/client": "3.10.4",
