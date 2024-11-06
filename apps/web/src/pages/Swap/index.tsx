@@ -1,6 +1,7 @@
 import { SwapWidget } from '@reservoir0x/relay-kit-ui'
 import { InterfacePageName } from '@uniswap/analytics-events'
 import { Currency } from '@uniswap/sdk-core'
+import { useAccountDrawer } from 'components/AccountDrawer/MiniPortfolio/hooks'
 import { NetworkAlert } from 'components/NetworkAlert/NetworkAlert'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
 import SwapHeader from 'components/swap/SwapHeader'
@@ -41,21 +42,7 @@ export function getIsReviewableQuote(
 }
 
 export default function SwapPage() {
-  // const location = useLocation()
-  // const multichainUXEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
-  // // (WEB-4737): Remove this line after completing A/A Test on Web
-  // useFeatureFlag(FeatureFlags.AATestWeb)
-
-  // // const {
-  //   initialInputCurrency,
-  //   initialOutputCurrency,
-  //   initialChainId,
-  //   initialTypedValue,
-  //   initialField,
-  //   initialCurrencyLoading,
-  // } = useInitialCurrencyState()
-  // const isUnsupportedConnectedChain = useSupportedChainId(useAccount().chainId) === undefined
-  // const shouldDisableTokenInputs = multichainUXEnabled ? false : isUnsupportedConnectedChain
+  const accountDrawer = useAccountDrawer()
 
   return (
     <Trace logImpression page={InterfacePageName.SWAP_PAGE}>
@@ -78,19 +65,10 @@ export default function SwapPage() {
             symbol: 'ETH',
             logoURI: 'https://assets.relay.link/icons/1/light.png',
           }}
+          onConnectWallet={() => {
+            accountDrawer.open()
+          }}
         />
-        {/* <Swap
-          className={className}
-          chainId={initialChainId}
-          multichainUXEnabled={multichainUXEnabled}
-          disableTokenInputs={shouldDisableTokenInputs}
-          initialInputCurrency={initialInputCurrency}
-          initialOutputCurrency={initialOutputCurrency}
-          initialTypedValue={initialTypedValue}
-          initialIndependentField={initialField}
-          initialCurrencyLoading={initialCurrencyLoading}
-          syncTabToUrl={true}
-        /> */}
       </PageWrapper>
       {location.pathname === '/swap' && <SwitchLocaleLink />}
     </Trace>

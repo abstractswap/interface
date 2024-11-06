@@ -1,5 +1,4 @@
 import { Bag } from 'components/NavBar/Bag'
-import { ChainSelector } from 'components/NavBar/ChainSelector'
 import { CompanyMenu } from 'components/NavBar/CompanyMenu'
 import { NewUserCTAButton } from 'components/NavBar/DownloadApp/NewUserCTAButton'
 import { PreferenceMenu } from 'components/NavBar/PreferencesMenu'
@@ -12,9 +11,7 @@ import Web3Status from 'components/Web3Status'
 import forkConfig from 'forkConfig'
 import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
-import { useIsExplorePage } from 'hooks/useIsExplorePage'
 import { useIsLandingPage } from 'hooks/useIsLandingPage'
-import { useIsLimitPage } from 'hooks/useIsLimitPage'
 import { useIsNftPage } from 'hooks/useIsNftPage'
 // import { useIsSendPage } from 'hooks/useIsSendPage'
 // import { useIsSwapPage } from 'hooks/useIsSwapPage'
@@ -23,8 +20,6 @@ import { useProfilePageState } from 'nft/hooks'
 import { ProfilePageStateType } from 'nft/types'
 import { BREAKPOINTS, NAV_HEIGHT } from 'theme'
 import { Z_INDEX } from 'theme/zIndex'
-import { FeatureFlags } from 'uniswap/src/features/gating/flags'
-import { useFeatureFlagWithLoading } from 'uniswap/src/features/gating/hooks'
 
 const Nav = styled.nav`
   padding: 0px 12px;
@@ -69,33 +64,33 @@ const SearchContainer = styled.div`
   height: 42px;
 `
 
-function useShouldHideChainSelector() {
-  const isNftPage = useIsNftPage()
-  // const isLandingPage = useIsLandingPage()
-  // const isSendPage = useIsSendPage()
-  // const isSwapPage = useIsSwapPage()
-  const isLimitPage = useIsLimitPage()
-  const isExplorePage = useIsExplorePage()
-  const { value: multichainFlagEnabled, isLoading: isMultichainFlagLoading } = useFeatureFlagWithLoading(
-    FeatureFlags.MultichainUX,
-  )
-  const { value: multichainExploreFlagEnabled, isLoading: isMultichainExploreFlagLoading } = useFeatureFlagWithLoading(
-    FeatureFlags.MultichainExplore,
-  )
+// function useShouldHideChainSelector() {
+//   const isNftPage = useIsNftPage()
+//   // const isLandingPage = useIsLandingPage()
+//   // const isSendPage = useIsSendPage()
+//   // const isSwapPage = useIsSwapPage()
+//   const isLimitPage = useIsLimitPage()
+//   const isExplorePage = useIsExplorePage()
+//   const { value: multichainFlagEnabled, isLoading: isMultichainFlagLoading } = useFeatureFlagWithLoading(
+//     FeatureFlags.MultichainUX,
+//   )
+//   const { value: multichainExploreFlagEnabled, isLoading: isMultichainExploreFlagLoading } = useFeatureFlagWithLoading(
+//     FeatureFlags.MultichainExplore,
+//   )
 
-  const baseHiddenPages = isNftPage
-  const multichainHiddenPages = isLimitPage
-  const multichainExploreHiddenPages = multichainHiddenPages || isExplorePage
+//   const baseHiddenPages = isNftPage
+//   const multichainHiddenPages = isLimitPage
+//   const multichainExploreHiddenPages = multichainHiddenPages || isExplorePage
 
-  const hideChainSelector =
-    multichainExploreFlagEnabled || isMultichainExploreFlagLoading
-      ? multichainExploreHiddenPages
-      : multichainFlagEnabled || isMultichainFlagLoading
-        ? multichainHiddenPages
-        : baseHiddenPages
+//   const hideChainSelector =
+//     multichainExploreFlagEnabled || isMultichainExploreFlagLoading
+//       ? multichainExploreHiddenPages
+//       : multichainFlagEnabled || isMultichainFlagLoading
+//         ? multichainHiddenPages
+//         : baseHiddenPages
 
-  return hideChainSelector
-}
+//   return hideChainSelector
+// }
 
 export default function Navbar() {
   const isNftPage = useIsNftPage()
@@ -108,8 +103,6 @@ export default function Navbar() {
   const collapseSearchBar = !useScreenSize()['lg']
   const account = useAccount()
   const NAV_SEARCH_MAX_HEIGHT = 'calc(100vh - 30px)'
-
-  const hideChainSelector = useShouldHideChainSelector()
 
   const { isControl: isSignInExperimentControl, isLoading: isSignInExperimentControlLoading } =
     useIsAccountCTAExperimentControl()
@@ -137,7 +130,7 @@ export default function Navbar() {
             !isSmallScreen &&
             forkConfig.signUpOptionEnabled && <NewUserCTAButton />}
           {!account.isConnected && !account.isConnecting && <PreferenceMenu />}
-          {!hideChainSelector && <ChainSelector isNavSelector />}
+          {/* @TODO {!hideChainSelector && <ChainSelector isNavSelector />} */}
           <Web3Status />
           {!isSignInExperimentControl &&
             !isSignInExperimentControlLoading &&

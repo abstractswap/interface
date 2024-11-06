@@ -66,6 +66,7 @@ export function ThemeColorMetaUpdater() {
 
   useEffect(() => {
     const meta = document.querySelector('meta[name=theme-color]')
+    const html = document.documentElement
     if (!meta) {
       return
     }
@@ -73,8 +74,10 @@ export function ThemeColorMetaUpdater() {
     if (isDark) {
       // this color comes from #background-radial-gradient
       meta.setAttribute('content', 'rgb(19, 19, 19)')
+      html.classList.add('dark')
     } else {
       meta.setAttribute('content', '#fff')
+      html.classList.remove('dark')
     }
   }, [isDark])
 

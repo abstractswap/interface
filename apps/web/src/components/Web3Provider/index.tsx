@@ -1,6 +1,6 @@
 import { useRelayChains } from '@reservoir0x/relay-kit-hooks'
 import { RelayKitProvider } from '@reservoir0x/relay-kit-ui'
-import { MAINNET_RELAY_API } from '@reservoir0x/relay-sdk'
+import { LogLevel, MAINNET_RELAY_API } from '@reservoir0x/relay-sdk'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { CustomUserProperties, InterfaceEventName, WalletConnectionResult } from '@uniswap/analytics-events'
 import { recentConnectorIdAtom } from 'components/Web3Provider/constants'
@@ -36,6 +36,7 @@ export default function Web3Provider({ children }: { children: ReactNode }) {
           options={{
             appName: 'Reservoir Swap',
             chains,
+            logLevel: LogLevel.Verbose,
           }}
         >
           <ConnectionProvider>
