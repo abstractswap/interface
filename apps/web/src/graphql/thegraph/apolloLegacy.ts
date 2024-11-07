@@ -7,6 +7,7 @@ export type Ticks = AllV3TicksQuery['ticks']
 export type TickData = Ticks[number]
 
 const CHAIN_SUBGRAPH_URL: Record<number, string> = {
+  [UniverseChainId.Base]: ``,
   [UniverseChainId.AbstractTestnet]:
     'https://graph-node.internal.reservoir.tools/subgraphs/name/absctract-testnet/v3-subgraph',
   [UniverseChainId.Zero]: 'https://graph-node.internal.reservoir.tools/subgraphs/name/zero/v3-subgraph',
