@@ -74,6 +74,7 @@ function useShouldHideChainSelector() {
   // const isLandingPage = useIsLandingPage()
   // const isSendPage = useIsSendPage()
   // const isSwapPage = useIsSwapPage()
+
   const isLimitPage = useIsLimitPage()
   const isExplorePage = useIsExplorePage()
   const { value: multichainFlagEnabled, isLoading: isMultichainFlagLoading } = useFeatureFlagWithLoading(
