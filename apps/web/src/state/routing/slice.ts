@@ -21,6 +21,7 @@ import {
 import { isExactInput, transformQuoteToTrade } from 'state/routing/utils'
 import { logSwapQuoteRequest } from 'tracing/swapFlowLoggers'
 import { trace } from 'tracing/trace'
+import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 import { InterfaceEventNameLocal } from 'uniswap/src/features/telemetry/constants'
 import { sendAnalyticsEvent } from 'uniswap/src/features/telemetry/send'
 import { logger } from 'utilities/src/logger/logger'
@@ -125,13 +126,12 @@ export const routingApi = createApi({
             intent:
               args.routerPreference === INTERNAL_ROUTER_PREFERENCE_PRICE ? QuoteIntent.Pricing : QuoteIntent.Quote,
             configs: getRoutingAPIConfig(args),
-            useUniswapX: args.routerPreference === RouterPreference.X,
+            useUniswapX: args.routerPreference === RouterPreference.X && forkConfig.uniSpecificFeaturesEnabled,
             swapper: args.account,
             slippageTolerance: arbitrumXV2SlippageTolerance,
           }
 
-          //FIXME: enable when API is ready
-          if (forkConfig.apiRoutingEnabled) {
+          if (forkConfig.apiRoutingEnabled && !UNIVERSE_CHAIN_INFO[tokenInChainId].supportsClientSideRouting) {
             try {
               return trace.child({ name: 'Quote on server', op: 'quote.server' }, async () => {
                 const response = await fetch({

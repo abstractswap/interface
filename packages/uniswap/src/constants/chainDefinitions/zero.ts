@@ -22,7 +22,7 @@ export const zero = /*#__PURE__*/ defineChain({
       url: 'https://explorer.zero.network',
     },
   },
-  testnet: true,
+  testnet: false,
   contracts: {
     multicall3: {
       address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',

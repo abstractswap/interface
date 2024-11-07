@@ -27,11 +27,11 @@ const menuItems = {
   },
   [ProtocolVersion.V3]: {
     title: t('pool.v3'),
-    link: '/pool',
+    link: '/#/pool',
   },
   [ProtocolVersion.V2]: {
     title: t('pool.v2'),
-    link: '/pools/v2',
+    link: '/#/pools/v2',
   },
 }
 

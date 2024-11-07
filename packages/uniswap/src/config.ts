@@ -27,6 +27,7 @@ import {
   UNISWAP_API_KEY,
   WALLETCONNECT_PROJECT_ID,
 } from 'react-native-dotenv'
+import { UniverseChainId } from 'uniswap/src/types/chains'
 import { isNonJestDev } from 'utilities/src/environment/constants'
 
 export interface Config {
@@ -56,6 +57,7 @@ export interface Config {
   quicknodeMainnetRpcUrl: string
   tradingApiKey: string
   firebaseAppCheckDebugToken: string
+  webSupportedChains?: UniverseChainId[]
 }
 
 /**
@@ -105,6 +107,11 @@ const _config: Config = {
     QUICKNODE_MAINNET_RPC_URL,
   tradingApiKey: process.env.TRADING_API_KEY || TRADING_API_KEY,
   firebaseAppCheckDebugToken: process.env.FIREBASE_APP_CHECK_DEBUG_TOKEN || FIREBASE_APP_CHECK_DEBUG_TOKEN,
+  webSupportedChains: process.env.REACT_APP_WEB_SUPPORTED_CHAINS
+    ? process.env.REACT_APP_WEB_SUPPORTED_CHAINS.split(',')
+        .map((id) => Number(id) as UniverseChainId)
+        .filter((id): id is UniverseChainId => !!id)
+    : undefined,
 }
 
 export const config = Object.freeze(_config)

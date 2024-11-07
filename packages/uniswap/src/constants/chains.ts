@@ -1070,7 +1070,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     },
     helpCenterUrl: undefined,
     //FIXME: update with correct URL
-    infoLink: 'https://staging-info-resevoir-swap.vercel.app/#',
+    infoLink: 'https://info.staging.reservoir.w3us.site/#',
     infuraPrefix: undefined,
     interfaceName: 'abstract_testnet',
     label: 'Abstract Testnet',
@@ -1092,7 +1092,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     statusPage: undefined,
     spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_ABSTRACT_TESTNET, 10_000e6),
     stablecoins: [USDC_ABSTRACT_TESTNET],
-    supportsClientSideRouting: true,
+    supportsClientSideRouting: false,
     supportsGasEstimates: false,
     wrappedNativeCurrency: {
       name: 'Wrapped Ether',
@@ -1124,7 +1124,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
       apiURL: 'https://explorer.zero.network/api',
     },
     helpCenterUrl: undefined,
-    infoLink: 'https://staging-info-resevoir-swap.vercel.app/#/zero',
+    infoLink: 'https://info.staging.reservoir.w3us.site/#/zero',
     infuraPrefix: undefined,
     interfaceName: 'zero',
     label: 'Zero Mainnet',
@@ -1146,7 +1146,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     statusPage: undefined,
     spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_ZERO, 10_000e6),
     stablecoins: [USDC_ZERO],
-    supportsClientSideRouting: true,
+    supportsClientSideRouting: false,
     supportsGasEstimates: false,
     wrappedNativeCurrency: {
       name: 'Wrapped Ether',
