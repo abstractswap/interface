@@ -69,6 +69,8 @@ const blurs = {
 
 const fonts = {
   code: 'courier, courier new, serif',
+  body: 'Inter, sans-serif',
+  heading: 'Inter, sans-serif',
 }
 
 const gapValues = {
@@ -103,8 +105,8 @@ function getSettings(darkMode: boolean) {
     opacity: opacities,
     text: {
       heading: {
-        fontFamily: 'inherit',
-        fontWeight: 485,
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 500,
       },
     },
   }
@@ -167,6 +169,17 @@ export const ThemedGlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.background} !important;
   }
 
+   html, 
+  body {
+    background-color: ${({ theme }) => theme.background} !important;
+  }
+
+   /* Override vanilla-extract's automatic variables */
+  :root.t_dark,
+  :root.t_light {
+    background-color: ${({ theme }) => theme.background} !important;
+  }
+
  summary::-webkit-details-marker {
     display:none;
   }
@@ -176,6 +189,7 @@ export const ThemedGlobalStyle = createGlobalStyle`
   }
 
   :root {
+    background-color: ${({ theme }) => theme.background} !important;
     ${({ theme }) => rootCssString(theme.darkMode)}
   }
 `

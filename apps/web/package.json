@@ -29,6 +29,9 @@
     "@reach/dialog": "0.10.5",
     "@reach/portal": "0.10.5",
     "@reduxjs/toolkit": "1.9.3",
+    "@reservoir0x/relay-kit-hooks": "1.4.8",
+    "@reservoir0x/relay-kit-ui": "2.2.16",
+    "@reservoir0x/relay-sdk": "1.4.6",
     "@rive-app/canvas": "2.19.0",
     "@rive-app/react-canvas": "4.13.0",
     "@sentry/browser": "7.80.0",
@@ -135,8 +138,8 @@
     "utilities": "workspace:^",
     "uuid": "9.0.0",
     "video-extensions": "1.2.0",
-    "viem": "2.x",
-    "wagmi": "2.9.3",
+    "viem": "2.9.31",
+    "wagmi": "2.9.8",
     "wcag-contrast": "3.0.0",
     "web-vitals": "2.1.4",
     "xml2js": "0.6.2",
@@ -228,7 +231,7 @@
   "engines": {
     "npm": "please-use-yarn",
     "node": "18.x",
-    "yarn": ">=1.22"
+    "yarn": ">=4.5.1"
   },
   "husky": {
     "hooks": {

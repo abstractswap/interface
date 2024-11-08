@@ -15,7 +15,8 @@
   "imgSrc": [
     "*",
     "blob:",
-    "data:"
+    "data:",
+    "https://*.relay.link"
   ],
   "frameSrc": [
     "'self'",
@@ -47,7 +48,12 @@
     "https://rpc.zerion.io/v1/zero",
     "https://*.infura.io/v3/",
     "wss://relay.walletconnect.com",
-    "wss://relay.walletconnect.org"
+    "wss://relay.walletconnect.org",
+    "https://*.relay.link",
+    "https://api.ensideas.com",
+    "https://gateway.thegraph.com",
+    "https://fonts.googleapis.com",
+    "https://api.dune.com"
   ],
   "workerSrc": [
     "'self'",

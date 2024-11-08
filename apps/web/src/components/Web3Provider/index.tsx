@@ -1,3 +1,6 @@
+import { useRelayChains } from '@reservoir0x/relay-kit-hooks'
+import { RelayKitProvider } from '@reservoir0x/relay-kit-ui'
+import { convertViemChainToRelayChain, LogLevel, TESTNET_RELAY_API } from '@reservoir0x/relay-sdk'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { CustomUserProperties, InterfaceEventName, WalletConnectionResult } from '@uniswap/analytics-events'
 import { recentConnectorIdAtom } from 'components/Web3Provider/constants'
@@ -10,7 +13,7 @@ import { ConnectionProvider } from 'hooks/useConnect'
 import { useEthersWeb3Provider } from 'hooks/useEthersProvider'
 import usePrevious from 'hooks/usePrevious'
 import { useUpdateAtom } from 'jotai/utils'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useConnectedWallets } from 'state/wallets/hooks'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
@@ -23,14 +26,45 @@ import { getCurrentPageFromLocation } from 'utils/urlRoutes'
 import { getWalletMeta } from 'utils/walletMeta'
 import { WagmiProvider } from 'wagmi'
 
+const RELAY_BASE_API = TESTNET_RELAY_API
+
 export default function Web3Provider({ children }: { children: ReactNode }) {
+  const { chains: relayChains } = useRelayChains(RELAY_BASE_API, {})
+
+  const filteredChains = useMemo(() => {
+    if (!relayChains || relayChains.length === 0) {
+      return wagmiConfig.chains?.map((chain) => convertViemChainToRelayChain(chain))
+    }
+    const wagmiChainIds = wagmiConfig.chains
+      .filter((chain) => chain !== undefined && chain !== null)
+      .map((chain) => chain.id)
+    return relayChains
+      .filter((chain) => chain !== undefined && chain !== null && chain.id !== undefined)
+      .filter((chain) => wagmiChainIds.includes(chain.id))
+  }, [relayChains])
+
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <ConnectionProvider>
-          <Updater />
-          {children}
-        </ConnectionProvider>
+        <RelayKitProvider
+          options={{
+            appName: 'Reservoir Swap',
+            baseApiUrl: RELAY_BASE_API,
+            chains: filteredChains,
+            logLevel: LogLevel.Verbose,
+            duneApiKey: process.env.REACT_APP_DUNE_API_KEY,
+          }}
+          theme={{
+            widget: {
+              swapCurrencyButtonBorderColor: 'var(--relay-colors-slate-3)',
+            },
+          }}
+        >
+          <ConnectionProvider>
+            <Updater />
+            {children}
+          </ConnectionProvider>
+        </RelayKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   )

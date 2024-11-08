@@ -1,30 +1,23 @@
-import { ColumnCenter } from 'components/Column'
 import forkConfig from 'forkConfig'
-import { useCurrency } from 'hooks/Tokens'
 import { useScroll } from 'hooks/useScroll'
 import { TokenCloud } from 'pages/Landing/components/TokenCloud'
-import { Hover, RiseIn, RiseInText } from 'pages/Landing/components/animations'
-import { Swap } from 'pages/Swap'
-import { Fragment } from 'react'
-import { ChevronDown } from 'react-feather'
 import { NAV_HEIGHT } from 'theme'
-import { Flex, Text } from 'ui/src'
-import { FeatureFlags } from 'uniswap/src/features/gating/flags'
-import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
-import { Trans, useTranslation } from 'uniswap/src/i18n'
-import { UniverseChainId } from 'uniswap/src/types/chains'
+import { Flex } from 'ui/src'
 
 interface HeroProps {
   scrollToRef: () => void
   transition?: boolean
 }
 
-export function Hero({ scrollToRef, transition }: HeroProps) {
-  const multichainUXEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
+export function Hero({
+  // scrollToRef,
+  transition,
+}: HeroProps) {
+  // const multichainUXEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
 
   const { height: scrollPosition } = useScroll()
-  const initialInputCurrency = useCurrency('ETH')
-  const { t } = useTranslation()
+  // const initialInputCurrency = useCurrency('ETH')
+  // const { t } = useTranslation()
 
   const translateY = -scrollPosition / 7
   const opacityY = 1 - scrollPosition / 1000
@@ -36,14 +29,14 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
       y={translateY}
       opacity={opacityY}
       minWidth="100%"
-      minHeight="100vh"
+      minHeight="calc(100vh - 120px)"
       height="min-content"
       pt={NAV_HEIGHT}
       pointerEvents="none"
     >
       {forkConfig.approvedTokens && <TokenCloud transition={transition} />}
 
-      <Flex
+      {/* <Flex
         alignSelf="center"
         maxWidth="85vw"
         pointerEvents="none"
@@ -56,8 +49,8 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
         $platform-web={{
           transition: transition ? 'shrinkAndFade 1s ease-in-out forwards' : undefined,
         }}
-      >
-        <Flex maxWidth={920} alignItems="center" pointerEvents="none">
+      > */}
+      {/* <Flex maxWidth={920} alignItems="center" pointerEvents="none">
           <Text
             variant="heading1"
             fontSize={64}
@@ -82,9 +75,9 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
                 }
               })}
           </Text>
-        </Flex>
+        </Flex> */}
 
-        <RiseIn delay={0.4}>
+      {/* <RiseIn delay={0.4}>
           <Flex
             pointerEvents="auto"
             width={480}
@@ -101,18 +94,18 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
               multichainUXEnabled={multichainUXEnabled}
             />
           </Flex>
-        </RiseIn>
+        </RiseIn> */}
 
-        <RiseIn delay={0.3}>
+      {/* <RiseIn delay={0.3}>
           <Text variant="body1" textAlign="center" maxWidth={430} color="$neutral2" $short={{ variant: 'body2' }}>
             <Trans i18nKey="hero.subtitle" />
           </Text>
-        </RiseIn>
-      </Flex>
+        </RiseIn> */}
+      {/* </Flex> */}
 
       <Flex flex={1} />
 
-      <Flex
+      {/* <Flex
         position="absolute"
         width="100%"
         centered
@@ -139,7 +132,7 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
             </Hover>
           </Flex>
         </RiseIn>
-      </Flex>
+      </Flex> */}
     </Flex>
   )
 }

@@ -113,7 +113,7 @@ export const colors = {
   surface4_dark: '#FFFFFF20',
   surface5_dark: '#00000004',
   accent1_dark: '#6E56CF',
-  accent2_dark: '#80D8FF',
+  accent2_dark: '#291F43',
   accent3_dark: '#4C82FB',
   neutral1_light: '#222222',
   neutral2_light: '#7D7D7D',
@@ -127,13 +127,19 @@ export const colors = {
   surface4_light: '#FFFFFF64',
   surface5_light: '#00000004',
   accent1_light: '#6E56CF',
-  accent2_light: '#80D8FF',
+  accent2_light: '#F5F2FF',
   accent3_light: '#4C82FB',
   success: '#40B66B',
   critical: '#FF5F52',
   critical2_dark: '#2E0805',
   critical2_light: '#FFF2F1',
   scrim: 'rgba(0, 0, 0, 0.60)',
+
+  // Radix Colors
+  slate2: {
+    light: '#F9F9FB',
+    dark: '#18191B',
+  },
 }
 
 export type ThemeColors = typeof darkTheme
@@ -175,7 +181,7 @@ const commonTheme = {
 export const darkTheme = {
   ...commonTheme,
 
-  background: colors.black,
+  background: colors.slate2.dark,
 
   neutral1: colors.neutral1_dark,
   neutral2: colors.neutral2_dark,
@@ -209,7 +215,7 @@ export const darkTheme = {
 export const lightTheme: ThemeColors = {
   ...commonTheme,
 
-  background: colors.white,
+  background: colors.slate2.light,
 
   neutral1: colors.neutral1_light,
   neutral2: colors.neutral2_light,

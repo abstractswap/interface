@@ -7,7 +7,7 @@ import { useScreenSize } from 'hooks/screenSize'
 import styled from 'lib/styled-components'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Popover, Text, useIsTouchDevice } from 'ui/src'
+import { Flex, Popover, Text, useIsTouchDevice } from 'ui/src'
 import { Hamburger } from 'ui/src/components/icons/Hamburger'
 
 const ArrowDown = styled(ArrowChangeDown)<{ $isActive: boolean }>`
@@ -30,7 +30,7 @@ const Trigger = styled.div`
 const UniIcon = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 `
 
 export function CompanyMenu() {
@@ -62,9 +62,28 @@ export function CompanyMenu() {
           <UniIcon onClick={handleLogoClick} data-testid="nav-uniswap-logo">
             <NavIcon width="48" height="48" />
             {isLargeScreen && (
-              <Text variant="subheading1" color="$accent1" userSelect="none">
-                Swap
-              </Text>
+              <Flex gap="$4">
+                <Text
+                  variant="body3"
+                  color="$neutralContrast"
+                  userSelect="none"
+                  fontSize={11}
+                  fontWeight="500"
+                  lineHeight={11}
+                >
+                  reservoir
+                </Text>
+                <Text
+                  variant="heading2"
+                  color="$accent1"
+                  userSelect="none"
+                  fontSize={15}
+                  fontWeight="800"
+                  lineHeight={18}
+                >
+                  SWAP
+                </Text>
+              </Flex>
             )}
           </UniIcon>
           {(isSmallScreen || isTouchDevice) && <Hamburger size={22} color="$neutral2" cursor="pointer" ml="16px" />}

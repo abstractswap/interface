@@ -1,24 +1,24 @@
+import { SwapWidget, useRelayClient } from '@reservoir0x/relay-kit-ui'
 import { InterfacePageName } from '@uniswap/analytics-events'
 import { Currency } from '@uniswap/sdk-core'
+import { useAccountDrawer } from 'components/AccountDrawer/MiniPortfolio/hooks'
 import { NetworkAlert } from 'components/NetworkAlert/NetworkAlert'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
+import { wagmiConfig } from 'components/Web3Provider/wagmi'
 import SwapHeader from 'components/swap/SwapHeader'
 import { Field } from 'components/swap/constants'
 import { PageWrapper, SwapWrapper } from 'components/swap/styled'
-import { useSupportedChainId } from 'constants/chains'
 import { useScreenSize } from 'hooks/screenSize'
-import { useAccount } from 'hooks/useAccount'
 import { BuyForm } from 'pages/Swap/Buy/BuyForm'
 import { LimitFormWrapper } from 'pages/Swap/Limit/LimitForm'
 import { SendForm } from 'pages/Swap/Send/SendForm'
 import { SwapForm } from 'pages/Swap/SwapForm'
 import { ReactNode } from 'react'
-import { useLocation } from 'react-router-dom'
 import { InterfaceTrade, TradeState } from 'state/routing/types'
 import { isPreviewTrade } from 'state/routing/utils'
 import { SwapAndLimitContextProvider, SwapContextProvider } from 'state/swap/SwapContext'
-import { useInitialCurrencyState } from 'state/swap/hooks'
 import { CurrencyState, SwapAndLimitContext } from 'state/swap/types'
+import { useSwapAndLimitContext } from 'state/swap/useSwapContext'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 import { Flex } from 'ui/src'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
@@ -43,37 +43,43 @@ export function getIsReviewableQuote(
   return Boolean(trade && tradeState === TradeState.VALID)
 }
 
-export default function SwapPage({ className }: { className?: string }) {
-  const location = useLocation()
-  const multichainUXEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
-  // (WEB-4737): Remove this line after completing A/A Test on Web
-  useFeatureFlag(FeatureFlags.AATestWeb)
-
-  const {
-    initialInputCurrency,
-    initialOutputCurrency,
-    initialChainId,
-    initialTypedValue,
-    initialField,
-    initialCurrencyLoading,
-  } = useInitialCurrencyState()
-  const isUnsupportedConnectedChain = useSupportedChainId(useAccount().chainId) === undefined
-  const shouldDisableTokenInputs = multichainUXEnabled ? false : isUnsupportedConnectedChain
+export default function SwapPage() {
+  const accountDrawer = useAccountDrawer()
+  const { chainId: contextChainId } = useSwapAndLimitContext()
+  const chainId = contextChainId ?? wagmiConfig?.chains[0]?.id
+  const client = useRelayClient()
+  const chain = client?.chains?.find((chain) => chain.id === contextChainId)
 
   return (
     <Trace logImpression page={InterfacePageName.SWAP_PAGE}>
       <PageWrapper>
-        <Swap
-          className={className}
-          chainId={initialChainId}
-          multichainUXEnabled={multichainUXEnabled}
-          disableTokenInputs={shouldDisableTokenInputs}
-          initialInputCurrency={initialInputCurrency}
-          initialOutputCurrency={initialOutputCurrency}
-          initialTypedValue={initialTypedValue}
-          initialIndependentField={initialField}
-          initialCurrencyLoading={initialCurrencyLoading}
-          syncTabToUrl={true}
+        <SwapWidget
+          key={`relay-swap-widget-${chainId}-${chain?.currency?.id}`}
+          singleChainMode={true}
+          lockChainId={chainId}
+          defaultFromToken={
+            chain?.currency
+              ? {
+                  ...chain?.currency,
+                  chainId,
+                  address: chain?.currency?.address ?? '',
+                  decimals: chain?.currency?.decimals ?? 18,
+                  name: chain?.currency?.name ?? '',
+                  symbol: chain?.currency?.symbol ?? '',
+                  logoURI: `https://assets.relay.link/icons/currencies/${chain?.currency?.id ?? 'eth'}.png`,
+                }
+              : {
+                  chainId,
+                  address: '0x0000000000000000000000000000000000000000',
+                  decimals: 18,
+                  name: 'Ether',
+                  symbol: 'ETH',
+                  logoURI: 'https://assets.relay.link/icons/1/light.png',
+                }
+          }
+          onConnectWallet={() => {
+            accountDrawer.open()
+          }}
         />
       </PageWrapper>
       {location.pathname === '/swap' && <SwitchLocaleLink />}

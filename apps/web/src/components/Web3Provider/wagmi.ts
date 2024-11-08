@@ -26,7 +26,7 @@ export const wagmiConfig = createConfig({
     injectedWithFallback(),
     walletConnect(WC_PARAMS),
     coinbaseWallet({
-      appName: 'Swap',
+      appName: 'Reservoir Swap',
       // CB SDK doesn't pass the parent origin context to their passkey site
       // Flagged to CB team and can remove UNISWAP_WEB_URL once fixed
       appLogoUrl: ``,
