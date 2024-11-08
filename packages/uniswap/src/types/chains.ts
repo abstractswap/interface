@@ -83,7 +83,7 @@ export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = [
   // UniverseChainId.Zksync,
   UniverseChainId.Mainnet,
   UniverseChainId.Base,
-  // UniverseChainId.AbstractTestnet,
+  UniverseChainId.AbstractTestnet,
   UniverseChainId.Zero,
 ]
 
