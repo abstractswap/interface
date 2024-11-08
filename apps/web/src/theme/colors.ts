@@ -134,6 +134,12 @@ export const colors = {
   critical2_dark: '#2E0805',
   critical2_light: '#FFF2F1',
   scrim: 'rgba(0, 0, 0, 0.60)',
+
+  // Radix Colors
+  slate2: {
+    light: '#F9F9FB',
+    dark: '#18191B',
+  },
 }
 
 export type ThemeColors = typeof darkTheme
@@ -175,7 +181,7 @@ const commonTheme = {
 export const darkTheme = {
   ...commonTheme,
 
-  background: colors.black,
+  background: colors.slate2.dark,
 
   neutral1: colors.neutral1_dark,
   neutral2: colors.neutral2_dark,
@@ -209,7 +215,7 @@ export const darkTheme = {
 export const lightTheme: ThemeColors = {
   ...commonTheme,
 
-  background: colors.white,
+  background: colors.slate2.light,
 
   neutral1: colors.neutral1_light,
   neutral2: colors.neutral2_light,

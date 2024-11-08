@@ -189,6 +189,7 @@ export const ThemedGlobalStyle = createGlobalStyle`
   }
 
   :root {
+    background-color: ${({ theme }) => theme.background} !important;
     ${({ theme }) => rootCssString(theme.darkMode)}
   }
 `
