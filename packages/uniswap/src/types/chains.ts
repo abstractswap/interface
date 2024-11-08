@@ -5,7 +5,6 @@ import { GeneratedIcon } from 'ui/src'
 import { Chain as BackendChainId } from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
 import { ElementNameType } from 'uniswap/src/features/telemetry/constants'
 import { Chain as WagmiChain } from 'wagmi/chains'
-import { config } from 'uniswap/src/config'
 
 export enum UniverseChainId {
   Mainnet = UniswapSDKChainId.MAINNET,
@@ -64,9 +63,8 @@ export const WALLET_SUPPORTED_CHAIN_IDS: WalletChainId[] = [
 
 export type InterfaceChainId = UniverseChainId
 
-export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = config.webSupportedChains ??
-[
-  // UniverseChainId.Mainnet,
+export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = [
+  UniverseChainId.Mainnet,
   // UniverseChainId.Goerli,
   // UniverseChainId.Sepolia,
   // UniverseChainId.Optimism,
@@ -79,7 +77,7 @@ export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = config.webSupportedCh
   // UniverseChainId.Celo,
   // UniverseChainId.CeloAlfajores,
   // UniverseChainId.Bnb,
-  // UniverseChainId.Base,
+  UniverseChainId.Base,
   // UniverseChainId.Blast,
   // UniverseChainId.Zora,
   // UniverseChainId.Zksync,
