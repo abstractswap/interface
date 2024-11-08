@@ -169,6 +169,17 @@ export const ThemedGlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.background} !important;
   }
 
+   html, 
+  body {
+    background-color: ${({ theme }) => theme.background} !important;
+  }
+
+   /* Override vanilla-extract's automatic variables */
+  :root.t_dark,
+  :root.t_light {
+    background-color: ${({ theme }) => theme.background} !important;
+  }
+
  summary::-webkit-details-marker {
     display:none;
   }

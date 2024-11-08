@@ -51,7 +51,8 @@
     "wss://relay.walletconnect.org",
     "https://*.relay.link",
     "https://api.ensideas.com",
-    "https://gateway.thegraph.com"
+    "https://gateway.thegraph.com",
+    "https://fonts.googleapis.com"
   ],
   "workerSrc": [
     "'self'",

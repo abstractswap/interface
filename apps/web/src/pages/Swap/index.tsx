@@ -1,9 +1,10 @@
-import { SwapWidget } from '@reservoir0x/relay-kit-ui'
+import { SwapWidget, useRelayClient } from '@reservoir0x/relay-kit-ui'
 import { InterfacePageName } from '@uniswap/analytics-events'
 import { Currency } from '@uniswap/sdk-core'
 import { useAccountDrawer } from 'components/AccountDrawer/MiniPortfolio/hooks'
 import { NetworkAlert } from 'components/NetworkAlert/NetworkAlert'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
+import { wagmiConfig } from 'components/Web3Provider/wagmi'
 import SwapHeader from 'components/swap/SwapHeader'
 import { Field } from 'components/swap/constants'
 import { PageWrapper, SwapWrapper } from 'components/swap/styled'
@@ -17,6 +18,7 @@ import { InterfaceTrade, TradeState } from 'state/routing/types'
 import { isPreviewTrade } from 'state/routing/utils'
 import { SwapAndLimitContextProvider, SwapContextProvider } from 'state/swap/SwapContext'
 import { CurrencyState, SwapAndLimitContext } from 'state/swap/types'
+import { useSwapAndLimitContext } from 'state/swap/useSwapContext'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 import { Flex } from 'ui/src'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
@@ -43,28 +45,38 @@ export function getIsReviewableQuote(
 
 export default function SwapPage() {
   const accountDrawer = useAccountDrawer()
+  const { chainId: contextChainId } = useSwapAndLimitContext()
+  const chainId = contextChainId ?? wagmiConfig?.chains[0]?.id
+  const client = useRelayClient()
+  const chain = client?.chains?.find((chain) => chain.id === contextChainId)
 
   return (
     <Trace logImpression page={InterfacePageName.SWAP_PAGE}>
       <PageWrapper>
         <SwapWidget
-          defaultToToken={{
-            chainId: 543210,
-            address: '0xac98b49576b1c892ba6bfae08fe1bb0d80cf599c',
-            decimals: 18,
-            name: 'Wrapped Ether',
-            symbol: 'WETH',
-            logoURI:
-              'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
-          }}
-          defaultFromToken={{
-            chainId: 543210,
-            address: '0x0000000000000000000000000000000000000000',
-            decimals: 18,
-            name: 'Ether',
-            symbol: 'ETH',
-            logoURI: 'https://assets.relay.link/icons/1/light.png',
-          }}
+          key={`relay-swap-widget-${chainId}-${chain?.currency?.id}`}
+          singleChainMode={true}
+          lockChainId={chainId}
+          defaultFromToken={
+            chain?.currency
+              ? {
+                  ...chain?.currency,
+                  chainId,
+                  address: chain?.currency?.address ?? '',
+                  decimals: chain?.currency?.decimals ?? 18,
+                  name: chain?.currency?.name ?? '',
+                  symbol: chain?.currency?.symbol ?? '',
+                  logoURI: `https://assets.relay.link/icons/currencies/${chain?.currency?.id ?? 'eth'}.png`,
+                }
+              : {
+                  chainId,
+                  address: '0x0000000000000000000000000000000000000000',
+                  decimals: 18,
+                  name: 'Ether',
+                  symbol: 'ETH',
+                  logoURI: 'https://assets.relay.link/icons/1/light.png',
+                }
+          }
           onConnectWallet={() => {
             accountDrawer.open()
           }}
