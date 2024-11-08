@@ -53,6 +53,7 @@ export default function Web3Provider({ children }: { children: ReactNode }) {
             baseApiUrl: RELAY_BASE_API,
             chains: filteredChains,
             logLevel: LogLevel.Verbose,
+            duneApiKey: process.env.REACT_APP_DUNE_API_KEY,
           }}
           theme={{
             widget: {
