@@ -81,10 +81,10 @@ export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = [
   // UniverseChainId.Blast,
   // UniverseChainId.Zora,
   // UniverseChainId.Zksync,
-  UniverseChainId.Mainnet,
-  UniverseChainId.Base,
-  // UniverseChainId.AbstractTestnet,
-  UniverseChainId.Zero,
+  // UniverseChainId.Mainnet,
+  // UniverseChainId.Base,
+  UniverseChainId.AbstractTestnet,
+  // UniverseChainId.Zero,
 ]
 
 export enum RPCType {
