@@ -4,7 +4,7 @@ import { useAccount } from 'hooks/useAccount'
 // import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
 import { UniverseChainId } from 'uniswap/src/types/chains'
 
-const V2_SUPPORTED_NETWORKS = [UniverseChainId.AbstractTestnet]
+const V2_SUPPORTED_NETWORKS = [UniverseChainId.AbstractTestnet, UniverseChainId.Zero]
 
 export function useNetworkSupportsV2() {
   const { chainId } = useAccount()

@@ -1,5 +1,7 @@
 // import { useTranslation } from 'uniswap/src/i18n'
 
+import { useTranslation } from 'uniswap/src/i18n'
+
 export interface MenuItem {
   label: string
   href: string
@@ -15,14 +17,34 @@ export interface MenuSection {
 }
 
 export const useMenuContent = (): MenuSection[] => {
-  // const { t } = useTranslation()
+  const { t } = useTranslation()
 
   return [
     // TODO: add translations once content is confirmed
     {
-      title: 'Network',
-      items: [{ label: 'Docs', href: 'https://temp.xyz/' }],
+      title: 'Reservoir',
+      items: [
+        { label: 'About Us', href: 'https://reservoir.tools/' },
+        { label: 'NFT Marketplace', href: 'https://explorer.reservoir.tools/ethereum' },
+      ],
     },
+    {
+      title: 'Developers',
+      items: [
+        { label: 'Docs', href: 'https://docs.relay.link/what-is-relay' },
+        { label: 'SDK', href: 'https://docs.relay.link/references/sdk/getting-started' },
+        { label: 'Uniswap Protocol', href: 'https://docs.uniswap.org/' },
+        { label: 'Testnets', href: 'https://testnets.reservoir.app' },
+      ],
+    },
+    {
+      title: 'Support',
+      items: [{ label: t('common.contactUs.button'), href: 'https://support.uniswap.org/hc/en-us/requests/new' }],
+    },
+    // {
+    //   title: 'Network',
+    //   items: [{ label: 'Docs', href: 'https://temp.xyz/' }],
+    // },
     // {
     //   title: t('common.company'),
     //   items: [

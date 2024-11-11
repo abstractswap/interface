@@ -2,7 +2,6 @@ import { showTestnetsAtom } from 'components/AccountDrawer/TestnetsToggle'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 import ChainSelectorRow from 'components/NavBar/ChainSelector/ChainSelectorRow'
 import { NavDropdown } from 'components/NavBar/NavDropdown/NavDropdown'
-import { NavIcon } from 'components/NavBar/NavIcon'
 import { CONNECTION } from 'components/Web3Provider/constants'
 import {
   ALL_CHAIN_IDS,
@@ -14,9 +13,9 @@ import {
 import { useAccount } from 'hooks/useAccount'
 import useSelectChain from 'hooks/useSelectChain'
 import { useAtomValue } from 'jotai/utils'
-import { useTheme } from 'lib/styled-components'
+import styled, { useTheme } from 'lib/styled-components'
 import { useCallback, useMemo, useRef, useState } from 'react'
-import { AlertTriangle } from 'react-feather'
+import { AlertTriangle, ChevronDown } from 'react-feather'
 import { useSearchParams } from 'react-router-dom'
 import { useSwapAndLimitContext } from 'state/swap/useSwapContext'
 import { Flex, Popover } from 'ui/src'
@@ -30,6 +29,31 @@ type WalletConnectConnector = Connector & {
   type: typeof CONNECTION.UNISWAP_WALLET_CONNECT_CONNECTOR_ID
   getNamespaceChainsIds: () => InterfaceChainId[]
 }
+
+const DropdownChevron = styled(ChevronDown)<{ isOpen: boolean }>`
+  height: 20px;
+  width: 20px;
+  color: ${({ theme }) => theme.neutral2};
+  transform: ${({ isOpen }) => isOpen && 'rotate(180deg)'};
+  transition: ${({
+    theme: {
+      transition: { duration, timing },
+    },
+  }) => `transform ${duration.fast} ${timing.ease}`};
+`
+
+const TriggerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 12px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.surface2};
+  }
+`
 
 function useWalletSupportedChains(): InterfaceChainId[] {
   const { connector } = useAccount()
@@ -47,10 +71,9 @@ function useWalletSupportedChains(): InterfaceChainId[] {
 }
 
 type ChainSelectorProps = {
-  isNavSelector?: boolean
   hideArrow?: boolean
 }
-export const ChainSelector = ({ isNavSelector, hideArrow }: ChainSelectorProps) => {
+export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
   const account = useAccount()
   const { chainId, setSelectedChainId, multichainUXEnabled } = useSwapAndLimitContext()
   // multichainFlagEnabled is different from multichainUXEnabled, multichainUXEnabled applies to swap
@@ -137,7 +160,10 @@ export const ChainSelector = ({ isNavSelector, hideArrow }: ChainSelectorProps) 
   return (
     <Popover ref={popoverRef} placement="bottom" stayInFrame allowFlip onOpenChange={setIsOpen}>
       <Popover.Trigger padding={8} cursor="pointer" data-testid="chain-selector">
-        {isNavSelector ? <NavIcon isActive={isOpen}>{menuLabel}</NavIcon> : menuLabel}
+        <TriggerContainer>
+          {menuLabel}
+          <DropdownChevron isOpen={isOpen} />
+        </TriggerContainer>
       </Popover.Trigger>
       <NavDropdown width={240} isOpen={isOpen}>
         <Flex p="$spacing8" data-testid="chain-selector-options">

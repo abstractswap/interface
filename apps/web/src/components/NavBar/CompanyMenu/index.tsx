@@ -49,8 +49,7 @@ export function CompanyMenu() {
 
   const handleLogoClick = useCallback(() => {
     navigate({
-      pathname: '/',
-      search: '?intro=true',
+      pathname: '/swap',
     })
   }, [navigate])
   const isTouchDevice = useIsTouchDevice()

@@ -7,7 +7,6 @@ import { shouldDisableNFTRoutesAtom } from 'state/application/atoms'
 import { t } from 'uniswap/src/i18n'
 import { isBrowserRouterEnabled } from 'utils/env'
 // High-traffic pages (index and /swap) should not be lazy-loaded.
-import Landing from 'pages/Landing'
 import { NewPosition } from 'pages/LegacyPool/NewPosition'
 import Swap from 'pages/Swap'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
@@ -101,13 +100,19 @@ function createRouteDefinition(route: Partial<RouteDefinition>): RouteDefinition
 }
 
 export const routes: RouteDefinition[] = [
+  // createRouteDefinition({
+  //   path: '/',
+  //   getTitle: () => StaticTitlesAndDescriptions.UniswapTitle,
+  //   getDescription: () => StaticTitlesAndDescriptions.SwapDescription,
+  //   getElement: (args) => {
+  //     return args.browserRouterEnabled && args.hash ? <Navigate to={args.hash.replace('#', '')} replace /> : <Landing />
+  //   },
+  // }),
   createRouteDefinition({
     path: '/',
     getTitle: () => StaticTitlesAndDescriptions.UniswapTitle,
     getDescription: () => StaticTitlesAndDescriptions.SwapDescription,
-    getElement: (args) => {
-      return args.browserRouterEnabled && args.hash ? <Navigate to={args.hash.replace('#', '')} replace /> : <Landing />
-    },
+    getElement: () => <Navigate to="/swap" replace />,
   }),
   createRouteDefinition({
     path: '/explore',
