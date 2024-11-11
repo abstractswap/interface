@@ -57,7 +57,7 @@ export default function Web3Provider({ children }: { children: ReactNode }) {
           }}
           theme={{
             widget: {
-              swapCurrencyButtonBorderColor: 'var(--relay-colors-slate-3)',
+              swapCurrencyButtonBorderColor: 'var(--relay-colors-gray-3)',
             },
           }}
         >

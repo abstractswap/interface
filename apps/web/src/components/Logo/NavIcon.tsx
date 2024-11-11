@@ -5,43 +5,40 @@ import styled from 'lib/styled-components'
 function Logo({ onClick }: { onClick?: () => void }) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
+      width="19"
       height="22"
-      viewBox="0 0 141 127"
+      viewBox="0 0 19 22"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
       cursor="pointer"
     >
-      <path d="M138.024 111.005L74.0034 73.9804V0L138.024 37.0245V111.005Z" fill="#80D8FF" />
-      <path d="M9.91211 111.005L74.001 73.9804V0L9.91211 37.0245V111.005Z" fill="#7ACFFF" />
-      <path
-        d="M74.001 111.005L138.021 73.9808L74.001 37.0249L9.91211 73.9808L74.001 111.005Z"
-        fill="url(#paint0_linear_401_13)"
-      />
-      <path opacity="0.3" d="M74.001 147.961L9.91211 111.005V37.0249L74.001 73.9808V147.961Z" fill="#E4F0FE" />
-      <path d="M9.91211 111.004L74.001 147.96V111.004L9.91211 73.9797V111.004Z" fill="url(#paint1_linear_401_13)" />
-      <path opacity="0.3" d="M74.0034 147.961L138.024 111.005V37.0249L74.0034 73.9808V147.961Z" fill="#D0E6FF" />
-      <path d="M138.024 111.004L74.0034 147.96V111.004L138.024 73.9797V111.004Z" fill="url(#paint2_linear_401_13)" />
-      <path opacity="0.3" d="M74.001 73.9804L138.021 37.0245L74.001 0L9.91211 37.0245L74.001 73.9804Z" fill="white" />
+      <path d="M18.1718 16.2517L9.09082 11V0.506348L18.1718 5.75805V16.2517Z" fill="#80D8FF" />
+      <path d="M0 16.2517L9.09062 11V0.506348L0 5.75805V16.2517Z" fill="#7ACFFF" />
+      <path d="M9.09062 16.2517L18.1715 11L9.09062 5.75806L0 11L9.09062 16.2517Z" fill="url(#paint0_linear_76_278)" />
+      <path opacity="0.3" d="M9.09062 21.4937L0 16.2517V5.75806L9.09062 11V21.4937Z" fill="#E4F0FE" />
+      <path d="M0 16.2517L9.09062 21.4937V16.2517L0 11V16.2517Z" fill="url(#paint1_linear_76_278)" />
+      <path opacity="0.3" d="M9.09082 21.4937L18.1718 16.2517V5.75806L9.09082 11V21.4937Z" fill="#D0E6FF" />
+      <path d="M18.1718 16.2517L9.09082 21.4937V16.2517L18.1718 11V16.2517Z" fill="url(#paint2_linear_76_278)" />
+      <path opacity="0.3" d="M9.09062 11L18.1715 5.75805L9.09062 0.506348L0 5.75805L9.09062 11Z" fill="white" />
       <defs>
         <linearGradient
-          id="paint0_linear_401_13"
-          x1="12.3091"
-          y1="87.7931"
-          x2="137.355"
-          y2="59.8427"
+          id="paint0_linear_76_278"
+          x1="0.339999"
+          y1="12.9592"
+          x2="18.077"
+          y2="8.99462"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#C132CE" />
           <stop offset="1" stopColor="#425AFA" />
         </linearGradient>
         <linearGradient
-          id="paint1_linear_401_13"
-          x1="34.5456"
-          y1="86.3782"
-          x2="52.9892"
-          y2="147.733"
+          id="paint1_linear_76_278"
+          x1="3.49411"
+          y1="12.7587"
+          x2="6.11023"
+          y2="21.4615"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#425AFA" />
@@ -51,11 +48,11 @@ function Logo({ onClick }: { onClick?: () => void }) {
           <stop offset="1" stopColor="#C132CE" />
         </linearGradient>
         <linearGradient
-          id="paint2_linear_401_13"
-          x1="85.3258"
-          y1="136.381"
-          x2="126.183"
-          y2="86.2497"
+          id="paint2_linear_76_278"
+          x1="10.6968"
+          y1="19.8512"
+          x2="16.4922"
+          y2="12.7404"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#C132CE" />
