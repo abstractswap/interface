@@ -9,6 +9,7 @@ module.exports = {
     DATADOG_CLIENT_TOKEN: 'key',
     DATADOG_PROJECT_ID: 123,
     INFURA_KEY: 'key',
+    ALCHEMY_KEY: 'key',
     ONESIGNAL_APP_ID: 123,
     OPENAI_API_KEY: 'key',
     QUICKNODE_ARBITRUM_RPC_URL: 'https://api.uniswap.org',

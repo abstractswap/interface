@@ -7,9 +7,11 @@ import {
   ALL_CHAIN_IDS,
   CHAIN_IDS_TO_NAMES,
   TESTNET_CHAIN_IDS,
+  getChain,
   getChainPriority,
   useIsSupportedChainIdCallback,
 } from 'constants/chains'
+import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
 import useSelectChain from 'hooks/useSelectChain'
 import { useAtomValue } from 'jotai/utils'
@@ -18,7 +20,7 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import { AlertTriangle, ChevronDown } from 'react-feather'
 import { useSearchParams } from 'react-router-dom'
 import { useSwapAndLimitContext } from 'state/swap/useSwapContext'
-import { Flex, Popover } from 'ui/src'
+import { Flex, Popover, Text } from 'ui/src'
 import { NetworkFilter } from 'uniswap/src/components/network/NetworkFilter'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
 import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
@@ -80,6 +82,8 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
   // flag can be true but multichainUXEnabled can be false (TDP page)
   const multichainFlagEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
 
+  const isSmallScreen = !useScreenSize()['sm']
+  const chain = getChain({ chainId })
   const theme = useTheme()
   const popoverRef = useRef<Popover>(null)
   const walletSupportsChain = useWalletSupportedChains()
@@ -162,6 +166,7 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
       <Popover.Trigger padding={8} cursor="pointer" data-testid="chain-selector">
         <TriggerContainer>
           {menuLabel}
+          {chain && !isSmallScreen && <Text>{chain.label}</Text>}
           <DropdownChevron isOpen={isOpen} />
         </TriggerContainer>
       </Popover.Trigger>
