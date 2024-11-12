@@ -81,7 +81,7 @@ export function useCurrencyInfo(
     (typeof addressOrCurrency === 'string' ? chainId : addressOrCurrency?.chainId) ?? connectedChainId
   const nativeAddressWithFallback =
     UNIVERSE_CHAIN_INFO[chainIdWithFallback as UniverseChainId]?.nativeCurrency.address ??
-    UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet]?.nativeCurrency.address
+    UNIVERSE_CHAIN_INFO[UniverseChainId.Zero]?.nativeCurrency.address
 
   const isNative = useMemo(() => checkIsNative(addressOrCurrency), [addressOrCurrency])
   const address = useMemo(
