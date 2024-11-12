@@ -53,6 +53,7 @@ const ButtonRow = styled(RowFixed)`
 `
 
 const ResponsiveButtonPrimary = styled(ButtonPrimary)`
+  font-family: 'Basel';
   height: 40px;
   width: fit-content;
   border-radius: 12px;
@@ -62,6 +63,7 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
 `
 
 const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+  font-family: 'Basel';
   height: 40px;
   width: fit-content;
   ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToSmall`
