@@ -81,7 +81,7 @@ const InboxIcon = deprecatedStyled(Inbox)`
 
 const ResponsiveButtonPrimary = deprecatedStyled(ButtonPrimary)`
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 6px 8px;
   white-space: nowrap;
   @media (max-width: ${({ theme }) => `${theme.breakpoint.sm}px`}) {
