@@ -64,7 +64,7 @@ export const WALLET_SUPPORTED_CHAIN_IDS: WalletChainId[] = [
 export type InterfaceChainId = UniverseChainId
 
 export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = [
-  // UniverseChainId.Mainnet,
+  UniverseChainId.Mainnet,
   // UniverseChainId.Goerli,
   // UniverseChainId.Sepolia,
   // UniverseChainId.Optimism,
@@ -77,7 +77,7 @@ export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = [
   // UniverseChainId.Celo,
   // UniverseChainId.CeloAlfajores,
   // UniverseChainId.Bnb,
-  // UniverseChainId.Base,
+  UniverseChainId.Base,
   // UniverseChainId.Blast,
   // UniverseChainId.Zora,
   // UniverseChainId.Zksync,
