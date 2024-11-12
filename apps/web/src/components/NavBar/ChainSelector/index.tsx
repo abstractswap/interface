@@ -73,9 +73,10 @@ function useWalletSupportedChains(): InterfaceChainId[] {
 }
 
 type ChainSelectorProps = {
+  isNavSelector?: boolean
   hideArrow?: boolean
 }
-export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
+export const ChainSelector = ({ isNavSelector, hideArrow }: ChainSelectorProps) => {
   const account = useAccount()
   const { chainId, setSelectedChainId, multichainUXEnabled } = useSwapAndLimitContext()
   // multichainFlagEnabled is different from multichainUXEnabled, multichainUXEnabled applies to swap
@@ -163,11 +164,15 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
 
   return (
     <Popover ref={popoverRef} placement="bottom" stayInFrame allowFlip onOpenChange={setIsOpen}>
-      <Popover.Trigger padding={8} cursor="pointer" data-testid="chain-selector">
+      <Popover.Trigger padding={4} cursor="pointer" data-testid="chain-selector">
         <TriggerContainer>
           {menuLabel}
-          {chain && !isSmallScreen && <Text>{chain.label}</Text>}
-          <DropdownChevron isOpen={isOpen} />
+          {isNavSelector && (
+            <>
+              {chain && !isSmallScreen && <Text>{chain.label}</Text>}
+              <DropdownChevron isOpen={isOpen} />
+            </>
+          )}
         </TriggerContainer>
       </Popover.Trigger>
       <NavDropdown width={240} isOpen={isOpen}>
