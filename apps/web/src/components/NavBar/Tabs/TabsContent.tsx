@@ -2,6 +2,7 @@ import { MenuItem } from 'components/NavBar/CompanyMenu/Content'
 import { useTabsVisible } from 'components/NavBar/ScreenSizes'
 import forkConfig from 'forkConfig'
 import { useLocation } from 'react-router-dom'
+import { useSwapAndLimitContext } from 'state/swap/useSwapContext'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
 import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
@@ -28,6 +29,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
   const { pathname } = useLocation()
   // const theme = useTheme()
   const areTabsVisible = useTabsVisible()
+  const { chainId } = useSwapAndLimitContext()
 
   return [
     {
@@ -75,7 +77,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
     },
     {
       title: t('common.explore'),
-      href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}`,
+      href: `${UNIVERSE_CHAIN_INFO[chainId ?? UniverseChainId.AbstractTestnet].infoLink}`,
       isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
       items: forkConfig.uniSpecificFeaturesEnabled
         ? [
@@ -95,13 +97,13 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
             {
               label: t('common.tokens'),
               quickKey: 'T',
-              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens`,
+              href: `${UNIVERSE_CHAIN_INFO[chainId ?? UniverseChainId.AbstractTestnet].infoLink}/tokens`,
               internal: false,
             },
             {
               label: t('common.pools'),
               quickKey: 'T',
-              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools`,
+              href: `${UNIVERSE_CHAIN_INFO[chainId ?? UniverseChainId.AbstractTestnet].infoLink}/pools`,
               internal: false,
             },
           ],
