@@ -51,7 +51,7 @@ export default function Web3Provider({ children }: { children: ReactNode }) {
           options={{
             appName: 'Reservoir Swap',
             baseApiUrl: RELAY_BASE_API,
-            chains: filteredChains,
+            chains: filteredChains.length > 0 ? filteredChains : undefined,
             logLevel: LogLevel.Verbose,
             duneApiKey: process.env.REACT_APP_DUNE_API_KEY,
           }}
