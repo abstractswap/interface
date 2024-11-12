@@ -191,15 +191,17 @@ export default function Pool() {
                   </Row>
                   <ButtonRow>
                     <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/add/v2/ETH">
-                      <Trans i18nKey="pool.create.pair" />
+                      <Text fontSize={13}>
+                        <Trans i18nKey="pool.create.pair" />
+                      </Text>
                     </ResponsiveButtonSecondary>
                     <ResponsiveButtonPrimary id="find-pool-button" as={Link} to="/pools/v2/find" padding="6px 8px">
-                      <Text fontWeight={535} fontSize={16}>
+                      <Text fontWeight={535} fontSize={14}>
                         <Trans i18nKey="pool.import" />
                       </Text>
                     </ResponsiveButtonPrimary>
                     <ResponsiveButtonPrimary id="join-pool-button" as={Link} to="/add/v2/ETH" padding="6px 8px">
-                      <Text fontWeight={535} fontSize={16}>
+                      <Text fontWeight={535} fontSize={14}>
                         <Trans i18nKey="pool.v2.add" />
                       </Text>
                     </ResponsiveButtonPrimary>
