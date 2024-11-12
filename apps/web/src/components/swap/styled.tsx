@@ -8,8 +8,9 @@ import { Z_INDEX } from 'theme/zIndex'
 
 export const PageWrapper = styled.div`
   padding: 68px 8px 0px;
-  max-width: 480px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 
   @media only screen and (max-width: ${({ theme }) => `${theme.breakpoint.md}px`}) {
     padding-top: 48px;

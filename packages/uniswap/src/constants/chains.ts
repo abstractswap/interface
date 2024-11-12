@@ -137,7 +137,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
         http: ['https://rpc.ankr.com/eth', 'https://eth-mainnet.public.blastapi.io'],
       },
       appOnly: {
-        http: [`https://mainnet.infura.io/v3/${config.infuraKey}`, config.quicknodeMainnetRpcUrl],
+        http: [`https://eth-mainnet.g.alchemy.com/v2/${config.alchemyKey}`, config.alchemyKey],
       },
     },
     urlParam: 'ethereum',
@@ -494,7 +494,7 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
       [RPCType.Public]: { http: [config.quicknodeBaseRpcUrl] },
       default: { http: ['https://mainnet.base.org/'] },
       fallback: { http: ['https://1rpc.io/base', 'https://base.meowrpc.com'] },
-      appOnly: { http: [`https://base-mainnet.infura.io/v3/${config.infuraKey}`] },
+      appOnly: { http: [`https://base-mainnet.g.alchemy.com/v2/${config.alchemyKey}`] },
     },
     spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_BASE, 10_000e6),
     assetRepoNetworkName: 'base',

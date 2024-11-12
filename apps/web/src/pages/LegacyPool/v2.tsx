@@ -53,6 +53,8 @@ const ButtonRow = styled(RowFixed)`
 `
 
 const ResponsiveButtonPrimary = styled(ButtonPrimary)`
+  font-family: 'Basel';
+  font-size: 14px;
   height: 40px;
   width: fit-content;
   border-radius: 12px;
@@ -62,6 +64,8 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
 `
 
 const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+  font-family: 'Basel';
+  font-size: 14px;
   height: 40px;
   width: fit-content;
   ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToSmall`
@@ -187,15 +191,17 @@ export default function Pool() {
                   </Row>
                   <ButtonRow>
                     <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/add/v2/ETH">
-                      <Trans i18nKey="pool.create.pair" />
+                      <Text fontSize={13}>
+                        <Trans i18nKey="pool.create.pair" />
+                      </Text>
                     </ResponsiveButtonSecondary>
                     <ResponsiveButtonPrimary id="find-pool-button" as={Link} to="/pools/v2/find" padding="6px 8px">
-                      <Text fontWeight={535} fontSize={16}>
+                      <Text fontWeight={535} fontSize={14}>
                         <Trans i18nKey="pool.import" />
                       </Text>
                     </ResponsiveButtonPrimary>
                     <ResponsiveButtonPrimary id="join-pool-button" as={Link} to="/add/v2/ETH" padding="6px 8px">
-                      <Text fontWeight={535} fontSize={16}>
+                      <Text fontWeight={535} fontSize={14}>
                         <Trans i18nKey="pool.v2.add" />
                       </Text>
                     </ResponsiveButtonPrimary>

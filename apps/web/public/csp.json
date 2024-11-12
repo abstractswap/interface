@@ -53,7 +53,11 @@
     "https://api.ensideas.com",
     "https://gateway.thegraph.com",
     "https://fonts.googleapis.com",
-    "https://api.dune.com"
+    "https://api.dune.com",
+    "https://eth-mainnet.g.alchemy.com",
+    "https://base-mainnet.g.alchemy.com",
+    "https://cloudflare-eth.com",
+    "ttps://mainnet.base.org"
   ],
   "workerSrc": [
     "'self'",

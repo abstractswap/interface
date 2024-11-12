@@ -30,7 +30,7 @@
     "@reach/portal": "0.10.5",
     "@reduxjs/toolkit": "1.9.3",
     "@reservoir0x/relay-kit-hooks": "1.4.8",
-    "@reservoir0x/relay-kit-ui": "2.2.17",
+    "@reservoir0x/relay-kit-ui": "2.2.19",
     "@reservoir0x/relay-sdk": "1.4.6",
     "@rive-app/canvas": "2.19.0",
     "@rive-app/react-canvas": "4.13.0",

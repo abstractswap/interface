@@ -38,8 +38,12 @@ export const useMenuContent = (): MenuSection[] => {
       ],
     },
     {
-      title: 'Support',
-      items: [{ label: t('common.contactUs.button'), href: 'https://support.uniswap.org/hc/en-us/requests/new' }],
+      title: 'Company',
+      items: [
+        { label: t('common.contactUs.button'), href: 'https://support.uniswap.org/hc/en-us/requests/new' },
+        { label: t('common.privacyPolicy'), href: 'https://reservoir.tools/privacy' },
+        { label: t('common.termsOfService'), href: 'https://reservoir.tools/terms' },
+      ],
     },
     // {
     //   title: 'Network',

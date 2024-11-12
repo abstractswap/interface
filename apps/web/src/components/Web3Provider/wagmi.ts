@@ -6,7 +6,7 @@ import forkConfig from 'forkConfig'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 // import { UNISWAP_WEB_URL } from 'uniswap/src/constants/urls'
 import { UniverseChainId, WEB_SUPPORTED_CHAIN_IDS } from 'uniswap/src/types/chains'
-import { createClient } from 'viem'
+import { createClient, fallback } from 'viem'
 import { createConfig, http } from 'wagmi'
 import { connect } from 'wagmi/actions'
 import { coinbaseWallet, injected, safe, walletConnect } from 'wagmi/connectors'
@@ -41,7 +41,7 @@ export const wagmiConfig = createConfig({
       chain,
       batch: { multicall: true },
       pollingInterval: 12_000,
-      transport: http(chain.rpcUrls.appOnly.http[0]),
+      transport: fallback([http(chain.rpcUrls.appOnly.http[0]), http(chain.rpcUrls.default.http[0])]),
     })
   },
 })

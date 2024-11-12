@@ -7,9 +7,11 @@ import {
   ALL_CHAIN_IDS,
   CHAIN_IDS_TO_NAMES,
   TESTNET_CHAIN_IDS,
+  getChain,
   getChainPriority,
   useIsSupportedChainIdCallback,
 } from 'constants/chains'
+import { useScreenSize } from 'hooks/screenSize'
 import { useAccount } from 'hooks/useAccount'
 import useSelectChain from 'hooks/useSelectChain'
 import { useAtomValue } from 'jotai/utils'
@@ -18,7 +20,7 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import { AlertTriangle, ChevronDown } from 'react-feather'
 import { useSearchParams } from 'react-router-dom'
 import { useSwapAndLimitContext } from 'state/swap/useSwapContext'
-import { Flex, Popover } from 'ui/src'
+import { Flex, Popover, Text } from 'ui/src'
 import { NetworkFilter } from 'uniswap/src/components/network/NetworkFilter'
 import { FeatureFlags } from 'uniswap/src/features/gating/flags'
 import { useFeatureFlag } from 'uniswap/src/features/gating/hooks'
@@ -71,15 +73,18 @@ function useWalletSupportedChains(): InterfaceChainId[] {
 }
 
 type ChainSelectorProps = {
+  isNavSelector?: boolean
   hideArrow?: boolean
 }
-export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
+export const ChainSelector = ({ isNavSelector, hideArrow }: ChainSelectorProps) => {
   const account = useAccount()
   const { chainId, setSelectedChainId, multichainUXEnabled } = useSwapAndLimitContext()
   // multichainFlagEnabled is different from multichainUXEnabled, multichainUXEnabled applies to swap
   // flag can be true but multichainUXEnabled can be false (TDP page)
   const multichainFlagEnabled = useFeatureFlag(FeatureFlags.MultichainUX)
 
+  const isSmallScreen = !useScreenSize()['sm']
+  const chain = getChain({ chainId })
   const theme = useTheme()
   const popoverRef = useRef<Popover>(null)
   const walletSupportsChain = useWalletSupportedChains()
@@ -159,10 +164,15 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
 
   return (
     <Popover ref={popoverRef} placement="bottom" stayInFrame allowFlip onOpenChange={setIsOpen}>
-      <Popover.Trigger padding={8} cursor="pointer" data-testid="chain-selector">
+      <Popover.Trigger padding={4} cursor="pointer" data-testid="chain-selector">
         <TriggerContainer>
           {menuLabel}
-          <DropdownChevron isOpen={isOpen} />
+          {isNavSelector && (
+            <>
+              {chain && !isSmallScreen && <Text>{chain.label}</Text>}
+              <DropdownChevron isOpen={isOpen} />
+            </>
+          )}
         </TriggerContainer>
       </Popover.Trigger>
       <NavDropdown width={240} isOpen={isOpen}>

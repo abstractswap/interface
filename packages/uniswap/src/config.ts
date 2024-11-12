@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import {
+  ALCHEMY_KEY,
   APPSFLYER_API_KEY,
   APPSFLYER_APP_ID,
   DATADOG_CLIENT_TOKEN,
@@ -37,6 +38,7 @@ export interface Config {
   datadogProjectId: string
   uniswapApiKey: string
   infuraKey: string
+  alchemyKey: string
   onesignalAppId: string
   openaiApiKey: string
   sentryDsn: string
@@ -77,6 +79,7 @@ const _config: Config = {
   datadogProjectId: process.env.DATADOG_PROJECT_ID || DATADOG_PROJECT_ID,
   uniswapApiKey: process.env.UNISWAP_API_KEY || UNISWAP_API_KEY,
   infuraKey: process.env.REACT_APP_INFURA_KEY || INFURA_KEY,
+  alchemyKey: process.env.REACT_APP_ALCHEMY_KEY || ALCHEMY_KEY,
   onesignalAppId: process.env.ONESIGNAL_APP_ID || ONESIGNAL_APP_ID,
   openaiApiKey: process.env.OPENAI_API_KEY || OPENAI_API_KEY,
   sentryDsn: process.env.REACT_APP_SENTRY_DSN || process.env.SENTRY_DSN || SENTRY_DSN,

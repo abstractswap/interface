@@ -130,7 +130,9 @@ export default function Navbar() {
         </SearchContainer>
 
         <Right>
-          {collapseSearchBar && <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />}
+          {forkConfig.exploreEnabled && collapseSearchBar && (
+            <SearchBar maxHeight={NAV_SEARCH_MAX_HEIGHT} fullScreen={isSmallScreen} />
+          )}
           {isNftPage && sellPageState !== ProfilePageStateType.LISTING && <Bag />}
           {isSignInExperimentControl &&
             !isSignInExperimentControlLoading &&
@@ -138,7 +140,7 @@ export default function Navbar() {
             !isSmallScreen &&
             forkConfig.signUpOptionEnabled && <NewUserCTAButton />}
           {!account.isConnected && !account.isConnecting && <PreferenceMenu />}
-          {!hideChainSelector && <ChainSelector />}
+          {!hideChainSelector && <ChainSelector isNavSelector />}
           <Web3Status />
           {!isSignInExperimentControl &&
             !isSignInExperimentControlLoading &&

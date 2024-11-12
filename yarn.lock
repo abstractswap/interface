@@ -9885,11 +9885,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reservoir0x/relay-kit-hooks@npm:1.4.6":
-  version: 1.4.6
-  resolution: "@reservoir0x/relay-kit-hooks@npm:1.4.6"
+"@reservoir0x/relay-kit-hooks@npm:1.4.8":
+  version: 1.4.8
+  resolution: "@reservoir0x/relay-kit-hooks@npm:1.4.8"
   dependencies:
-    "@reservoir0x/relay-sdk": "npm:1.4.5"
+    "@reservoir0x/relay-sdk": "npm:1.4.6"
     "@types/react": "npm:^18.0.0"
     "@types/react-dom": "npm:^18.0.0"
     axios: "npm:^1.7.2"
@@ -9898,13 +9898,13 @@ __metadata:
     react: ^18.0
     react-dom: ^18.0
     viem: ^2.9.31
-  checksum: 10/f570e2f7ee2cfa96c4ac5be78ca182f2f2d692683544ea9e2a9f59a423d09c6ed25cddb7ff4c7bbb867d664a43de4d05c0750abc5058d2f46c59d1f58d5a6bbc
+  checksum: 10/275c7bf087efd2164635115fbf705c21167468ba5cad0061a90839fe79ec60676e7f456a829f3b860a32dbf3d925b8cb5a3be1e4a587da32d120a4e879434a69
   languageName: node
   linkType: hard
 
-"@reservoir0x/relay-kit-ui@npm:2.2.14":
-  version: 2.2.14
-  resolution: "@reservoir0x/relay-kit-ui@npm:2.2.14"
+"@reservoir0x/relay-kit-ui@npm:2.2.19":
+  version: 2.2.19
+  resolution: "@reservoir0x/relay-kit-ui@npm:2.2.19"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
@@ -9917,8 +9917,8 @@ __metadata:
     "@radix-ui/react-toggle-group": "npm:^1.1.0"
     "@radix-ui/react-tooltip": "npm:^1.0.7"
     "@reservoir0x/relay-design-system": "npm:^0.0.2"
-    "@reservoir0x/relay-kit-hooks": "npm:1.4.6"
-    "@reservoir0x/relay-sdk": "npm:1.4.5"
+    "@reservoir0x/relay-kit-hooks": "npm:1.4.8"
+    "@reservoir0x/relay-sdk": "npm:1.4.6"
     "@types/react": "npm:^18.0.0"
     "@types/react-dom": "npm:^18.0.0"
     axios: "npm:^1.7.2"
@@ -9933,18 +9933,18 @@ __metadata:
     react-dom: ^18.0
     viem: ^2.9.31
     wagmi: ~2.9.8
-  checksum: 10/a3c4ef6dc0e061d1a210d4a0a9b9a26b096028b909dd32b97600492a58acc828d43892e105fdc078e53a130c11d3a33aa5d4c1c35d296129bb3c58ab715b2a86
+  checksum: 10/817a77c5516df8ef74e93f9f651dbca9b80201c0df763c0ec5d570bf90cc736f6d204f5301a932431f4f10396d5741ca6f9d10f5faeaed30fd987e10ad9d0a2a
   languageName: node
   linkType: hard
 
-"@reservoir0x/relay-sdk@npm:1.4.5":
-  version: 1.4.5
-  resolution: "@reservoir0x/relay-sdk@npm:1.4.5"
+"@reservoir0x/relay-sdk@npm:1.4.6":
+  version: 1.4.6
+  resolution: "@reservoir0x/relay-sdk@npm:1.4.6"
   dependencies:
     axios: "npm:^1.6.5"
   peerDependencies:
     viem: ^2.9.31
-  checksum: 10/f7d1d9b8f7b288cbd502ebfc8085fe90ea932863c6e81b40618e0d8e768e21e0c9bf6a7d15b176adaf7c470a4ccf0d5653868cb7d234bc6174babe057508ca1f
+  checksum: 10/3281a7413870086f192b48f0780edb1652d702805e76c9a95cbbb7ebcc1496ad9d23c70ed7c09c9ce6eeff179cd26c0acf22f3b02f6ee42b37439f1bc8e503b0
   languageName: node
   linkType: hard
 
@@ -16126,9 +16126,9 @@ __metadata:
     "@reach/dialog": "npm:0.10.5"
     "@reach/portal": "npm:0.10.5"
     "@reduxjs/toolkit": "npm:1.9.3"
-    "@reservoir0x/relay-kit-hooks": "npm:1.4.6"
-    "@reservoir0x/relay-kit-ui": "npm:2.2.14"
-    "@reservoir0x/relay-sdk": "npm:1.4.5"
+    "@reservoir0x/relay-kit-hooks": "npm:1.4.8"
+    "@reservoir0x/relay-kit-ui": "npm:2.2.19"
+    "@reservoir0x/relay-sdk": "npm:1.4.6"
     "@rive-app/canvas": "npm:2.19.0"
     "@rive-app/react-canvas": "npm:4.13.0"
     "@sentry/browser": "npm:7.80.0"
