@@ -80,6 +80,7 @@ const InboxIcon = deprecatedStyled(Inbox)`
 `
 
 const ResponsiveButtonPrimary = deprecatedStyled(ButtonPrimary)`
+  font-family: 'Basel';
   border-radius: 12px;
   font-size: 16px;
   padding: 6px 8px;
