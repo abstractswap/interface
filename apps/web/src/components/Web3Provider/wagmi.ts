@@ -5,6 +5,7 @@ import forkConfig from 'forkConfig'
 // import { ABSTRACT_LOGO } from 'ui/src/assets'
 import { UNIVERSE_CHAIN_INFO } from 'uniswap/src/constants/chains'
 // import { UNISWAP_WEB_URL } from 'uniswap/src/constants/urls'
+import { abstractWalletConnector } from '@abstract-foundation/agw-react/connectors'
 import { UniverseChainId, WEB_SUPPORTED_CHAIN_IDS } from 'uniswap/src/types/chains'
 import { createClient } from 'viem'
 import { createConfig, http } from 'wagmi'
@@ -35,6 +36,7 @@ export const wagmiConfig = createConfig({
     }),
     ...(forkConfig.uniSpecificFeaturesEnabled ? [uniswapWalletConnect()] : []),
     safe(),
+    abstractWalletConnector(),
   ],
   client({ chain }) {
     return createClient({
