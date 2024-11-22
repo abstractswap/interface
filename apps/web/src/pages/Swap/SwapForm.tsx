@@ -238,7 +238,7 @@ export function SwapForm({
       outputCurrency: currencyState.outputCurrency,
       typedValue: swapState.typedValue,
       independentField: swapState.independentField,
-      chainId: supportedChainId ?? UniverseChainId.Zero,
+      chainId: supportedChainId ?? UniverseChainId.AbstractTestnet,
     })
     navigate('/swap' + serializedSwapState)
   }, [

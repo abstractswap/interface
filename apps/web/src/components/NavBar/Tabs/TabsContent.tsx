@@ -80,7 +80,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
     },
     {
       title: t('common.explore'),
-      href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.Zero].infoLink}`,
+      href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}`,
       isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
       items: forkConfig.uniSpecificFeaturesEnabled
         ? [
@@ -100,13 +100,13 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
             {
               label: t('common.tokens'),
               quickKey: 'T',
-              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.Zero].infoLink}/tokens`,
+              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens`,
               internal: false,
             },
             {
               label: t('common.pools'),
               quickKey: 'T',
-              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.Zero].infoLink}/pools`,
+              href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools`,
               internal: false,
             },
           ],

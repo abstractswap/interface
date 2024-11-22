@@ -12,7 +12,7 @@ const CHAIN_SUBGRAPH_URL: Record<number, string> = {
   [UniverseChainId.Zero]: 'https://graph-node.internal.reservoir.tools/subgraphs/name/zero/v3-subgraph',
 }
 
-const httpLink = new HttpLink({ uri: CHAIN_SUBGRAPH_URL[UniverseChainId.Zero] })
+const httpLink = new HttpLink({ uri: CHAIN_SUBGRAPH_URL[UniverseChainId.AbstractTestnet] })
 
 // This middleware will allow us to dynamically update the uri for the requests based off chainId
 // For more information: https://www.apollographql.com/docs/react/networking/advanced-http-networking/
@@ -21,7 +21,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   const chainId = store.getState().application.chainId
 
   operation.setContext(() => ({
-    uri: chainId && (CHAIN_SUBGRAPH_URL[chainId] ?? CHAIN_SUBGRAPH_URL[UniverseChainId.Zero]),
+    uri: chainId && (CHAIN_SUBGRAPH_URL[chainId] ?? CHAIN_SUBGRAPH_URL[UniverseChainId.AbstractTestnet]),
   }))
 
   return forward(operation)
