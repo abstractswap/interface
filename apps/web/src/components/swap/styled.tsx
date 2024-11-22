@@ -7,7 +7,7 @@ import { ButtonText } from 'theme/components'
 import { Z_INDEX } from 'theme/zIndex'
 
 export const PageWrapper = styled.div`
-  padding: 68px 8px 0px;
+  padding: 48px 8px 0px;
   max-width: 480px;
   width: 100%;
 

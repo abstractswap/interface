@@ -24,7 +24,7 @@ export const useMenuContent = (): MenuSection[] => {
     {
       title: 'Reservoir',
       items: [
-        { label: 'About Us', href: 'https://reservoir.tools/' },
+        { label: 'About Us', href: 'https://docs.reservoir.tools/docs/reservoir-swap' },
         { label: 'NFT Marketplace', href: 'https://explorer.reservoir.tools/ethereum' },
       ],
     },
