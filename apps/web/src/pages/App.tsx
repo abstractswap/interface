@@ -58,6 +58,7 @@ export default function App() {
   if (shouldBlockPath && pathname !== '/swap') {
     return <Navigate to="/swap" replace />
   }
+
   return (
     <ErrorBoundary>
       <DarkModeQueryParamReader />
