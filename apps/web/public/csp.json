@@ -36,8 +36,8 @@
     "https://vercel.com",
     "https://vercel.live/",
     "https://api.testnet.abs.xyz",
-    "https://apiv1.staging.abstract.w3us.site",
-    "https://apiv2.staging.abstract.w3us.site",
+    "https://apiv1.reservoir.w3us.site",
+    "https://apiv2.reservoir.w3us.site",
     "https://apiv1.staging.reservoir.w3us.site",
     "https://apiv2.staging.reservoir.w3us.site",
     "https://graph-node.internal.reservoir.tools",
@@ -46,9 +46,12 @@
     "https://static.optimism.io",
     "https://assets.relay.link",
     "https://rpc.zerion.io/v1/zero",
+    "https://rpc.gobob.xyz",
+    "https://cyber.alt.technology/",
     "https://*.infura.io/v3/",
     "wss://relay.walletconnect.com",
-    "wss://relay.walletconnect.org"
+    "wss://relay.walletconnect.org",
+    "https://mainnet.shape.network"
   ],
   "workerSrc": [
     "'self'",

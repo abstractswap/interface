@@ -58,6 +58,7 @@ export interface Config {
   tradingApiKey: string
   firebaseAppCheckDebugToken: string
   webSupportedChains?: UniverseChainId[]
+  inkRPCURL?: string
 }
 
 /**
@@ -112,6 +113,7 @@ const _config: Config = {
         .map((id) => Number(id) as UniverseChainId)
         .filter((id): id is UniverseChainId => !!id)
     : undefined,
+  inkRPCURL: process.env.REACT_APP_INK_RPC_URL,
 }
 
 export const config = Object.freeze(_config)

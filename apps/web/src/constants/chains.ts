@@ -1,5 +1,5 @@
 /* eslint-disable rulesdir/no-undefined-or */
-import { Currency, V2_ROUTER_ADDRESSES } from '@uniswap/sdk-core'
+import { Currency } from '@uniswap/sdk-core'
 import ms from 'ms'
 import { useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
@@ -146,11 +146,6 @@ export const PRODUCTION_CHAIN_IDS: UniverseChainId[] = Object.values(UNIVERSE_CH
 export const TESTNET_CHAIN_IDS = Object.keys(UNIVERSE_CHAIN_INFO)
   .filter((key) => UNIVERSE_CHAIN_INFO[parseInt(key) as SupportedInterfaceChainId].testnet)
   .map((key) => parseInt(key) as SupportedInterfaceChainId)
-
-/**
- * @deprecated when v2 pools are enabled on chains supported through sdk-core
- */
-export const SUPPORTED_V2POOL_CHAIN_IDS = Object.keys(V2_ROUTER_ADDRESSES).map((chainId) => parseInt(chainId))
 
 export const BACKEND_SUPPORTED_CHAINS = Object.keys(UNIVERSE_CHAIN_INFO)
   .filter((key) => {

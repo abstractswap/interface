@@ -67,11 +67,6 @@ export default function SwapPage({ className }: { className?: string }) {
 
   return (
     <Trace logImpression page={InterfacePageName.SWAP_PAGE}>
-      <Flex centered top={32}>
-        <Text variant="heading2" textAlign="center" mb={24}>
-          Access Uniswap on any chain
-        </Text>
-      </Flex>
       <PageWrapper>
         <Swap
           className={className}
@@ -86,7 +81,10 @@ export default function SwapPage({ className }: { className?: string }) {
           syncTabToUrl={true}
         />
       </PageWrapper>
-      <Flex centered top={52}>
+      <Flex centered top={52} gap={12} pb={40}>
+        <Text variant="body2" textAlign="center">
+          Reservoir Swap is an interface for Uniswap v2 & v3
+        </Text>
         <Text variant="body2" textAlign="center">
           <LearnMoreLink to="https://docs.reservoir.tools/docs/reservoir-swap" target="_blank">
             Learn more

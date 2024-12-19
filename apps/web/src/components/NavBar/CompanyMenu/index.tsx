@@ -61,8 +61,8 @@ export function CompanyMenu() {
           <UniIcon onClick={handleLogoClick} data-testid="nav-uniswap-logo">
             <NavIcon width="48" height="48" />
             {isLargeScreen && (
-              <Text variant="subheading1" color="$accent1" userSelect="none">
-                Swap
+              <Text variant="subheading1" color="$neutral1" userSelect="none">
+                Reservoir Swap
               </Text>
             )}
           </UniIcon>

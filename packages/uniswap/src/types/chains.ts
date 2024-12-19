@@ -27,6 +27,10 @@ export enum UniverseChainId {
   Zksync = UniswapSDKChainId.ZKSYNC,
   AbstractTestnet = UniswapSDKChainId.ABSTRACT_TESTNET,
   Zero = UniswapSDKChainId.ZERO,
+  BOB = UniswapSDKChainId.BOB,
+  CYBER = UniswapSDKChainId.CYBER,
+  SHAPE = UniswapSDKChainId.SHAPE,
+  INK = UniswapSDKChainId.INK,
 }
 
 export type WalletChainId =
@@ -45,6 +49,11 @@ export type WalletChainId =
   | UniverseChainId.Zksync
   | UniverseChainId.AbstractTestnet
   | UniverseChainId.Zero
+  | UniverseChainId.BOB
+  | UniverseChainId.CYBER
+  | UniverseChainId.SHAPE
+  | UniverseChainId.INK
+
 
 // DON'T CHANGE - order here determines ordering of networks in app
 // TODO: [MOB-250] Add back in testnets once our endpoints support them

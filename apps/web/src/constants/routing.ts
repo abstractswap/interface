@@ -46,7 +46,16 @@ import {
   nativeOnChain,
 } from 'constants/tokens'
 import { getNativeLogoURI, getTokenLogoURI } from 'lib/hooks/useCurrencyLogoURIs'
-import { USDC_ABSTRACT_TESTNET, USDC_ZERO, USDC_ZKSYNC, USDC_ZORA } from 'uniswap/src/constants/tokens'
+import {
+  USDC_ABSTRACT_TESTNET,
+  USDC_BOB,
+  USDC_CYBER,
+  USDC_INK,
+  USDC_SHAPE,
+  USDC_ZERO,
+  USDC_ZKSYNC,
+  USDC_ZORA,
+} from 'uniswap/src/constants/tokens'
 import { SafetyLevel } from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
 import { CurrencyInfo } from 'uniswap/src/features/dataApi/types'
 import { UniverseChainId } from 'uniswap/src/types/chains'
@@ -206,6 +215,26 @@ export const COMMON_BASES: ChainCurrencyList = {
     nativeOnChain(UniverseChainId.Zero),
     WRAPPED_NATIVE_CURRENCY[UniverseChainId.Zero] as Token,
     USDC_ZERO,
+  ].map(buildCurrencyInfo),
+  [UniverseChainId.BOB]: [
+    nativeOnChain(UniverseChainId.BOB),
+    WRAPPED_NATIVE_CURRENCY[UniverseChainId.BOB] as Token,
+    USDC_BOB,
+  ].map(buildCurrencyInfo),
+  [UniverseChainId.CYBER]: [
+    nativeOnChain(UniverseChainId.CYBER),
+    WRAPPED_NATIVE_CURRENCY[UniverseChainId.CYBER] as Token,
+    USDC_CYBER,
+  ].map(buildCurrencyInfo),
+  [UniverseChainId.SHAPE]: [
+    nativeOnChain(UniverseChainId.SHAPE),
+    WRAPPED_NATIVE_CURRENCY[UniverseChainId.SHAPE] as Token,
+    USDC_SHAPE,
+  ].map(buildCurrencyInfo),
+  [UniverseChainId.INK]: [
+    nativeOnChain(UniverseChainId.INK),
+    WRAPPED_NATIVE_CURRENCY[UniverseChainId.INK] as Token,
+    USDC_INK,
   ].map(buildCurrencyInfo),
 }
 

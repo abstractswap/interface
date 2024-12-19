@@ -1,6 +1,7 @@
 import { PlatformSplitStubError } from 'utilities/src/errors'
 import { ApplicationTransport } from 'utilities/src/telemetry/analytics/ApplicationTransport'
 
+export const ANALYTICS_ENABLED = false
 // matches amplitude supported values, not using amplitude's type to decouple from underlying library
 export type UserPropertyValue = number | string | boolean | Array<string | number>
 

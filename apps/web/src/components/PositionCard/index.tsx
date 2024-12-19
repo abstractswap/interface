@@ -8,7 +8,6 @@ import CurrencyLogo from 'components/Logo/CurrencyLogo'
 import { AutoRow, RowBetween, RowFixed } from 'components/Row'
 import { CardNoise } from 'components/earn/styled'
 import { Dots } from 'components/swap/styled'
-import { chainIdToBackendChain } from 'constants/chains'
 import { BIG_INT_ZERO } from 'constants/misc'
 import { useAccount } from 'hooks/useAccount'
 import { useColor } from 'hooks/useColor'
@@ -21,7 +20,7 @@ import { ChevronDown, ChevronUp } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { Text } from 'rebass'
 import { useTokenBalance } from 'state/connection/hooks'
-import { StyledInternalLink, ThemedText } from 'theme/components'
+import { ExternalLink, ThemedText } from 'theme/components'
 import { Trans } from 'uniswap/src/i18n'
 import { currencyId } from 'utils/currencyId'
 import { unwrappedToken } from 'utils/unwrappedToken'
@@ -189,6 +188,8 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
 
   const backgroundColor = useColor(pair?.token0)
 
+  console.log('pair.chainId: ', pair.chainId)
+
   return (
     <StyledPositionCard border={border} bgColor={backgroundColor}>
       <CardNoise />
@@ -291,13 +292,13 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             </FixedHeightRow>
 
             <ButtonSecondary padding="8px" $borderRadius="8px">
-              <StyledInternalLink
+              <ExternalLink
                 style={{ width: '100%', textAlign: 'center' }}
-                to={`/explore/pools/${chainIdToBackendChain({ chainId: pair.chainId, withFallback: true }).toLowerCase()}/${Pair.getAddress(pair.token0, pair.token1)}`}
+                href={`https://v2.info.reservoir.app/account/${account?.address}`}
               >
                 <Trans i18nKey="pool.accruedFees" />
                 <span style={{ fontSize: '11px' }}>↗</span>
-              </StyledInternalLink>
+              </ExternalLink>
             </ButtonSecondary>
             {userDefaultPoolBalance && JSBI.greaterThan(userDefaultPoolBalance.quotient, BIG_INT_ZERO) && (
               <RowBetween marginTop="10px">
