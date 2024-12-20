@@ -14,6 +14,9 @@ const CHAIN_SUBGRAPH_URL: Record<number, string> = {
   [UniverseChainId.CYBER]: 'https://graph-node.internal.reservoir.tools/subgraphs/name/cyber/v3-subgraph',
   [UniverseChainId.SHAPE]: 'https://graph-node.internal.reservoir.tools/subgraphs/name/shape/v3-subgraph',
   [UniverseChainId.INK]: 'https://graph-node.internal.reservoir.tools/subgraphs/name/ink/v3-subgraph',
+  [UniverseChainId.REDSTONE]: 'https://graph-node.internal.reservoir.tools/subgraphs/name/redstone/v3-subgraph',
+  [UniverseChainId.REDSTONE_GARNET]:
+    'https://graph-node.internal.reservoir.tools/subgraphs/name/redstone-garnet/v3-subgraph',
 }
 
 const httpLink = new HttpLink({ uri: CHAIN_SUBGRAPH_URL[UniverseChainId.AbstractTestnet] })

@@ -1,5 +1,5 @@
 import { defineChain } from 'viem'
-import { chainConfig } from 'viem/zksync'
+import { chainConfig } from 'viem/op-stack'
 
 // Latest viem has this chain, however, newer package version clashes with current setup
 // For this reason this and future chains could be defined in this folder.

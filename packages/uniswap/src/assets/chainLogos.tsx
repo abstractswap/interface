@@ -151,4 +151,16 @@ export const UNIVERSE_CHAIN_LOGO = {
       logoDark: BlockExplorer,
     },
   } as const satisfies UniverseChainLogoInfo,
+  [UniverseChainId.REDSTONE]: {
+    explorer: {
+      logoLight: BlockExplorer,
+      logoDark: BlockExplorer,
+    },
+  } as const satisfies UniverseChainLogoInfo,
+  [UniverseChainId.REDSTONE_GARNET]: {
+    explorer: {
+      logoLight: BlockExplorer,
+      logoDark: BlockExplorer,
+    },
+  } as const satisfies UniverseChainLogoInfo,
 }

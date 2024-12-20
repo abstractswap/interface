@@ -15,6 +15,8 @@ import {
   MUMBAI_LOGO,
   OPTIMISM_LOGO,
   POLYGON_LOGO,
+  REDSTONE_GARNET_LOGO,
+  REDSTONE_LOGO,
   SHAPE_LOGO,
   ZKSYNC_LOGO,
   ZORA_LOGO,
@@ -24,6 +26,8 @@ import { abstractTestnet } from 'uniswap/src/constants/chainDefinitions/abstract
 import { bob } from 'uniswap/src/constants/chainDefinitions/bob'
 import { cyber } from 'uniswap/src/constants/chainDefinitions/cyber'
 import { ink } from 'uniswap/src/constants/chainDefinitions/ink'
+import { redstone } from 'uniswap/src/constants/chainDefinitions/redstone'
+import { redstoneGarnet } from 'uniswap/src/constants/chainDefinitions/redstoneGarnet'
 import { shape } from 'uniswap/src/constants/chainDefinitions/shape'
 import { zero } from 'uniswap/src/constants/chainDefinitions/zero'
 import {
@@ -51,6 +55,8 @@ import {
   USDC_OPTIMISM_GOERLI,
   USDC_POLYGON,
   USDC_POLYGON_MUMBAI,
+  USDC_REDSTONE,
+  USDC_REDSTONE_GARNET,
   USDC_SEPOLIA,
   USDC_SHAPE,
   USDC_ZERO,
@@ -1346,9 +1352,9 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     docs: 'https://docs.inkonchain.com',
     elementName: ElementName.ChainShape,
     explorer: {
-      name: 'Ink Scan',
-      url: 'https://explorer.inkonchain.com', // Temporary
-      apiURL: '', // Temporary
+      name: 'Ink Explorer',
+      url: 'https://explorer.inkonchain.com',
+      apiURL: 'https://explorer.inkonchain.com/api',
     },
     helpCenterUrl: undefined,
     infoLink: 'https://info.reservoir.app',
@@ -1365,14 +1371,122 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     networkLayer: NetworkLayer.L2,
     pendingTransactionsRetryOptions: undefined,
     rpcUrls: {
-      [RPCType.Public]: { http: [config.inkRPCURL || ''] }, // Temporary
-      default: { http: [config.inkRPCURL || ''] }, // Temporary
-      appOnly: { http: [config.inkRPCURL || ''] }, // Temporary
+      [RPCType.Public]: { http: [config.inkRPCURL || 'https://rpc-gel.inkonchain.com'] },
+      default: { http: [config.inkRPCURL || 'https://rpc-gel.inkonchain.com'] },
+      appOnly: { http: [config.inkRPCURL || 'https://rpc-gel.inkonchain.com'] },
     },
     urlParam: 'ink',
     statusPage: undefined,
     spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_INK, 10_000e6),
     stablecoins: [USDC_INK],
+    supportsClientSideRouting: false,
+    supportsGasEstimates: false,
+    wrappedNativeCurrency: {
+      name: 'Wrapped Ether',
+      symbol: 'WETH',
+      decimals: 18,
+      address: '0x4200000000000000000000000000000000000006',
+    },
+  } as const satisfies UniverseChainInfo,
+  [UniswapSDKChainId.REDSTONE]: {
+    ...redstone,
+    id: UniverseChainId.REDSTONE,
+    sdkId: UniswapSDKChainId.REDSTONE,
+    assetRepoNetworkName: undefined,
+    backendChain: {
+      chain: BackendChainId.UnknownChain as InterfaceGqlChain,
+      backendSupported: false,
+      isSecondaryChain: true,
+      nativeTokenBackendAddress: undefined,
+    },
+    blockPerMainnetEpochForChainId: 12,
+    blockWaitMsBeforeWarning: 600000,
+    bridge: 'https://redstone.xyz/bridge',
+    chainPriority: 0,
+    docs: 'https://redstone.xyz',
+    elementName: ElementName.ChainOptimism,
+    explorer: {
+      name: 'Redstone Explorer',
+      url: 'https://explorer.redstone.xyz/',
+      apiURL: 'https://explorer.redstone.xyz/api',
+    },
+    helpCenterUrl: undefined,
+    infoLink: 'https://redstone.xyz',
+    infuraPrefix: undefined,
+    interfaceName: 'redstone',
+    label: 'Redstone',
+    logo: REDSTONE_LOGO,
+    nativeCurrency: {
+      name: 'ETH',
+      symbol: 'ETH',
+      decimals: 18,
+      address: DEFAULT_NATIVE_ADDRESS,
+    },
+    networkLayer: NetworkLayer.L2,
+    pendingTransactionsRetryOptions: undefined,
+    rpcUrls: {
+      [RPCType.Public]: { http: ['https://rpc.redstonechain.com'] },
+      default: { http: ['https://rpc.redstonechain.com'] },
+      appOnly: { http: ['https://rpc.redstonechain.com'] },
+    },
+    urlParam: 'redstone',
+    statusPage: undefined,
+    spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_REDSTONE, 10_000e6),
+    stablecoins: [USDC_REDSTONE],
+    supportsClientSideRouting: false,
+    supportsGasEstimates: false,
+    wrappedNativeCurrency: {
+      name: 'Wrapped Ether',
+      symbol: 'WETH',
+      decimals: 18,
+      address: '0x4200000000000000000000000000000000000006',
+    },
+  } as const satisfies UniverseChainInfo,
+  [UniswapSDKChainId.REDSTONE_GARNET]: {
+    ...redstoneGarnet,
+    id: UniverseChainId.REDSTONE_GARNET,
+    sdkId: UniswapSDKChainId.REDSTONE_GARNET,
+    assetRepoNetworkName: undefined,
+    backendChain: {
+      chain: BackendChainId.UnknownChain as InterfaceGqlChain,
+      backendSupported: false,
+      isSecondaryChain: true,
+      nativeTokenBackendAddress: undefined,
+    },
+    blockPerMainnetEpochForChainId: 12,
+    blockWaitMsBeforeWarning: 600000,
+    bridge: 'https://testnets.relay.link/bridge/garnet',
+    chainPriority: 0,
+    docs: 'https://redstone.xyz',
+    elementName: ElementName.ChainOptimism,
+    explorer: {
+      name: 'Garnet Holesky Explorer',
+      url: 'https://explorer.garnetchain.com',
+      apiURL: 'https://explorer.garnetchain.com/api',
+    },
+    helpCenterUrl: undefined,
+    infoLink: 'https://testnets-info.reservoir.tools/#/garnet-holesky',
+    infuraPrefix: undefined,
+    interfaceName: 'garnet-holesky',
+    label: 'Garnet Holesky',
+    logo: REDSTONE_GARNET_LOGO,
+    nativeCurrency: {
+      name: 'ETH',
+      symbol: 'ETH',
+      decimals: 18,
+      address: DEFAULT_NATIVE_ADDRESS,
+    },
+    networkLayer: NetworkLayer.L2,
+    pendingTransactionsRetryOptions: undefined,
+    rpcUrls: {
+      [RPCType.Public]: { http: ['https://rpc.garnetchain.com'] },
+      default: { http: ['https://rpc.garnetchain.com'] },
+      appOnly: { http: ['https://rpc.garnetchain.com'] },
+    },
+    urlParam: 'garnet-holesky',
+    statusPage: undefined,
+    spotPriceStablecoinAmount: CurrencyAmount.fromRawAmount(USDC_REDSTONE_GARNET, 10_000e6),
+    stablecoins: [USDC_REDSTONE_GARNET],
     supportsClientSideRouting: false,
     supportsGasEstimates: false,
     wrappedNativeCurrency: {

@@ -15,6 +15,8 @@ import {
   INK_LOGO,
   OPTIMISM_LOGO,
   POLYGON_LOGO,
+  REDSTONE_GARNET_LOGO,
+  REDSTONE_LOGO,
   SHAPE_LOGO,
   ZERO_LOGO,
   ZKSYNC_LOGO,
@@ -195,6 +197,18 @@ export function getChainUI(chainId: InterfaceChainId, darkMode: boolean): ChainU
             bgColor: 'rgba(54, 103, 246, 0.12)',
             textColor: '#3667F6',
           }
+    case UniverseChainId.REDSTONE:
+      return {
+        symbol: REDSTONE_LOGO,
+        bgColor: '#FF042033',
+        textColor: '#FF0420',
+      }
+    case UniverseChainId.REDSTONE_GARNET:
+      return {
+        symbol: REDSTONE_GARNET_LOGO,
+        bgColor: '#FF042033',
+        textColor: '#FF0420',
+      }
     default:
       return undefined
   }

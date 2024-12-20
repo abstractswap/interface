@@ -218,7 +218,7 @@ export function useDerivedSwapInfo(state: SwapState): SwapInfo {
   // totalGasUseEstimateUSD is greater than native token balance
   // Temporary disable Zero gas checks due to timestamp mismatch
   const insufficientGas =
-    chainId && [UniverseChainId.AbstractTestnet].includes(chainId)
+    chainId && [UniverseChainId.AbstractTestnet, UniverseChainId.REDSTONE_GARNET].includes(chainId)
       ? false
       : isClassicTrade(trade.trade) &&
         (nativeCurrencyBalanceUSD ?? 0) < (trade.trade.totalGasUseEstimateUSDWithBuffer ?? 0)

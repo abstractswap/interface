@@ -331,6 +331,8 @@ export const colorsLight = {
   chain_7560: networkColors.cyber.light,
   chain_360: networkColors.shape.light,
   chain_57073: networkColors.ink.light,
+  chain_690: networkColors.optimism.light,
+  chain_17069: networkColors.optimism.light,
 
   // Testnets
   chain_3: colors.yellowVibrant,
@@ -416,6 +418,8 @@ export const colorsDark = {
   chain_7560: networkColors.cyber.dark,
   chain_360: networkColors.shape.dark,
   chain_57073: networkColors.ink.dark,
+  chain_690: networkColors.optimism.dark,
+  chain_17069: networkColors.optimism.dark,
 
   // Testnets
   chain_3: colors.yellowVibrant,

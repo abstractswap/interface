@@ -53,14 +53,14 @@ export enum Locale {
 
 export const SUPPORTED_LANGUAGES: Language[] = [
   Language.English,
-  Language.ChineseSimplified,
-  Language.ChineseTraditional,
-  Language.French,
-  Language.Japanese,
-  Language.Portuguese,
-  Language.SpanishSpain,
-  Language.SpanishLatam,
-  Language.SpanishUnitedStates,
+  // Language.ChineseSimplified,
+  // Language.ChineseTraditional,
+  // Language.French,
+  // Language.Japanese,
+  // Language.Portuguese,
+  // Language.SpanishSpain,
+  // Language.SpanishLatam,
+  // Language.SpanishUnitedStates,
 ]
 
 /**

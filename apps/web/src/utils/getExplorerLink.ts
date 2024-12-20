@@ -24,6 +24,8 @@ const BLOCK_EXPLORER_PREFIXES: { [chainId: number]: string } = {
   [UniverseChainId.CYBER]: 'https://cyberscan.co',
   [UniverseChainId.SHAPE]: 'https://shapescan.xyz',
   [UniverseChainId.INK]: '', // Temporary
+  [UniverseChainId.REDSTONE]: 'https://explorer.redstone.xyz',
+  [UniverseChainId.REDSTONE_GARNET]: 'https://explorer.garnetchain.com',
 }
 
 export enum ExplorerDataType {

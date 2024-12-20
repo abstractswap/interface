@@ -48,7 +48,7 @@
     "@tamagui/animations-moti@1.92.0": "patch:@tamagui/animations-moti@npm%3A1.92.0#./.yarn/patches/@tamagui-animations-moti-npm-1.92.0-a8dde990ec.patch",
     "@tanstack/react-query@5.51.16": "patch:@tanstack/react-query@npm%3A5.51.16#./.yarn/patches/@tanstack-react-query-npm-5.51.16-8fa6414eca.patch",
     "@uniswap/router-sdk": "1.9.2",
-    "@uniswap/sdk-core": "5.3.0",
+    "@uniswap/sdk-core": "5.4.0",
     "@uniswap/v2-sdk": "4.3.2",
     "@uniswap/v3-sdk": "3.13.0",
     "@vercel/og@0.5.8": "patch:@vercel/og@npm%3A0.5.8#./.yarn/patches/@vercel-og-npm-0.5.8-83a79f2744.patch",

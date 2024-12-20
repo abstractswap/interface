@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { useAppSelector } from 'state/hooks'
 import { InterfaceState } from 'state/webReducer'
 import { logger } from 'utilities/src/logger/logger'
+import sortByListPriority from 'utils/listSort'
 
 type Mutable<T> = {
   -readonly [P in keyof T]: Mutable<T[P]>
@@ -45,18 +46,21 @@ export function useCombinedTokenMapFromUrls(urls: string[] | undefined): TokenAd
     if (!urls) {
       return {}
     }
-    return urls.slice().reduce((allTokens, currentUrl) => {
-      const current = lists?.[currentUrl]?.current
-      if (!current) {
-        return allTokens
-      }
-      try {
-        return combineMaps(allTokens, tokensToChainTokenMap(current))
-      } catch (error) {
-        logger.warn('lists/hooks', 'useCombinedTokenMapFromUrls', 'Failed to combine tokens', error)
-        return allTokens
-      }
-    }, {})
+    return urls
+      .slice()
+      .sort(sortByListPriority)
+      .reduce((allTokens, currentUrl) => {
+        const current = lists?.[currentUrl]?.current
+        if (!current) {
+          return allTokens
+        }
+        try {
+          return combineMaps(allTokens, tokensToChainTokenMap(current))
+        } catch (error) {
+          logger.warn('lists/hooks', 'useCombinedTokenMapFromUrls', 'Failed to combine tokens', error)
+          return allTokens
+        }
+      }, {})
   }, [lists, urls])
 }
 
