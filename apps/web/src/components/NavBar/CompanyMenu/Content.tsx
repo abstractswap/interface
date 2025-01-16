@@ -22,50 +22,30 @@ export const useMenuContent = (): MenuSection[] => {
   return [
     // TODO: add translations once content is confirmed
     {
-      title: 'Reservoir',
-      items: [
-        { label: 'About Us', href: 'https://docs.reservoir.tools/docs/reservoir-swap' },
-        { label: 'NFT Marketplace', href: 'https://explorer.reservoir.tools/ethereum' },
-      ],
+      title: 'Reservoir Swap',
+      items: [{ label: 'About Reservoir Swap', href: 'https://docs.reservoir.tools/docs/reservoir-swap' }],
     },
     {
       title: 'Developers',
       items: [
-        { label: 'Docs', href: 'https://docs.relay.link/what-is-relay' },
-        { label: 'SDK', href: 'https://docs.relay.link/references/sdk/getting-started' },
-        { label: 'Uniswap Protocol', href: 'https://docs.uniswap.org/' },
-        { label: 'Testnets', href: 'https://testnets.reservoir.app' },
+        { label: 'Contracts', href: 'https://docs.reservoir.tools/docs/uniswap-contract-deployments' },
+        { label: 'Testnets', href: 'https://testnets-swap.reservoir.tools' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Reservoir Apps',
       items: [
-        { label: t('common.contactUs.button'), href: 'https://support.uniswap.org/hc/en-us/requests/new' },
+        { label: 'Relay Bridge', href: 'https://www.relay.link' },
+        { label: 'NFT Marketplace', href: 'https://explorer.reservoir.tools/' },
+      ],
+    },
+    {
+      title: t('common.company'),
+      items: [
+        { label: t('common.contactUs.button'), href: 'mailto:support@reservoir.tools' },
         { label: t('common.privacyPolicy'), href: 'https://reservoir.tools/privacy' },
         { label: t('common.termsOfService'), href: 'https://reservoir.tools/terms' },
       ],
     },
-    // {
-    //   title: t('common.company'),
-    //   items: [
-    //     { label: t('common.careers'), href: 'https://boards.greenhouse.io/uniswaplabs' },
-    //     { label: t('common.blog'), href: 'https://blog.uniswap.org/' },
-    //   ],
-    // },
-    // {
-    //   title: t('common.protocol'),
-    //   items: [
-    //     { label: t('common.vote'), href: 'https://vote.uniswapfoundation.org' },
-    //     { label: t('common.governance'), href: 'https://uniswap.org/governance' },
-    //     { label: t('common.developers'), href: 'https://uniswap.org/developers' },
-    //   ],
-    // },
-    // {
-    //   title: t('common.needHelp'),
-    //   items: [
-    //     { label: t('common.helpCenter'), href: 'https://support.uniswap.org/hc/en-us' },
-    //     { label: t('common.contactUs.button'), href: 'https://support.uniswap.org/hc/en-us/requests/new' },
-    //   ],
-    // },
   ]
 }
