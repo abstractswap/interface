@@ -55,9 +55,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@abstract-foundation/agw-client@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@abstract-foundation/agw-client@npm:1.0.0"
+"@abstract-foundation/agw-client@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@abstract-foundation/agw-client@npm:1.0.1"
   peerDependencies:
     abitype: ^1.0.0
     typescript: ">=5.0.4"
@@ -65,15 +65,15 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 4e68a931cfde14aabb6c4b3c4b5fa4ba949262c0a91d1bb729ff52a3779169642f65bcb171c34f6bc88638dcd11625c6f025dffb57be8765b784727855bad07e
+  checksum: 1144b45eda0aae1b56e52fc36564f88e5b9042be2e5b165f365c161e16887ae763190fe665b71fdc58a46df07df7c1a1a463d541bd7a20ee484ddb8fe44890f3
   languageName: node
   linkType: hard
 
-"@abstract-foundation/agw-react@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@abstract-foundation/agw-react@npm:1.0.0"
+"@abstract-foundation/agw-react@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@abstract-foundation/agw-react@npm:1.0.2"
   dependencies:
-    "@abstract-foundation/agw-client": 1.0.0
+    "@abstract-foundation/agw-client": 1.0.1
   peerDependencies:
     "@privy-io/cross-app-connect": ^0.1.2
     "@privy-io/react-auth": ^1.97.0
@@ -91,7 +91,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: c531d9158c5bbbff2ced23514f93e5200409d296f924fdef2f9c3f86f0d64aa2d8ea2db37aff93a89d21602bf61aba326ee1506ddc326f5414044d44c2faf02b
+  checksum: bd337a231398d9442fb635fc2bdb325b0db36e8bc60a207a05ed94428b783872c43b2d960bf1271f65e4810b5e5fdeed3296ea25d9ac06fcba38aadccdf57310
   languageName: node
   linkType: hard
 
@@ -15445,8 +15445,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@uniswap/interface@workspace:apps/web"
   dependencies:
-    "@abstract-foundation/agw-client": 1.0.0
-    "@abstract-foundation/agw-react": 1.0.0
+    "@abstract-foundation/agw-client": 1.0.1
+    "@abstract-foundation/agw-react": 1.0.2
     "@amplitude/analytics-browser": 1.12.1
     "@apollo/client": 3.10.4
     "@babel/preset-env": 7.23.3

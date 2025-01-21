@@ -14,7 +14,7 @@
     ]
   },
   "dependencies": {
-    "@abstract-foundation/agw-react": "1.0.0",
+    "@abstract-foundation/agw-react": "1.0.2",
     "@amplitude/analytics-browser": "1.12.1",
     "@apollo/client": "3.10.4",
     "@graphql-codegen/cli": "^3.3.1",
@@ -145,7 +145,7 @@
     "zustand": "4.4.6"
   },
   "devDependencies": {
-    "@abstract-foundation/agw-client": "1.0.0",
+    "@abstract-foundation/agw-client": "1.0.1",
     "@babel/preset-env": "7.23.3",
     "@cloudflare/workers-types": "4.20231025.0",
     "@craco/craco": "7.1.0",
