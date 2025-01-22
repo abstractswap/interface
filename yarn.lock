@@ -8233,9 +8233,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@privy-io/cross-app-connect@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@privy-io/cross-app-connect@npm:0.1.2"
+"@privy-io/cross-app-connect@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "@privy-io/cross-app-connect@npm:0.1.4"
   dependencies:
     "@noble/curves": ^1.5.0
     "@noble/hashes": 1.3.2
@@ -8249,7 +8249,7 @@ __metadata:
       optional: true
     "@wagmi/core":
       optional: true
-  checksum: 0b2f9d6f3b09f3f0fd7b087bb09fa073a07fdba48454c4d9ccee510fb2a3544b0d1cb1284ef952a94c6b35a1a18b49767069b774c21d14a1956a4ddaca840b6f
+  checksum: 55a3a049a16011eeaf0ebba53e3ffcdd2a85caf867554ee073bfb4bb37cc1a4a5e263e1be4752be1a3e851df546dab5743623860a6cd549c102bbe8443f11831
   languageName: node
   linkType: hard
 
@@ -15478,7 +15478,7 @@ __metadata:
     "@looksrare/sdk": 0.10.4
     "@opensea/seaport-js": 1.3.0
     "@popperjs/core": 2.11.8
-    "@privy-io/cross-app-connect": ^0.1.2
+    "@privy-io/cross-app-connect": ^0.1.4
     "@rainbow-me/rainbowkit": ^2.1.6
     "@reach/dialog": 0.10.5
     "@reach/portal": 0.10.5
