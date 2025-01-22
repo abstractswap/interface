@@ -69,14 +69,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@abstract-foundation/agw-react@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@abstract-foundation/agw-react@npm:1.0.2"
-  dependencies:
-    "@abstract-foundation/agw-client": 1.0.1
+"@abstract-foundation/agw-client@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@abstract-foundation/agw-client@npm:1.1.0"
   peerDependencies:
-    "@privy-io/cross-app-connect": ^0.1.2
-    "@privy-io/react-auth": ^1.97.0
+    abitype: ^1.0.0
+    typescript: ">=5.0.4"
+    viem: ^2.21.26
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3c070b08e5137e4f5f83d8d35802d2364046ee2263f9f49e4429b622bb4d9c5ea3431b8ac5669288cf4b1c4421fa8852aa01a30f5c0cdeab3db65935aad8f024
+  languageName: node
+  linkType: hard
+
+"@abstract-foundation/agw-react@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@abstract-foundation/agw-react@npm:1.2.2"
+  dependencies:
+    "@abstract-foundation/agw-client": 1.1.0
+  peerDependencies:
+    "@privy-io/cross-app-connect": ^0.1.4
+    "@privy-io/react-auth": ^2.0.5
     "@tanstack/react-query": ^5
     react: ">=18"
     secp256k1: ">=5.0.1"
@@ -91,7 +105,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: bd337a231398d9442fb635fc2bdb325b0db36e8bc60a207a05ed94428b783872c43b2d960bf1271f65e4810b5e5fdeed3296ea25d9ac06fcba38aadccdf57310
+  checksum: e1ef46fa0cd154b40fa57f727e0d92e5ebfb94dc7aba2966237d24b98d13030d7bceb12ddd7cef9ee69c385d3a7cb992d43f4e9b1c3439b04f590b5c36f3798e
   languageName: node
   linkType: hard
 
@@ -15446,7 +15460,7 @@ __metadata:
   resolution: "@uniswap/interface@workspace:apps/web"
   dependencies:
     "@abstract-foundation/agw-client": 1.0.1
-    "@abstract-foundation/agw-react": 1.0.2
+    "@abstract-foundation/agw-react": 1.2.2
     "@amplitude/analytics-browser": 1.12.1
     "@apollo/client": 3.10.4
     "@babel/preset-env": 7.23.3
