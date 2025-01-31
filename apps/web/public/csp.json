@@ -6,7 +6,9 @@
     "'self'",
     "data:",
     "'wasm-unsafe-eval'",
-    "https://translate.googleapis.com/"
+    "https://translate.googleapis.com/",
+    "https://posthog.reservoir.tools",
+    "https://static.cloudflareinsights.com"
   ],
   "styleSrc": [
     "'self'",
@@ -56,7 +58,10 @@
     "https://coin-images.coingecko.com",
     "https://raw.githubusercontent.com",
     "https://rpc.redstonechain.com",
-    "https://rpc-gel.inkonchain.com"
+    "https://rpc-gel.inkonchain.com",
+    "https://posthog.reservoir.tools",
+    "https://auth.privy.io",
+    "https://*.reservoir.tools/tokenlist/v1"
   ],
   "workerSrc": [
     "'self'",

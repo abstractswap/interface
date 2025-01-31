@@ -2,7 +2,7 @@ import { MenuItem, useMenuContent } from 'components/NavBar/CompanyMenu/Content'
 import { MenuLink } from 'components/NavBar/CompanyMenu/MenuDropdown'
 import { useTabsContent } from 'components/NavBar/Tabs/TabsContent'
 import deprecatedStyled, { useTheme } from 'lib/styled-components'
-import { Github, Twitter } from 'pages/Landing/components/Icons'
+import { Twitter } from 'pages/Landing/components/Icons'
 import { Wiggle } from 'pages/Landing/components/animations'
 import { useMemo } from 'react'
 import { useTogglePrivacyPolicy } from 'state/application/hooks'
@@ -33,11 +33,11 @@ const PolicyLink = styled(Text, {
 export function Socials({ iconSize }: { iconSize?: string }) {
   return (
     <Flex row gap="$spacing24" maxHeight={iconSize} alignItems="flex-start">
-      <SocialIcon $hoverColor="#00C32B">
+      {/* <SocialIcon $hoverColor="#00C32B">
         <Anchor href="https://github.com/abstractswap/interface" target="_blank">
           <Github size={iconSize} fill="inherit" />
         </Anchor>
-      </SocialIcon>
+      </SocialIcon> */}
       <SocialIcon $hoverColor="#20BAFF">
         <Anchor href="https://x.com/reservoir0x" target="_blank">
           <Twitter size={iconSize} fill="inherit" />

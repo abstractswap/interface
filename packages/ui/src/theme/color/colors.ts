@@ -166,6 +166,10 @@ export const networkColors = {
     light: '#222222',
     dark: '#FFFFFF',
   },
+  animeTestnet: {
+    light: '#222222',
+    dark: '#FFFFFF',
+  },
 }
 
 const sporeLight = {
@@ -326,6 +330,7 @@ export const colorsLight = {
   chain_43114: networkColors.avalanche.light,
   chain_324: networkColors.zksync.light,
   chain_11124: networkColors.abstract.light,
+  chain_2741: networkColors.abstract.light,
   chain_543210: networkColors.zksync.light,
   chain_60808: networkColors.bob.light,
   chain_7560: networkColors.cyber.light,
@@ -333,6 +338,7 @@ export const colorsLight = {
   chain_57073: networkColors.ink.light,
   chain_690: networkColors.optimism.light,
   chain_17069: networkColors.optimism.light,
+  chain_6900: networkColors.animeTestnet.light,
 
   // Testnets
   chain_3: colors.yellowVibrant,
@@ -413,6 +419,7 @@ export const colorsDark = {
   chain_43114: networkColors.avalanche.dark,
   chain_324: networkColors.zksync.dark,
   chain_11124: networkColors.abstract.dark,
+  chain_2741: networkColors.abstract.dark,
   chain_543210: networkColors.zksync.dark,
   chain_60808: networkColors.bob.dark,
   chain_7560: networkColors.cyber.dark,
@@ -420,6 +427,7 @@ export const colorsDark = {
   chain_57073: networkColors.ink.dark,
   chain_690: networkColors.optimism.dark,
   chain_17069: networkColors.optimism.dark,
+  chain_6900: networkColors.animeTestnet.dark,
 
   // Testnets
   chain_3: colors.yellowVibrant,

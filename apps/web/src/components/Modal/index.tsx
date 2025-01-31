@@ -154,7 +154,16 @@ export default function Modal({
         ({ opacity }, item) =>
           item && (
             <StyledDialogOverlay
-              style={{ opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }) }}
+              style={{
+                opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
+                background: 'rgba(20, 9, 9, 0.33)',
+                bottom: 0,
+                left: 0,
+                overflow: 'auto',
+                position: 'fixed',
+                right: 0,
+                top: 0,
+              }}
               onDismiss={onDismiss}
               initialFocusRef={initialFocusRef}
               unstable_lockFocusAcrossFrames={false}

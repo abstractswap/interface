@@ -59,6 +59,7 @@ export interface Config {
   firebaseAppCheckDebugToken: string
   webSupportedChains?: UniverseChainId[]
   inkRPCURL?: string
+  abstractRPCURL?: string
 }
 
 /**
@@ -108,12 +109,8 @@ const _config: Config = {
     QUICKNODE_MAINNET_RPC_URL,
   tradingApiKey: process.env.TRADING_API_KEY || TRADING_API_KEY,
   firebaseAppCheckDebugToken: process.env.FIREBASE_APP_CHECK_DEBUG_TOKEN || FIREBASE_APP_CHECK_DEBUG_TOKEN,
-  webSupportedChains: process.env.REACT_APP_WEB_SUPPORTED_CHAINS
-    ? process.env.REACT_APP_WEB_SUPPORTED_CHAINS.split(',')
-        .map((id) => Number(id) as UniverseChainId)
-        .filter((id): id is UniverseChainId => !!id)
-    : undefined,
   inkRPCURL: process.env.REACT_APP_INK_RPC_URL,
+  abstractRPCURL: process.env.REACT_APP_ABSTRACT_RPC_URL,
 }
 
 export const config = Object.freeze(_config)

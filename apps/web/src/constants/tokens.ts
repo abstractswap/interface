@@ -515,6 +515,20 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     'WETH',
     'Wrapped Ether',
   ),
+  [UniverseChainId.AbstractMainnet]: new Token(
+    UniverseChainId.AbstractMainnet,
+    '0x3439153EB7AF838Ad19d56E1571FBD09333C2809',
+    18,
+    'WETH',
+    'Wrapped Ether',
+  ),
+  [UniverseChainId.AnimeTestnet]: new Token(
+    UniverseChainId.AnimeTestnet,
+    '0x8f3e2785985aa4005c63f97f7cc89ce91a948267',
+    18,
+    'WETH',
+    'Wrapped Ether',
+  ),
 }
 
 export function isCelo(chainId: number): chainId is UniverseChainId.Celo | UniverseChainId.CeloAlfajores {

@@ -6,6 +6,7 @@ import { DropdownSelector } from 'components/DropdownSelector'
 import PositionList from 'components/PositionList'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
 import { useIsSupportedChainId } from 'constants/chains'
+import forkConfig from 'forkConfig'
 import { useAccount } from 'hooks/useAccount'
 import { useNetworkSupportsV2 } from 'hooks/useNetworkSupportsV2'
 import { useV3Positions } from 'hooks/useV3Positions'
@@ -181,18 +182,23 @@ export default function Pool() {
   const showConnectAWallet = Boolean(!account)
 
   const menuItems = [
-    <PoolMenuItem href="/migrate/v2" key="migrate">
+    <PoolMenuItem href="/#/migrate/v2" key="migrate">
       {t('common.migrate')}
       <ChevronsRight size={16} />
     </PoolMenuItem>,
-    <PoolMenuItem href="/pools/v2" key="v2-liquidity">
+    <PoolMenuItem href="/#/pools/v2" key="v2-liquidity">
       {t('pool.v2liquidity')}
       <Layers size={16} />
     </PoolMenuItem>,
-    <PoolMenuItem href="https://support.uniswap.org/hc/en-us/categories/8122334631437-Providing-Liquidity-" key="learn">
-      {t('pool.learn')}
-      <BookOpen size={16} />
-    </PoolMenuItem>,
+    forkConfig.documentationAvailable && (
+      <PoolMenuItem
+        href="https://support.uniswap.org/hc/en-us/categories/8122334631437-Providing-Liquidity-"
+        key="learn"
+      >
+        {t('pool.learn')}
+        <BookOpen size={16} />
+      </PoolMenuItem>
+    ),
   ]
 
   return (

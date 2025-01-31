@@ -85,7 +85,7 @@ export function useCurrencySearchResultsLegacy({
     }
 
     const filteredListTokens = fullBaseList.filter((token) => {
-      return token.symbol !== 'ETH'
+      return token.symbol !== 'ETH' && token.name !== '' && token.symbol !== ''
     })
 
     const portfolioTokens = getSortedPortfolioTokens(balanceList, balanceMap, chainId, {

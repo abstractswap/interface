@@ -35,6 +35,7 @@ export const SHAPE_LOGO = require('./logos/png/shape-logo.png')
 export const INK_LOGO = require('./logos/png/ink-logo.png')
 export const REDSTONE_LOGO = require('./logos/png/redstone-logo.png')
 export const REDSTONE_GARNET_LOGO = require('./logos/png/redstone-garnet-logo.png')
+export const ANIME_TESTNET_LOGO = require('./logos/png/anime-logo.png')
 
 export const DAI_LOGO = require('./logos/png/dai-logo.png')
 export const USDC_LOGO = require('./logos/png/usdc-logo.png')

@@ -5,7 +5,6 @@ import { GeneratedIcon } from 'ui/src'
 import { Chain as BackendChainId } from 'uniswap/src/data/graphql/uniswap-data-api/__generated__/types-and-hooks'
 import { ElementNameType } from 'uniswap/src/features/telemetry/constants'
 import { Chain as WagmiChain } from 'wagmi/chains'
-import { config } from 'uniswap/src/config'
 
 export enum UniverseChainId {
   Mainnet = UniswapSDKChainId.MAINNET,
@@ -33,7 +32,9 @@ export enum UniverseChainId {
   INK = UniswapSDKChainId.INK,
   REDSTONE = UniswapSDKChainId.REDSTONE,
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  REDSTONE_GARNET = UniswapSDKChainId.REDSTONE_GARNET, 
+  REDSTONE_GARNET = UniswapSDKChainId.REDSTONE_GARNET,
+  AbstractMainnet = UniswapSDKChainId.ABSTRACT_MAINNET,
+  AnimeTestnet = UniswapSDKChainId.ANIME_TESTNET,
 }
 
 export type WalletChainId =
@@ -57,7 +58,9 @@ export type WalletChainId =
   | UniverseChainId.SHAPE
   | UniverseChainId.INK
   | UniverseChainId.REDSTONE
-  | UniverseChainId.REDSTONE_GARNET  
+  | UniverseChainId.REDSTONE_GARNET
+  | UniverseChainId.AbstractMainnet
+  | UniverseChainId.AnimeTestnet
 
 
 // DON'T CHANGE - order here determines ordering of networks in app
@@ -78,7 +81,7 @@ export const WALLET_SUPPORTED_CHAIN_IDS: WalletChainId[] = [
 
 export type InterfaceChainId = UniverseChainId
 
-export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = config.webSupportedChains ??
+export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] =
 [
   // UniverseChainId.Mainnet,
   // UniverseChainId.Goerli,
@@ -97,14 +100,16 @@ export const WEB_SUPPORTED_CHAIN_IDS: InterfaceChainId[] = config.webSupportedCh
   // UniverseChainId.Blast,
   // UniverseChainId.Zora,
   // UniverseChainId.Zksync,
+  UniverseChainId.AnimeTestnet,
+  UniverseChainId.AbstractTestnet,
+  UniverseChainId.REDSTONE_GARNET,
   // UniverseChainId.Zero,
   // UniverseChainId.BOB,
   // UniverseChainId.CYBER,
   // UniverseChainId.SHAPE,
   // UniverseChainId.INK,
   // UniverseChainId.REDSTONE,
-  UniverseChainId.AbstractTestnet,
-  UniverseChainId.REDSTONE_GARNET
+  // UniverseChainId.AbstractMainnet
 ]
 
 export enum RPCType {

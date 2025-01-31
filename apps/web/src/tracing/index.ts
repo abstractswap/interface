@@ -2,6 +2,7 @@ import { setupAmplitude } from 'tracing/amplitude'
 import { setupSentry } from 'tracing/sentry'
 import { setupDatadog } from 'utilities/src/logger/Datadog'
 import { isRemoteReportingEnabled } from 'utils/env'
+import { setupPosthog } from './posthog'
 
 if (isRemoteReportingEnabled()) {
   // Dump some metadata into the window to allow client verification.
@@ -10,5 +11,7 @@ if (isRemoteReportingEnabled()) {
   setupDatadog()
   setupSentry()
 }
+
+setupPosthog()
 
 setupAmplitude()

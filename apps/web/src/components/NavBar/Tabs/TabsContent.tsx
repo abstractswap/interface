@@ -34,8 +34,8 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
   const { pathname } = useLocation()
   const theme = useTheme()
   const areTabsVisible = useTabsVisible()
-  const { chainId } = useSwapAndLimitContext()
-
+  const { chainId: universeChainId } = useSwapAndLimitContext()
+  const chainId = universeChainId ? universeChainId : UniverseChainId.Zero
   return [
     {
       title: t('common.trade'),
@@ -82,7 +82,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
     },
     {
       title: t('common.explore'),
-      href: `${UNIVERSE_CHAIN_INFO[chainId ?? UniverseChainId.AbstractTestnet].infoLink}`,
+      href: `https://info.reservoir.tools/#/${UNIVERSE_CHAIN_INFO[(chainId as UniverseChainId) ?? UniverseChainId.AbstractTestnet].urlParam}`,
       isActive: pathname.startsWith('/explore') || pathname.startsWith('/nfts'),
       items: forkConfig.uniSpecificFeaturesEnabled
         ? [
@@ -99,18 +99,34 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
               : []),
           ]
         : [
+            // {
+            //   label: t('common.tokens'),
+            //   quickKey: 'T',
+            //   href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/tokens`,
+            //   internal: false,
+            // },
+            // {
+            //   label: t('common.pools'),
+            //   quickKey: 'P',
+            //   href: `${UNIVERSE_CHAIN_INFO[UniverseChainId.AbstractTestnet].infoLink}/pools`,
+            //   internal: false,
+            // },
             {
-              label: t('common.tokens'),
+              label: 'V3 Analytics',
               quickKey: 'T',
-              href: `${UNIVERSE_CHAIN_INFO[chainId ?? UniverseChainId.AbstractTestnet].infoLink}/tokens`,
+              href: `https://info.reservoir.tools/#/${UNIVERSE_CHAIN_INFO[(chainId as UniverseChainId) ?? UniverseChainId.AbstractTestnet].urlParam}`,
               internal: false,
             },
-            {
-              label: t('common.pools'),
-              quickKey: 'T',
-              href: `${UNIVERSE_CHAIN_INFO[chainId ?? UniverseChainId.AbstractTestnet].infoLink}/pools`,
-              internal: false,
-            },
+            ...(![+UniverseChainId.BOB, UniverseChainId.REDSTONE, UniverseChainId.REDSTONE_GARNET].includes(+chainId!)
+              ? [
+                  {
+                    label: 'V2 Analytics',
+                    quickKey: 'P',
+                    href: `https://v2-info-${UNIVERSE_CHAIN_INFO[chainId as UniverseChainId].urlParam.replace(/_/g, '-')}.reservoir.tools`,
+                    internal: false,
+                  },
+                ]
+              : []),
           ],
     },
     {

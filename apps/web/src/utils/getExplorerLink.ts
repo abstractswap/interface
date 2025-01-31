@@ -23,9 +23,11 @@ const BLOCK_EXPLORER_PREFIXES: { [chainId: number]: string } = {
   [UniverseChainId.BOB]: 'https://explorer.gobob.xyz',
   [UniverseChainId.CYBER]: 'https://cyberscan.co',
   [UniverseChainId.SHAPE]: 'https://shapescan.xyz',
-  [UniverseChainId.INK]: '', // Temporary
+  [UniverseChainId.INK]: 'https://explorer.inkonchain.com',
   [UniverseChainId.REDSTONE]: 'https://explorer.redstone.xyz',
   [UniverseChainId.REDSTONE_GARNET]: 'https://explorer.garnetchain.com',
+  [UniverseChainId.AbstractMainnet]: '', // Temporary
+  [UniverseChainId.AnimeTestnet]: 'https://testnet-explorer.anime.xyz',
 }
 
 export enum ExplorerDataType {
