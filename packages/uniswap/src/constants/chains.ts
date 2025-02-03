@@ -1592,9 +1592,9 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     networkLayer: NetworkLayer.L2,
     pendingTransactionsRetryOptions: undefined,
     rpcUrls: {
-      [RPCType.Public]: { http: [''] },
-      default: { http: [''] },
-      appOnly: { http: [''] },
+      [RPCType.Public]: { http: ['https://6900.rpc.thirdweb.com'] },
+      default: { http: ['https://6900.rpc.thirdweb.com'] },
+      appOnly: { http: ['https://6900.rpc.thirdweb.com'] },
     },
     urlParam: 'anime-testnet',
     statusPage: undefined,
