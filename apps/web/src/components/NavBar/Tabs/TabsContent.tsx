@@ -114,7 +114,7 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
             {
               label: 'V3 Analytics',
               quickKey: 'T',
-              href: `https://info.reservoir.tools/#/${UNIVERSE_CHAIN_INFO[(chainId as UniverseChainId) ?? UniverseChainId.AbstractTestnet].urlParam}`,
+              href: `https://testnets-info.reservoir.tools/#/${UNIVERSE_CHAIN_INFO[(chainId as UniverseChainId) ?? UniverseChainId.AbstractTestnet].urlParam}`,
               internal: false,
             },
             ...(![+UniverseChainId.BOB, UniverseChainId.REDSTONE, UniverseChainId.REDSTONE_GARNET].includes(+chainId!)
