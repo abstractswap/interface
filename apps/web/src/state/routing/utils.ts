@@ -11,7 +11,8 @@ import {
 import { Pair, Route as V2Route } from '@uniswap/v2-sdk'
 import { FeeAmount, Pool, Route as V3Route } from '@uniswap/v3-sdk'
 import { BIPS_BASE } from 'constants/misc'
-import { isAvalanche, isBsc, isPolygon, nativeOnChain } from 'constants/tokens'
+import { isAnime, isAvalanche, isBsc, isPolygon, nativeOnChain } from 'constants/tokens'
+import forkConfig from 'forkConfig'
 import { getApproveInfo, getWrapInfo } from 'state/routing/gas'
 import {
   ClassicQuoteData,
@@ -407,6 +408,9 @@ export function currencyAddressForSwapQuote(currency: Currency): string {
     }
     if (isAvalanche(currency.chainId)) {
       return SwapRouterNativeAssets.AVAX
+    } // Need to change asset name in backend and sdks as well
+    if (isAnime(currency.chainId) && forkConfig.nativeAssetChanged.anime) {
+      return SwapRouterNativeAssets.ANIME
     }
     return SwapRouterNativeAssets.ETH
   }

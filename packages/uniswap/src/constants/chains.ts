@@ -1585,8 +1585,8 @@ export const UNIVERSE_CHAIN_INFO: Record<UniverseChainId, UniverseChainInfo> = {
     label: 'Anime Testnet',
     logo: ANIME_TESTNET_LOGO,
     nativeCurrency: {
-      name: 'ETH',
-      symbol: 'ETH',
+      name: 'ANIME',
+      symbol: 'ANIME',
       decimals: 18,
       address: DEFAULT_NATIVE_ADDRESS,
     },

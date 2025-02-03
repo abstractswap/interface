@@ -11,6 +11,9 @@ const forkConfig = {
   apiRoutingEnabled: true,
   inDevelopment: true,
   documentationAvailable: false,
+  nativeAssetChanged: {
+    anime: false,
+  },
 }
 
 export default forkConfig
