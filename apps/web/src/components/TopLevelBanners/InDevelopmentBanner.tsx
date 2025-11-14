@@ -1,6 +1,6 @@
 import styled from 'lib/styled-components'
 import { BREAKPOINTS } from 'theme'
-import { ButtonText, ThemedText } from 'theme/components'
+import { ThemedText } from 'theme/components'
 import { Z_INDEX } from 'theme/zIndex'
 
 const BannerWrapper = styled.div`
@@ -50,27 +50,27 @@ const BannerTextWrapper = styled(ThemedText.BodySecondary)`
   }
 `
 
-const ReadMoreWrapper = styled(ButtonText)`
-  flex-shrink: 0;
-  width: max-content;
+// const ReadMoreWrapper = styled(ButtonText)`
+//   flex-shrink: 0;
+//   width: max-content;
 
-  :focus {
-    text-decoration: none;
-  }
-`
+//   :focus {
+//     text-decoration: none;
+//   }
+// `
 
-const bannerText = 'This interface is still in the development phase and used only for internal testing purposes.'
+const bannerText = 'This interface is used only for internal testing purposes.'
 
 export function InDevelopmentBanner() {
   return (
     <BannerWrapper>
       <BannerContents>
         <BannerTextWrapper lineHeight="24px">{bannerText}</BannerTextWrapper>
-        <ReadMoreWrapper>
+        {/* <ReadMoreWrapper>
           <ThemedText.BodySecondary lineHeight="24px" color="accent1">
             The project has been modified to be compatible with additional networks.
           </ThemedText.BodySecondary>
-        </ReadMoreWrapper>
+        </ReadMoreWrapper> */}
       </BannerContents>
     </BannerWrapper>
   )

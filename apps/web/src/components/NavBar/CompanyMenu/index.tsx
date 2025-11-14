@@ -3,6 +3,7 @@ import { NavIcon } from 'components/Logo/NavIcon'
 import { MenuDropdown } from 'components/NavBar/CompanyMenu/MenuDropdown'
 import { MobileMenuDrawer } from 'components/NavBar/CompanyMenu/MobileMenuDrawer'
 import { useIsMobileDrawer } from 'components/NavBar/ScreenSizes'
+import forkConfig from 'forkConfig'
 import { useScreenSize } from 'hooks/screenSize'
 import styled from 'lib/styled-components'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -68,10 +69,15 @@ export function CompanyMenu() {
             )}
           </UniIcon>
           {(isSmallScreen || isTouchDevice) && <Hamburger size={22} color="$neutral2" cursor="pointer" ml="16px" />}
-          <ArrowDown $isActive={isOpen} width="12px" height="12px" />
+          {!forkConfig.postMigration && <ArrowDown $isActive={isOpen} width="12px" height="12px" />}
         </Trigger>
       </Popover.Trigger>
-      {isMobileDrawer ? <MobileMenuDrawer isOpen={isOpen} closeMenu={closeMenu} /> : <MenuDropdown close={closeMenu} />}
+      {!forkConfig.postMigration &&
+        (isMobileDrawer ? (
+          <MobileMenuDrawer isOpen={isOpen} closeMenu={closeMenu} />
+        ) : (
+          <MenuDropdown close={closeMenu} />
+        ))}
     </Popover>
   )
 }

@@ -36,6 +36,25 @@ export const useTabsContent = (props?: { includeNftsLink?: boolean }): TabsSecti
   const areTabsVisible = useTabsVisible()
   const { chainId: universeChainId } = useSwapAndLimitContext()
   const chainId = universeChainId ? universeChainId : UniverseChainId.Zero
+
+  if (forkConfig.postMigration) {
+    return [
+      {
+        title: t('common.pool'),
+        href: '/pool',
+        isActive: pathname.startsWith('/pool'),
+        items: [
+          { label: t('nav.tabs.viewPosition'), quickKey: 'V', href: '/pool', internal: true },
+          {
+            label: t('nav.tabs.createPosition'),
+            quickKey: 'V',
+            href: '/add',
+            internal: true,
+          },
+        ],
+      },
+    ]
+  }
   return [
     {
       title: t('common.trade'),
